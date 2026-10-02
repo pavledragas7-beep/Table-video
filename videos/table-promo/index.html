@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Space Grotesk"; font-weight: 400; src: url("assets/fonts/space-grotesk-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+      :root {
+        --night: #0b0a1f;
+        --night-2: #17123a;
+        --violet: #7b3cff;
+        --violet-soft: #a77bff;
+        --violet-pale: #ece4ff;
+        --warm: #f6f1e9;
+        --warm-2: #ece5d8;
+        --ink: #15121f;
+        --muted: #625c78;
+        --line: #e0d8c9;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--night); }
+      #root {
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        background: var(--night);
+        font-family: "Inter", sans-serif; color: var(--ink);
+      }
+      .layer { position: absolute; inset: 0; }
+
+      /* ---------- background ---------- */
+      #bg { background: radial-gradient(120% 90% at 50% 40%, var(--night-2) 0%, var(--night) 70%); }
+      .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; }
+      #blob1 { width: 900px; height: 900px; left: -200px; top: -250px; background: #4b1fb8; }
+      #blob2 { width: 800px; height: 800px; left: 1200px; top: 450px; background: #2a1a8a; }
+      #blob3 { width: 520px; height: 520px; left: 820px; top: -120px; background: #7b3cff; opacity: 0.28; }
+      .bokeh { position: absolute; border-radius: 50%; background: var(--violet-soft); filter: blur(6px); }
+
+      /* ---------- camera ---------- */
+      #stage { perspective: 2200px; }
+      #world { transform-origin: 50% 50%; }
+      #camPos, #camRot, #camShift { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-style: preserve-3d; }
+      #camRot { transform-origin: 0 0; }
+
+      /* ---------- phone ---------- */
+      #phone {
+        position: absolute; left: 0; top: 0; width: 540px; height: 1120px;
+        border-radius: 72px; background: #050409;
+        box-shadow: 0 0 0 2px #2c2547, 0 60px 140px rgba(0,0,0,0.55), 0 0 120px rgba(123,60,255,0.25);
+      }
+      #screen {
+        position: absolute; left: 20px; top: 20px; width: 500px; height: 1080px;
+        border-radius: 54px; overflow: hidden; background: var(--warm);
+      }
+      #notch { position: absolute; left: 190px; top: 14px; width: 120px; height: 34px; border-radius: 20px; background: #050409; z-index: 50; }
+      .status { position: absolute; left: 0; top: 0; width: 500px; height: 54px; z-index: 40; font: 600 17px "Inter"; padding: 18px 34px 0; display: flex; justify-content: space-between; color: var(--ink); }
+      .status .icons { display: flex; gap: 6px; align-items: center; }
+      .status .icons i { display: block; width: 18px; height: 11px; border-radius: 3px; background: var(--ink); }
+      .scr { position: absolute; left: 0; top: 0; width: 500px; height: 1080px; background: var(--warm); overflow: hidden; }
+      .pad { position: absolute; left: 24px; right: 24px; }
+      .h-small { font: 500 17px "Inter"; color: var(--muted); }
+      .h-big { font: 700 34px "Space Grotesk"; letter-spacing: -0.02em; color: var(--ink); }
+      .h-mid { font: 700 24px "Space Grotesk"; letter-spacing: -0.01em; color: var(--ink); }
+      .label { font: 600 13px "Inter"; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+      /* home */
+      .search { height: 56px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line); display: flex; align-items: center; gap: 12px; padding: 0 18px; font: 500 18px "Inter"; color: var(--muted); }
+      .glass { width: 20px; height: 20px; border-radius: 50%; border: 3px solid var(--ink); position: relative; flex: none; }
+      .chips { display: flex; gap: 10px; }
+      .chip { padding: 9px 16px; border-radius: 999px; background: var(--warm-2); font: 600 15px "Inter"; }
+      .chip.on { background: var(--ink); color: var(--warm); }
+      .card { position: absolute; left: 24px; width: 452px; border-radius: 26px; background: #fff; overflow: hidden; box-shadow: 0 10px 30px rgba(21,18,31,0.08); }
+      .card .img { position: relative; height: 200px; overflow: hidden; }
+      .card .meta { padding: 16px 20px; }
+      .card .name { font: 700 24px "Space Grotesk"; }
+      .card .sub { font: 500 15px "Inter"; color: var(--muted); margin-top: 4px; }
+      .img-velvet { background: linear-gradient(135deg, #3a0f5e 0%, #7b3cff 55%, #ff4fa3 100%); }
+      .img-nova { background: linear-gradient(135deg, #0d1b4a 0%, #3d2bd1 60%, #19c3ff 100%); }
+      .light { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.75); filter: blur(4px); }
+      .beam { position: absolute; width: 18px; height: 260px; top: -40px; background: linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0)); filter: blur(3px); transform-origin: 50% 0; }
+      .badge-sold { position: absolute; right: 16px; top: 16px; width: 120px; height: 38px; border-radius: 999px; background: #ff3d6e; color: #fff; font: 700 15px "Inter"; display: flex; align-items: center; justify-content: center; letter-spacing: 0.04em; }
+      .tabbar { position: absolute; left: 0; bottom: 0; width: 500px; height: 92px; background: #fff; border-top: 1px solid var(--line); display: flex; justify-content: space-around; padding-top: 14px; }
+      .tab { width: 90px; display: flex; flex-direction: column; align-items: center; gap: 6px; font: 600 12px "Inter"; color: var(--muted); position: relative; }
+      .tab i { display: block; width: 26px; height: 26px; border-radius: 8px; border: 2.5px solid var(--muted); }
+      .tab.on { color: var(--violet); }
+      .tab.on i { border-color: var(--violet); background: var(--violet-pale); }
+      .tab-badge { position: absolute; top: -6px; left: 52px; width: 24px; height: 24px; border-radius: 50%; background: var(--violet); color: #fff; font: 700 13px "Inter"; display: flex; align-items: center; justify-content: center; }
+
+      /* results */
+      .row { position: absolute; left: 24px; width: 452px; height: 136px; border-radius: 22px; background: #fff; display: flex; gap: 16px; padding: 12px; align-items: center; box-shadow: 0 6px 18px rgba(21,18,31,0.05); }
+      .thumb { width: 112px; height: 112px; border-radius: 16px; flex: none; }
+      .row .name { font: 700 21px "Space Grotesk"; }
+      .row .sub { font: 500 14px "Inter"; color: var(--muted); margin-top: 4px; }
+      .row .price { font: 600 14px "Inter"; color: var(--violet); margin-top: 10px; }
+
+      /* venue */
+      .day { width: 60px; height: 78px; border-radius: 18px; background: #fff; border: 1.5px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font: 600 13px "Inter"; color: var(--muted); }
+      .day b { font: 700 22px "Space Grotesk"; color: var(--ink); }
+      .day.sel { background: var(--violet); border-color: var(--violet); color: #e9ddff; }
+      .day.sel b { color: #fff; }
+      .stepper { display: flex; align-items: center; justify-content: space-between; height: 72px; border-radius: 20px; background: #fff; border: 1.5px solid var(--line); padding: 0 12px 0 22px; }
+      .stp-btn { width: 50px; height: 50px; border-radius: 14px; background: var(--warm-2); font: 700 26px "Inter"; display: flex; align-items: center; justify-content: center; }
+      .stp-btn.plus { background: var(--violet); color: #fff; }
+      .cta { height: 66px; border-radius: 20px; background: var(--violet); color: #fff; font: 700 19px "Inter"; display: flex; align-items: center; justify-content: center; }
+      .cta.dark { background: var(--ink); }
+
+      /* map */
+      .floor { position: absolute; left: 20px; top: 128px; width: 460px; height: 860px; border-radius: 28px; background: #efe8db; overflow: hidden; }
+      .dj { position: absolute; left: 160px; top: 24px; width: 140px; height: 52px; border-radius: 14px; background: var(--ink); color: var(--warm); font: 700 16px "Space Grotesk"; display: flex; align-items: center; justify-content: center; letter-spacing: 0.2em; }
+      .dance { position: absolute; left: 90px; top: 112px; width: 280px; height: 280px; border-radius: 28px;
+        background-image: linear-gradient(45deg, rgba(123,60,255,0.10) 25%, transparent 25%, transparent 75%, rgba(123,60,255,0.10) 75%), linear-gradient(45deg, rgba(123,60,255,0.10) 25%, transparent 25%, transparent 75%, rgba(123,60,255,0.10) 75%);
+        background-size: 40px 40px; background-position: 0 0, 20px 20px; border: 2px solid rgba(123,60,255,0.25); display: flex; align-items: center; justify-content: center; font: 700 14px "Inter"; letter-spacing: 0.2em; color: rgba(123,60,255,0.6); }
+      .prive { position: absolute; left: 20px; top: 570px; width: 420px; height: 270px; border-radius: 24px; border: 2.5px dashed #b49a6a; background: rgba(180,154,106,0.10); }
+      .prive-label { position: absolute; left: 22px; top: 16px; font: 700 15px "Space Grotesk"; letter-spacing: 0.25em; color: #8d7442; }
+      .rope { position: absolute; left: 40px; top: 556px; width: 380px; height: 6px; border-radius: 3px; background: #b49a6a; }
+      .tbl { position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: #d6cdbd; border: 3px solid #c4baa8; display: flex; align-items: center; justify-content: center; font: 700 13px "Inter"; color: #8b8273; }
+      .tbl .on { position: absolute; inset: -3px; border-radius: 50%; background: var(--violet); border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(123,60,255,0.25), 0 0 26px rgba(123,60,255,0.6); color: #fff; display: flex; align-items: center; justify-content: center; font: 700 13px "Inter"; }
+      .tag { position: absolute; padding: 8px 12px; border-radius: 12px; background: var(--ink); color: #fff; font: 600 13px "Inter"; white-space: nowrap; }
+      .sheet { position: absolute; left: 0; top: 600px; width: 500px; height: 480px; border-radius: 34px 34px 0 0; background: #fff; box-shadow: 0 -20px 50px rgba(21,18,31,0.18); }
+      .grab { position: absolute; left: 220px; top: 12px; width: 60px; height: 6px; border-radius: 3px; background: var(--line); }
+      .facts { display: flex; gap: 10px; flex-wrap: wrap; }
+      .fact { padding: 10px 14px; border-radius: 14px; background: var(--warm); font: 600 15px "Inter"; }
+      .offers { position: absolute; right: 24px; top: 38px; padding: 9px 14px; border-radius: 999px; background: #ff3d6e; color: #fff; font: 700 14px "Inter"; }
+
+      /* auction */
+      .live { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #ff3d6e; color: #fff; font: 700 14px "Inter"; letter-spacing: 0.1em; }
+      .live i { display: block; width: 10px; height: 10px; border-radius: 50%; background: #fff; }
+      .count { font: 700 76px "Space Grotesk"; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .bar { height: 10px; border-radius: 5px; background: var(--warm-2); overflow: hidden; }
+      .bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--violet), #ff3d6e); transform-origin: 0 50%; }
+      .price { font: 700 110px "Space Grotesk"; letter-spacing: -0.04em; color: var(--violet); font-variant-numeric: tabular-nums; }
+      .bid { position: absolute; left: 24px; width: 452px; height: 76px; border-radius: 20px; background: #fff; display: flex; align-items: center; gap: 14px; padding: 0 18px; box-shadow: 0 6px 18px rgba(21,18,31,0.05); font: 600 18px "Inter"; }
+      .bid .av { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font: 700 17px "Inter"; flex: none; }
+      .bid .amt { margin-left: auto; font: 700 22px "Space Grotesk"; }
+      .bid.me { background: var(--violet); color: #fff; }
+      .raise { height: 84px; border-radius: 24px; background: var(--violet); color: #fff; font: 700 30px "Space Grotesk"; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(123,60,255,0.35); }
+      #win { position: absolute; inset: 0; background: var(--violet); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; color: #fff; overflow: hidden; }
+      .win-ring { width: 170px; height: 170px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+      .win-title { font: 700 64px "Space Grotesk"; letter-spacing: -0.02em; }
+      .win-sub { font: 500 20px "Inter"; color: #e6dbff; }
+      .confetti { position: absolute; width: 12px; height: 20px; border-radius: 3px; }
+
+      /* pay + split */
+      .total { font: 700 84px "Space Grotesk"; letter-spacing: -0.03em; }
+      .okc { width: 120px; height: 120px; border-radius: 50%; background: var(--violet); display: flex; align-items: center; justify-content: center; }
+      .avs { display: flex; justify-content: space-between; }
+      .avc { position: relative; width: 66px; height: 66px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font: 700 22px "Inter"; }
+      .avc .chk { position: absolute; right: -6px; bottom: -6px; width: 28px; height: 28px; border-radius: 50%; background: #1fc77e; border: 3px solid var(--warm); display: flex; align-items: center; justify-content: center; }
+
+      /* pass */
+      .pass { position: absolute; left: 24px; top: 110px; width: 452px; height: 820px; border-radius: 32px; background: var(--ink); color: var(--warm); overflow: hidden; }
+      .qr { position: absolute; left: 86px; top: 270px; width: 280px; height: 280px; border-radius: 22px; background: #fff; padding: 18px; }
+      .scanline { position: absolute; left: 70px; top: 270px; width: 312px; height: 6px; border-radius: 3px; background: var(--violet-soft); box-shadow: 0 0 22px 6px rgba(167,123,255,0.8); }
+      .ok-pill { position: absolute; left: 76px; top: 600px; width: 300px; height: 56px; border-radius: 999px; background: #1fc77e; color: #fff; font: 700 18px "Inter"; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+      /* cursor + ripple (phone space) */
+      .cur { position: absolute; left: 0; top: 0; width: 40px; height: 48px; margin: -2px 0 0 -4px; }
+      .ripple { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; border: 4px solid var(--violet); }
+
+      /* kinetic type (screen space) */
+      .kin { position: absolute; font: 700 132px "Space Grotesk"; line-height: 0.95; letter-spacing: -0.035em; color: var(--warm); width: 760px; }
+      .kin.r { text-align: right; }
+      .kin .w { display: inline-block; white-space: nowrap; }
+      .kin .l { display: inline-block; }
+      .kin .acc { color: var(--violet-soft); }
+
+      /* mascot */
+      .mascot { position: absolute; width: 170px; height: 170px; }
+      .mascot svg { overflow: visible; }
+
+      /* end card */
+      #endcard { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      #logoWrap { position: relative; width: 432px; height: 400px; margin-top: -120px; }
+      #logoWrap img { position: absolute; left: 0; top: 0; width: 432px; height: 400px; }
+      #slogan { position: absolute; left: 0; top: 700px; width: 1920px; text-align: center; font: 700 88px "Space Grotesk"; letter-spacing: -0.03em; color: var(--warm); }
+      #slogan .w { display: inline-block; white-space: nowrap; }
+      #slogan .l { display: inline-block; }
+      #slogan .acc { color: var(--violet-soft); }
+      #glow { position: absolute; left: 610px; top: 90px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(123,60,255,0.55) 0%, rgba(123,60,255,0) 65%); }
+
+      /* grain + vignette */
+      #vignette { background: radial-gradient(130% 100% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%); pointer-events: none; }
+      #grain { inset: -60px; opacity: 0.09; mix-blend-mode: overlay; pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+
+      <!-- ===== background ===== -->
+      <div id="bg" class="layer clip" data-start="0" data-duration="30" data-track-index="0">
+        <div id="bgInner" class="layer">
+          <div class="blob" id="blob1"></div>
+          <div class="blob" id="blob2"></div>
+          <div class="blob" id="blob3"></div>
+          <div id="bokeh" class="layer"></div>
+        </div>
+      </div>
+
+      <!-- ===== product world (camera) ===== -->
+      <div id="stage" class="layer clip" data-start="0" data-duration="27.1" data-track-index="1">
+        <div id="world" class="layer">
+          <div id="camPos"><div id="camDrift"><div id="camRot"><div id="camShift">
+            <div id="phone">
+              <div id="screen">
+                <div class="status"><span>23:41</span><span class="icons"><i></i><i></i><i style="width:26px"></i></span></div>
+
+                <!-- HOME -->
+                <div class="scr" id="s-home">
+                  <div class="pad" style="top:72px"><div class="h-small">Ciao, Marco</div><div class="h-big" style="margin-top:4px">Stasera dove si va?</div></div>
+                  <div class="pad search" id="homeSearch" style="top:170px"><span class="glass"></span>Cerca locali, serate, zone</div>
+                  <div class="pad chips" style="top:246px"><span class="chip on">Club</span><span class="chip">Rooftop</span><span class="chip">Aperitivo</span><span class="chip">Live</span></div>
+                  <div class="pad label" style="top:318px">In tendenza stasera</div>
+                  <div class="card" style="top:345px">
+                    <div class="img img-velvet">
+                      <div class="beam" id="vb1" style="left:90px"></div><div class="beam" id="vb2" style="left:250px"></div><div class="beam" id="vb3" style="left:380px"></div>
+                      <div class="light" style="left:60px;top:130px;width:26px;height:26px"></div>
+                      <div class="light" style="left:200px;top:150px;width:18px;height:18px"></div>
+                      <div class="light" style="left:330px;top:120px;width:30px;height:30px"></div>
+                      <div class="badge-sold" id="sold">SOLD OUT</div>
+                    </div>
+                    <div class="meta"><div class="name">VELVET CLUB</div><div class="sub">Navigli · Sabato 14 · 23:30</div></div>
+                  </div>
+                  <div class="card" style="top:650px">
+                    <div class="img img-nova"><div class="light" style="left:120px;top:90px;width:30px;height:30px"></div><div class="light" style="left:300px;top:60px;width:20px;height:20px"></div></div>
+                    <div class="meta"><div class="name">NOVA Club</div><div class="sub">Porta Nuova · Tavoli da 300€</div></div>
+                  </div>
+                  <div class="tabbar"><div class="tab on"><i></i>Home</div><div class="tab"><i></i>Esplora</div><div class="tab"><i></i>Le mie serate</div><div class="tab"><i></i>Profilo</div></div>
+                </div>
+
+                <!-- RESULTS -->
+                <div class="scr" id="s-results">
+                  <div class="pad search" style="top:66px;border-color:var(--violet);color:var(--ink)"><span class="glass"></span><span id="typed"></span><span id="caret" style="display:inline-block;width:2px;height:24px;background:var(--violet)"></span></div>
+                  <div class="pad label" style="top:142px">48 locali con tavoli liberi</div>
+                  <div class="layer" style="top:170px;overflow:hidden">
+                    <div id="list" style="position:absolute;left:0;top:0;width:500px;height:1500px"></div>
+                  </div>
+                </div>
+
+                <!-- VENUE -->
+                <div class="scr" id="s-venue">
+                  <div class="img-nova" style="position:absolute;left:0;top:0;width:500px;height:360px;overflow:hidden">
+                    <div class="beam" id="nb1" style="left:110px"></div><div class="beam" id="nb2" style="left:300px"></div>
+                    <div class="light" style="left:80px;top:180px;width:26px;height:26px"></div><div class="light" style="left:380px;top:150px;width:22px;height:22px"></div>
+                    <div id="venueName" style="position:absolute;left:24px;top:262px;font:700 52px 'Space Grotesk';letter-spacing:-0.03em;color:#fff">NOVA Club</div>
+                    <div style="position:absolute;left:26px;top:322px;font:500 16px Inter;color:#dfe3ff">Porta Nuova · Milano · 4,8 ★</div>
+                  </div>
+                  <div class="pad label" style="top:392px">Quando?</div>
+                  <div class="pad" style="top:422px;display:flex;gap:8px">
+                    <div class="day">GIO<b>12</b></div><div class="day">VEN<b>13</b></div><div class="day" id="daySat">SAB<b>14</b></div><div class="day">DOM<b>15</b></div><div class="day">LUN<b>16</b></div><div class="day">MAR<b>17</b></div>
+                  </div>
+                  <div class="pad label" style="top:530px">Quanti siete?</div>
+                  <div class="pad stepper" style="top:560px">
+                    <span style="font:600 18px Inter">Persone</span>
+                    <span style="display:flex;align-items:center;gap:18px"><span class="stp-btn">–</span><span id="guests" style="font:700 30px 'Space Grotesk';width:30px;text-align:center">2</span><span class="stp-btn plus" id="plusBtn">+</span></span>
+                  </div>
+                  <div class="pad" style="top:660px;font:500 16px Inter;color:var(--muted)">Dress code: elegante · Ingresso dalle 23:30</div>
+                  <div class="pad cta" style="top:960px">Vedi la mappa dei tavoli</div>
+                </div>
+
+                <!-- MAP -->
+                <div class="scr" id="s-map">
+                  <div class="pad" style="top:66px;display:flex;justify-content:space-between;align-items:center"><div class="h-mid">NOVA Club · Sab 14</div><div class="label" style="color:var(--violet)">● Liberi</div></div>
+                  <div class="floor">
+                    <div class="dj">DJ</div>
+                    <div class="dance">DANCEFLOOR</div>
+                    <div class="rope"></div>
+                    <div class="prive"><div class="prive-label">PRIVÉ</div></div>
+                    <div id="tables"></div>
+                  </div>
+                  <div id="tags"></div>
+                  <div class="sheet" id="sheet">
+                    <div class="grab"></div>
+                    <div class="offers" id="offers">3 offerte</div>
+                    <div class="pad" style="top:34px"><div class="label">Tavolo P2</div><div class="h-big" style="margin-top:6px">Privé · vista console</div></div>
+                    <div class="pad facts" style="top:150px"><span class="fact">6 posti</span><span class="fact">Spesa min. 400€</span><span class="fact">Bottiglia inclusa</span></div>
+                    <div class="pad" style="top:262px;font:500 16px Inter;color:var(--muted)">Tavolo richiesto da più gruppi: si assegna all'asta.</div>
+                    <div class="pad cta" id="enterBtn" style="top:356px">Entra nell'asta</div>
+                  </div>
+                </div>
+
+                <!-- AUCTION -->
+                <div class="scr" id="s-auction">
+                  <div class="pad" style="top:66px;display:flex;justify-content:space-between;align-items:center"><span class="live"><i id="liveDot"></i>ASTA LIVE</span><span style="font:600 16px Inter;color:var(--muted)">P2 · Privé · NOVA</span></div>
+                  <div class="pad label" style="top:140px">Chiusura tra</div>
+                  <div class="pad count" style="top:160px" id="count">00:30</div>
+                  <div class="pad bar" style="top:262px"><i id="barFill"></i></div>
+                  <div class="pad label" style="top:300px">Offerta attuale</div>
+                  <div class="pad price" style="top:318px" id="price">350€</div>
+                  <div id="bids"></div>
+                  <div class="pad raise" id="raiseBtn" style="top:840px">+50€ · Rilancia</div>
+                  <div id="win">
+                    <div id="confetti" class="layer"></div>
+                    <div class="win-ring" id="winRing"><svg width="90" height="90" viewBox="0 0 90 90"><path id="winCheck" d="M20 47 L38 64 L71 28" fill="none" stroke="#7b3cff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div class="win-title" id="winTitle">Hai vinto!</div>
+                    <div class="win-sub">Tavolo P2 · Privé · 500€</div>
+                    <div id="winCard" style="position:absolute;left:150px;top:760px;width:200px;height:120px;border-radius:20px;background:#fff;color:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 18px;font:700 18px 'Space Grotesk'"><span style="font:600 12px Inter;color:var(--muted);letter-spacing:.1em">SABATO 14</span>NOVA · P2</div>
+                  </div>
+                  <div class="tabbar" id="aucTabs"><div class="tab"><i></i>Home</div><div class="tab"><i></i>Esplora</div><div class="tab on"><i></i>Le mie serate<span class="tab-badge" id="tabBadge">1</span></div><div class="tab"><i></i>Profilo</div></div>
+                </div>
+
+                <!-- PAY + SPLIT -->
+                <div class="scr" id="s-pay">
+                  <div class="pad" style="top:72px"><div class="label">Riepilogo</div><div class="h-big" style="margin-top:6px">NOVA Club · Tavolo P2</div></div>
+                  <div class="pad" style="top:170px;display:flex;justify-content:space-between;align-items:flex-end"><span style="font:500 18px Inter;color:var(--muted)">Totale</span><span class="total" id="totalTxt">500€</span></div>
+                  <div class="pad" style="top:300px;height:2px;background:var(--line)"></div>
+                  <div class="pad" id="paidRow" style="top:330px;display:flex;align-items:center;gap:20px">
+                    <div class="okc" id="payOk"><svg width="64" height="64" viewBox="0 0 64 64"><path id="payCheck" d="M14 33 L27 46 L51 19" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div><div class="h-mid">Pagato</div><div style="font:500 16px Inter;color:var(--muted);margin-top:4px">con un tap · ricevuta inviata</div></div>
+                  </div>
+                  <div id="split">
+                    <div class="pad label" style="top:520px">Dividi con gli amici</div>
+                    <div class="pad avs" style="top:556px" id="avs"></div>
+                    <div class="pad" style="top:660px;display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 18px Inter">A testa</span><span style="font:700 46px 'Space Grotesk';color:var(--violet)">83,33€</span></div>
+                    <div class="pad" style="top:740px;font:500 16px Inter;color:var(--muted)" id="paidCount">0 di 6 hanno pagato</div>
+                  </div>
+                  <div class="pad cta dark" id="payBtn" style="top:930px">Paga con un tap</div>
+                </div>
+
+                <!-- PASS -->
+                <div class="scr" id="s-pass" style="background:var(--warm)">
+                  <div class="pass">
+                    <div style="position:absolute;left:30px;top:30px" class="label">Il tuo pass</div>
+                    <div style="position:absolute;left:30px;top:60px;font:700 44px 'Space Grotesk';letter-spacing:-0.02em">NOVA Club</div>
+                    <div style="position:absolute;left:30px;top:120px;font:500 17px Inter;color:#bdb6d6">Sabato 14 · dalle 23:30</div>
+                    <div style="position:absolute;left:30px;top:150px;font:500 17px Inter;color:#bdb6d6">Tavolo P2 · Privé · 6 ospiti</div>
+                    <div class="qr"><svg id="qrSvg" width="244" height="244" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg></div>
+                    <div class="scanline" id="scan"></div>
+                    <div class="ok-pill" id="okPill"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M4 11 L9 16 L18 6" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Accesso confermato</div>
+                  </div>
+                </div>
+              </div>
+              <div id="notch"></div>
+            </div>
+
+            <!-- cursor + trail live in phone space so clicks stay on target while the camera moves -->
+            <div id="ripples"></div>
+            <div id="cursors"></div>
+          </div></div></div></div>
+        </div>
+      </div>
+
+      <!-- ===== kinetic type ===== -->
+      <div id="type" class="layer clip" data-start="0" data-duration="27" data-track-index="2">
+        <div class="kin" id="k1" style="left:120px;top:330px">Sabato <span class="acc">sera.</span></div>
+        <div class="kin r" id="k2" style="left:1040px;top:300px">E il tuo <span class="acc">tavolo?</span></div>
+        <div class="kin" id="k3" style="left:120px;top:400px"><span class="acc">6</span> persone</div>
+        <div class="kin r" id="k4" style="left:1040px;top:420px"><span class="acc">Privé.</span></div>
+        <div class="kin" id="k5" style="left:120px;top:330px">Asta <span class="acc">live.</span></div>
+        <div class="kin" id="k6" style="left:120px;top:420px"><span class="acc">Rilancia.</span></div>
+        <div class="kin" id="k7" style="left:120px;top:420px"><span class="acc">Vinci.</span></div>
+        <div class="kin r" id="k8" style="left:1040px;top:330px">Dividi <span class="acc">÷6</span></div>
+      </div>
+
+      <!-- ===== end card ===== -->
+      <div id="endcard" class="layer clip" data-start="26.67" data-duration="3.33" data-track-index="3">
+        <div id="glow"></div>
+        <div id="logoWrap">
+          <img id="logoTop" src="assets/logo-white.png" alt="TABLE" />
+          <img id="logoLegs" src="assets/logo-white.png" alt="" />
+        </div>
+        <div id="slogan">Own the night, own the <span class="acc">Table</span></div>
+      </div>
+
+      <!-- ===== mascot (screen space) ===== -->
+      <div id="mascotLayer" class="layer clip" data-start="0" data-duration="30" data-track-index="4">
+        <div id="clones"></div>
+        <div class="mascot" id="mascot"></div>
+      </div>
+
+      <!-- ===== finish ===== -->
+      <div id="flashWrap" class="layer clip" data-start="0" data-duration="30" data-track-index="7"><div id="flash" class="layer" style="background:radial-gradient(circle at 50% 50%, rgba(167,123,255,0.9), rgba(123,60,255,0.2) 70%)"></div></div>
+      <div id="vignette" class="layer clip" data-start="0" data-duration="30" data-track-index="5"></div>
+      <div id="grainWrap" class="layer clip" data-start="0" data-duration="30" data-track-index="6"><div id="grain" class="layer"></div></div>
+
+      <!-- AUDIO:BEGIN -->
+      <audio id="music" src="assets/music.mp3" data-start="0" data-duration="30" data-track-index="10" data-volume="1" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.7},{"t":0.94,"v":0.7},{"t":1.06,"v":0.4},{"t":2.033,"v":0.4},{"t":2.07,"v":0.4},{"t":2.153,"v":0.7},{"t":3.3,"v":0.7},{"t":3.367,"v":0.4},{"t":3.42,"v":0.4},{"t":4.558,"v":0.4},{"t":4.64,"v":0.7},{"t":4.678,"v":0.7},{"t":4.76,"v":0.4},{"t":7.092,"v":0.4},{"t":7.18,"v":0.7},{"t":7.212,"v":0.7},{"t":7.3,"v":0.4},{"t":9.961,"v":0.4},{"t":10.081,"v":0.7},{"t":10.71,"v":0.7},{"t":10.83,"v":0.4},{"t":12.156,"v":0.4},{"t":12.18,"v":0.7},{"t":12.276,"v":0.7},{"t":12.3,"v":0.4},{"t":15.816,"v":0.4},{"t":15.83,"v":0.7},{"t":15.936,"v":0.7},{"t":15.95,"v":0.4},{"t":18.399,"v":0.4},{"t":18.46,"v":0.7},{"t":18.519,"v":0.7},{"t":18.58,"v":0.4},{"t":19.388,"v":0.4},{"t":19.508,"v":0.7},{"t":20.49,"v":0.7},{"t":20.61,"v":0.4},{"t":21.226,"v":0.4},{"t":21.346,"v":0.7},{"t":21.83,"v":0.7},{"t":21.95,"v":0.4},{"t":23.093,"v":0.4},{"t":23.18,"v":0.7},{"t":23.213,"v":0.7},{"t":23.3,"v":0.4},{"t":25.102,"v":0.4},{"t":25.21,"v":0.7},{"t":25.222,"v":0.7},{"t":25.33,"v":0.4},{"t":26.717,"v":0.4},{"t":26.837,"v":0.7},{"t":27,"v":0.7},{"t":27.12,"v":0.4},{"t":27.699,"v":0.4},{"t":27.73,"v":0.7},{"t":27.819,"v":0.7},{"t":27.85,"v":0.4},{"t":29.719,"v":0.4},{"t":29.839,"v":0.7},{"t":30,"v":0}]}]}'></audio>
+      <audio id="vo-v01" src="assets/voice/v01.wav" data-start="1.06" data-duration="0.97" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v02" src="assets/voice/v02.wav" data-start="2.07" data-duration="1.30" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v03" src="assets/voice/v03.wav" data-start="3.42" data-duration="1.14" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v04" src="assets/voice/v04.wav" data-start="4.76" data-duration="2.33" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v05" src="assets/voice/v05.wav" data-start="7.3" data-duration="2.66" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v06" src="assets/voice/v06.wav" data-start="10.83" data-duration="1.33" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v07" src="assets/voice/v07.wav" data-start="12.3" data-duration="3.52" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v08" src="assets/voice/v08.wav" data-start="15.95" data-duration="2.45" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v09" src="assets/voice/v09.wav" data-start="18.58" data-duration="0.81" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v10" src="assets/voice/v10.wav" data-start="20.61" data-duration="0.62" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v11" src="assets/voice/v11.wav" data-start="21.95" data-duration="1.14" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v12" src="assets/voice/v12.wav" data-start="23.3" data-duration="1.80" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v13" src="assets/voice/v13.wav" data-start="25.33" data-duration="1.39" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v14" src="assets/voice/v14.wav" data-start="27.12" data-duration="0.58" data-track-index="11" data-volume="1"></audio>
+      <audio id="vo-v15" src="assets/voice/v15.wav" data-start="27.85" data-duration="1.87" data-track-index="11" data-volume="1"></audio>
+      <audio id="sfx-00-hop" src="assets/sfx/hop.mp3" data-start="0.045" data-duration="0.52" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-01-hop" src="assets/sfx/hop.mp3" data-start="0.38" data-duration="0.52" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-02-hop" src="assets/sfx/hop.mp3" data-start="0.72" data-duration="0.52" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-03-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="0.45" data-duration="0.57" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-04-typing" src="assets/sfx/typing.mp3" data-start="1.06" data-duration="0.45" data-track-index="13" data-volume="0.35"></audio>
+      <audio id="sfx-05-pop" src="assets/sfx/pop.mp3" data-start="2.07" data-duration="0.72" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-06-typing" src="assets/sfx/typing.mp3" data-start="3.42" data-duration="0.55" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-07-click" src="assets/sfx/click.mp3" data-start="5.1" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-08-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="5.44" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-09-key-press" src="assets/sfx/key-press.mp3" data-start="5.6" data-duration="0.43" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sfx-10-key-press" src="assets/sfx/key-press.mp3" data-start="5.85" data-duration="0.43" data-track-index="14" data-volume="0.4"></audio>
+      <audio id="sfx-11-whoosh" src="assets/sfx/whoosh.mp3" data-start="6.11" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-12-click" src="assets/sfx/click.mp3" data-start="7.3" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-13-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="7.46" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-14-click" src="assets/sfx/click.mp3" data-start="8.47" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-15-pop" src="assets/sfx/pop.mp3" data-start="9.15" data-duration="0.72" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-16-pop" src="assets/sfx/pop.mp3" data-start="9.32" data-duration="0.72" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-17-pop" src="assets/sfx/pop.mp3" data-start="9.48" data-duration="0.72" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-18-pop" src="assets/sfx/pop.mp3" data-start="9.65" data-duration="0.72" data-track-index="15" data-volume="0.5"></audio>
+      <audio id="sfx-19-typing" src="assets/sfx/typing.mp3" data-start="9.15" data-duration="0.40" data-track-index="16" data-volume="0.3"></audio>
+      <audio id="sfx-20-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="9.9" data-duration="1.40" data-track-index="12" data-volume="0.55"></audio>
+      <audio id="sfx-21-impact-bass-1" src="assets/sfx/impact-bass-1.mp3" data-start="10.83" data-duration="2.12" data-track-index="13" data-volume="0.6"></audio>
+      <audio id="sfx-22-sparkle" src="assets/sfx/sparkle.mp3" data-start="11.17" data-duration="1.80" data-track-index="14" data-volume="0.45"></audio>
+      <audio id="sfx-23-click-soft" src="assets/sfx/click-soft.mp3" data-start="12.52" data-duration="0.37" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-24-click-soft" src="assets/sfx/click-soft.mp3" data-start="13.19" data-duration="0.37" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-25-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="13.87" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-26-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="14.88" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-27-click" src="assets/sfx/click.mp3" data-start="15.21" data-duration="0.37" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-28-typing" src="assets/sfx/typing.mp3" data-start="15.21" data-duration="0.35" data-track-index="14" data-volume="0.3"></audio>
+      <audio id="sfx-29-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="15.55" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-30-notification" src="assets/sfx/notification.mp3" data-start="15.89" data-duration="1.00" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-31-click" src="assets/sfx/click.mp3" data-start="16.9" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-32-whoosh" src="assets/sfx/whoosh.mp3" data-start="17.1" data-duration="0.57" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-33-typing" src="assets/sfx/typing.mp3" data-start="17.24" data-duration="0.40" data-track-index="14" data-volume="0.3"></audio>
+      <audio id="sfx-34-coin" src="assets/sfx/coin.mp3" data-start="17.57" data-duration="0.84" data-track-index="12" data-volume="0.55"></audio>
+      <audio id="sfx-35-coin" src="assets/sfx/coin.mp3" data-start="17.91" data-duration="0.84" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-36-click" src="assets/sfx/click.mp3" data-start="18.58" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-37-coin" src="assets/sfx/coin.mp3" data-start="18.62" data-duration="0.84" data-track-index="14" data-volume="0.7"></audio>
+      <audio id="sfx-38-typing" src="assets/sfx/typing.mp3" data-start="18.58" data-duration="0.40" data-track-index="15" data-volume="0.3"></audio>
+      <audio id="sfx-39-tick" src="assets/sfx/tick.mp3" data-start="19.59" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-40-tick" src="assets/sfx/tick.mp3" data-start="19.93" data-duration="0.52" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-41-tick" src="assets/sfx/tick.mp3" data-start="20.27" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-42-win" src="assets/sfx/win.mp3" data-start="20.61" data-duration="2.04" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-43-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="20.61" data-duration="2.59" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-44-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.28" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-45-pop" src="assets/sfx/pop.mp3" data-start="21.62" data-duration="0.72" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sfx-46-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.85" data-duration="0.57" data-track-index="16" data-volume="0.5"></audio>
+      <audio id="sfx-47-click" src="assets/sfx/click.mp3" data-start="22.29" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-48-pay" src="assets/sfx/pay.mp3" data-start="22.4" data-duration="1.04" data-track-index="15" data-volume="0.65"></audio>
+      <audio id="sfx-49-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="23.3" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-50-typing" src="assets/sfx/typing.mp3" data-start="23.3" data-duration="0.40" data-track-index="13" data-volume="0.3"></audio>
+      <audio id="sfx-51-click-soft" src="assets/sfx/click-soft.mp3" data-start="23.98" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-52-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.149" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-53-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.317" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-54-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.486" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-55-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.654" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-56-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.823" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-57-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="25.2" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-58-scan" src="assets/sfx/scan.mp3" data-start="25.6" data-duration="0.73" data-track-index="13" data-volume="0.6"></audio>
+      <audio id="sfx-59-ping" src="assets/sfx/ping.mp3" data-start="26" data-duration="0.90" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-60-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="26.4" data-duration="1.20" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-61-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="27.01" data-duration="2.59" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="sfx-62-typing" src="assets/sfx/typing.mp3" data-start="27.68" data-duration="1.10" data-track-index="13" data-volume="0.3"></audio>
+      <audio id="sfx-63-hop" src="assets/sfx/hop.mp3" data-start="28.36" data-duration="0.52" data-track-index="14" data-volume="0.45"></audio>
+      <audio id="sfx-64-hop" src="assets/sfx/hop.mp3" data-start="28.7" data-duration="0.52" data-track-index="15" data-volume="0.45"></audio>
+      <audio id="sfx-65-hop" src="assets/sfx/hop.mp3" data-start="29.03" data-duration="0.52" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-66-sparkle" src="assets/sfx/sparkle.mp3" data-start="29.37" data-duration="0.63" data-track-index="14" data-volume="0.4"></audio>
+      <!-- AUDIO:END -->
+    </div>
+
+    <script>
+      // ---------- helpers ----------
+      const $ = (s) => document.querySelector(s);
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      const rand = mulberry32(14);
+
+      function splitLetters(el) {
+        const walk = (node) => {
+          [...node.childNodes].forEach((n) => {
+            if (n.nodeType === 3) {
+              const frag = document.createDocumentFragment();
+              n.textContent.split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                const w = document.createElement("span"); w.className = "w";
+                [...part].forEach((ch) => { const l = document.createElement("span"); l.className = "l"; l.textContent = ch; w.appendChild(l); });
+                frag.appendChild(w);
+              });
+              n.replaceWith(frag);
+            } else if (n.nodeType === 1) walk(n);
+          });
+        };
+        walk(el);
+        return el.querySelectorAll(".l");
+      }
+
+      const MASCOT_SVG = `
+        <svg viewBox="0 0 170 170" width="170" height="170">
+          <g class="m-body">
+            <g class="m-legL"><rect x="38" y="78" width="16" height="60" rx="5" fill="#f6f1e9"/></g>
+            <g class="m-legR"><rect x="116" y="78" width="16" height="60" rx="5" fill="#f6f1e9"/></g>
+            <g class="m-legM"><rect x="77" y="98" width="16" height="58" rx="5" fill="#e3dbcd"/></g>
+            <g class="m-top">
+              <path d="M85 18 L160 64 L85 108 L10 64 Z" fill="#f6f1e9"/>
+              <path d="M85 108 L160 64 L160 74 L85 118 L10 74 L10 64 Z" fill="#7b3cff"/>
+              <g class="m-eyes">
+                <ellipse cx="66" cy="62" rx="11" ry="13" fill="#15121f"/><ellipse cx="104" cy="62" rx="11" ry="13" fill="#15121f"/>
+                <g class="m-pupils"><circle cx="69" cy="58" r="4" fill="#fff"/><circle cx="107" cy="58" r="4" fill="#fff"/></g>
+              </g>
+              <path class="m-smile" d="M74 82 Q85 92 96 82" fill="none" stroke="#15121f" stroke-width="4" stroke-linecap="round"/>
+            </g>
+          </g>
+        </svg>`;
+      $("#mascot").innerHTML = MASCOT_SVG;
+
+      // bokeh
+      for (let i = 0; i < 26; i++) {
+        const b = document.createElement("div"); b.className = "bokeh";
+        const s = 6 + rand() * 22; b.style.width = b.style.height = s + "px";
+        b.style.left = rand() * 1920 + "px"; b.style.top = rand() * 1080 + "px"; b.style.opacity = 0.08 + rand() * 0.25;
+        $("#bokeh").appendChild(b);
+      }
+
+      // results list
+      const venues = [
+        ["Aura Rooftop", "Isola · Tavoli da 250€", "linear-gradient(135deg,#ff9a5a,#ff3d6e)"],
+        ["Bloom", "Brera · Tavoli da 200€", "linear-gradient(135deg,#ffd36e,#ff7a45)"],
+        ["Mercato Notte", "Porta Romana · da 180€", "linear-gradient(135deg,#2bd4a4,#1a6b8f)"],
+        ["Lumen", "Tortona · Tavoli da 350€", "linear-gradient(135deg,#a77bff,#2a1a8a)"],
+        ["Ritmo", "Navigli · Tavoli da 220€", "linear-gradient(135deg,#ff4fa3,#7b3cff)"],
+        ["Kairos", "Garibaldi · da 300€", "linear-gradient(135deg,#3a0f5e,#ff4fa3)"],
+        ["Opera Club", "Centro · Tavoli da 400€", "linear-gradient(135deg,#15121f,#7b3cff)"],
+        ["NOVA Club", "Porta Nuova · da 300€", "linear-gradient(135deg,#0d1b4a,#19c3ff)"],
+        ["Velluto", "Sempione · da 260€", "linear-gradient(135deg,#ff7a45,#3a0f5e)"],
+      ];
+      venues.forEach((v, i) => {
+        const r = document.createElement("div"); r.className = "row"; r.id = "row" + i; r.style.top = 12 + i * 150 + "px";
+        r.innerHTML = `<div class="thumb" style="background:${v[2]}"></div><div><div class="name">${v[0]}</div><div class="sub">${v[1]}</div><div class="price">Tavoli liberi stasera</div></div>`;
+        $("#list").appendChild(r);
+      });
+
+      // floor plan tables (floor coords; floor sits at screen 20,128)
+      const tables = [
+        ["V1", 70, 50], ["V2", 390, 50],
+        ["T1", 42, 160], ["T2", 42, 300], ["T3", 418, 160], ["T4", 418, 300],
+        ["T5", 140, 460], ["T6", 230, 460], ["T7", 320, 460],
+        ["P1", 120, 700], ["P2", 230, 720], ["P3", 340, 700],
+      ];
+      const freeSet = ["V1", "T1", "T2", "T4", "T6", "P1", "P2"];
+      tables.forEach(([n, x, y]) => {
+        const t = document.createElement("div"); t.className = "tbl"; t.style.left = x + "px"; t.style.top = y + "px";
+        t.innerHTML = n + (freeSet.includes(n) ? `<div class="on" id="on-${n}">${n}</div>` : "");
+        $("#tables").appendChild(t);
+      });
+      const tagData = [["tagT1", "T1 · 4 posti · 250€", 70, 220], ["tagT2", "T2 · 6 posti · 300€", 70, 360], ["tagV1", "V1 · Vicino al DJ · 450€", 100, 110], ["tagP2", "P2 · Privé · 6 posti", 210, 790]];
+      tagData.forEach(([id, txt, x, y]) => { const g = document.createElement("div"); g.className = "tag"; g.id = id; g.textContent = txt; g.style.left = x + 20 + "px"; g.style.top = y + 128 - 70 + "px"; $("#tags").appendChild(g); });
+
+      // bids
+      const bids = [["L", "Luca", "#ff7a45", "400€", ""], ["G", "Giulia", "#2bd4a4", "450€", ""], ["M", "Tu", "#15121f", "500€", "me"]];
+      bids.forEach((b, i) => {
+        const d = document.createElement("div"); d.className = "bid " + b[4]; d.id = "bid" + i; d.style.top = 470 + (2 - i) * 90 + "px";
+        d.innerHTML = `<span class="av" style="background:${b[2]}">${b[0]}</span>${b[1]}<span class="amt">${b[3]}</span>`;
+        $("#bids").appendChild(d);
+      });
+
+      // confetti
+      const confCols = ["#ffffff", "#ffd36e", "#ff4fa3", "#19c3ff", "#2bd4a4"];
+      for (let i = 0; i < 46; i++) {
+        const c = document.createElement("div"); c.className = "confetti";
+        c.style.left = 250 + "px"; c.style.top = 420 + "px"; c.style.background = confCols[i % confCols.length];
+        c.dataset.x = (rand() - 0.5) * 520; c.dataset.y = -260 - rand() * 300; c.dataset.r = (rand() - 0.5) * 720; c.dataset.fall = 500 + rand() * 500;
+        $("#confetti").appendChild(c);
+      }
+
+      // avatars
+      [["M", "#15121f"], ["L", "#ff7a45"], ["G", "#2bd4a4"], ["S", "#ff4fa3"], ["A", "#19c3ff"], ["F", "#7b3cff"]].forEach(([n, c], i) => {
+        const a = document.createElement("div"); a.className = "avc"; a.style.background = c; a.id = "av" + i;
+        a.innerHTML = `${n}<span class="chk" id="chk${i}"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></span>`;
+        $("#avs").appendChild(a);
+      });
+
+      // QR (seeded modules + finder patterns)
+      (function () {
+        const q = mulberry32(2026); let s = "";
+        const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#15121f"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#15121f"/>`;
+        const inF = (x, y) => (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+        for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) if (!inF(x, y) && q() > 0.52) s += `<rect x="${x}" y="${y}" width="1" height="1" fill="#15121f"/>`;
+        $("#qrSvg").innerHTML = s + finder(0, 0) + finder(18, 0) + finder(0, 18);
+      })();
+
+      // cursor + trail
+      const CURSOR = `<svg width="40" height="48" viewBox="0 0 40 48"><path d="M4 3 L4 38 L13 30 L19 44 L26 41 L20 27 L33 27 Z" fill="#15121f" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>`;
+      const TRAIL = `<svg width="40" height="48" viewBox="0 0 40 48"><path d="M4 3 L4 38 L13 30 L19 44 L26 41 L20 27 L33 27 Z" fill="#a77bff"/></svg>`;
+      const NTRAIL = 6;
+      for (let i = NTRAIL; i >= 1; i--) { const g = document.createElement("div"); g.className = "cur"; g.id = "trail" + i; g.innerHTML = TRAIL; $("#cursors").appendChild(g); }
+      const cur = document.createElement("div"); cur.className = "cur"; cur.id = "cursor"; cur.innerHTML = CURSOR; $("#cursors").appendChild(cur);
+
+      // ---------- timeline ----------
+      const tl = gsap.timeline({ paused: true });
+
+      // background drift + grain
+      tl.fromTo("#blob1", { x: 0, y: 0 }, { x: 260, y: 120, duration: 30, ease: "sine.inOut" }, 0);
+      tl.fromTo("#blob2", { x: 0, y: 0 }, { x: -320, y: -180, duration: 30, ease: "sine.inOut" }, 0);
+      tl.fromTo("#blob3", { x: 0, scale: 1 }, { x: -500, scale: 1.4, duration: 30, ease: "sine.inOut" }, 0);
+      tl.fromTo("#bokeh", { x: 0 }, { x: -140, duration: 30, ease: "none" }, 0);
+      tl.fromTo("#grain", { x: 0, y: 0 }, { x: 60, y: -40, duration: 30, ease: "steps(720)" }, 0);
+
+      // ---- screens ----
+      const screens = ["#s-home", "#s-results", "#s-venue", "#s-map", "#s-auction", "#s-pay", "#s-pass"];
+      tl.set("#s-home", { xPercent: 0, opacity: 1 }, 0);
+      screens.slice(1).forEach((s) => tl.set(s, { xPercent: 100, opacity: 0 }, 0));
+      function swap(t, from, to) {
+        tl.set(to, { xPercent: 100, opacity: 1 }, t);
+        tl.to(to, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, t);
+        tl.to(from, { xPercent: -35, opacity: 0.4, duration: 0.45, ease: "power3.inOut" }, t);
+        tl.set(from, { opacity: 0 }, t + 0.46);
+      }
+
+      // ---- camera ----
+      // [t, focusX, focusY (phone px), screenX, screenY, scale, rotX, rotY, rotZ]
+      const cams = [
+        [0.0, 270, 560, 1180, 560, 0.62, 10, -22, -5],
+        [1.06, 270, 330, 1280, 520, 1.02, 2, -10, -1],
+        [2.07, 250, 470, 1320, 560, 1.42, 0, -5, 0],
+        [3.42, 270, 540, 700, 560, 1.0, 4, 12, 2],
+        [4.76, 250, 220, 960, 520, 1.55, 0, 0, 0],
+        [5.78, 250, 500, 980, 540, 1.12, 2, -6, 0],
+        [6.79, 250, 420, 1000, 560, 1.35, 0, 4, 0],
+        [7.80, 220, 470, 960, 560, 1.62, 0, 0, 0],
+        [8.81, 380, 610, 1430, 560, 1.55, 0, -8, 0],
+        [10.16, 270, 600, 1120, 560, 1.15, 6, 0, 3],
+        [10.83, 270, 560, 960, 600, 0.95, 30, 0, -7],
+        [11.51, 270, 430, 960, 560, 1.25, 18, 0, 0],
+        [12.52, 250, 330, 1000, 540, 1.5, 10, 0, 0],
+        [13.87, 130, 230, 960, 560, 1.9, 6, 0, 2],
+        [14.88, 270, 840, 700, 560, 1.6, 4, 0, -2],
+        [15.55, 270, 820, 1000, 560, 1.25, 0, 0, 0],
+        [16.56, 270, 900, 1220, 560, 1.5, 0, -6, 0],
+        [17.24, 270, 300, 1280, 560, 1.25, 0, -9, 0],
+        [17.91, 270, 600, 1000, 560, 1.35, 0, 0, 0],
+        [18.58, 270, 820, 1280, 520, 1.45, 0, -7, 0],
+        [19.59, 270, 260, 960, 540, 1.6, 0, 0, 0],
+        [20.61, 270, 560, 1220, 560, 1.02, 0, -10, 3],
+        [21.62, 270, 1000, 960, 640, 1.3, 0, 0, 0],
+        [22.29, 270, 800, 1000, 560, 1.4, 0, 6, 0],
+        [22.8, 270, 420, 980, 560, 1.4, 0, 4, 0],
+        [23.30, 270, 660, 700, 560, 1.45, 0, 9, 0],
+        [24.2, 270, 650, 730, 560, 1.52, 0, 7, 0],
+        [24.65, 270, 640, 960, 560, 1.7, 0, 0, 0],
+        [25.66, 270, 520, 960, 540, 1.35, 0, -6, 0],
+        [26.67, 270, 560, 960, 560, 0.55, 12, 0, -8],
+      ];
+      cams.forEach((c, i) => {
+        const [t, fx, fy, sx, sy, s, rx, ry, rz] = c;
+        const next = cams[i + 1];
+        const d = next ? next[0] - t : 0.8;
+        if (i === 0) {
+          tl.set("#camPos", { x: sx, y: sy }, 0); tl.set("#camRot", { scale: s, rotationX: rx, rotationY: ry, rotation: rz }, 0); tl.set("#camShift", { x: -fx, y: -fy }, 0);
+          return;
+        }
+        const p = cams[i - 1]; const pd = t - p[0];
+        const ease = t === 10.83 ? "expo.in" : "power2.inOut";
+        tl.to("#camPos", { x: sx, y: sy, duration: pd, ease }, p[0]);
+        tl.to("#camRot", { scale: s, rotationX: rx, rotationY: ry, rotation: rz, duration: pd, ease }, p[0]);
+        tl.to("#camShift", { x: -fx, y: -fy, duration: pd, ease }, p[0]);
+      });
+      // constant handheld drift so the camera never rests
+      tl.fromTo("#camDrift", { x: -14, y: 8, rotation: -0.6 }, { x: 14, y: -8, rotation: 0.6, duration: 1.7, ease: "sine.inOut", yoyo: true, repeat: 15 }, 0);
+      // phone exits into the end card
+      tl.to("#world", { opacity: 0, duration: 0.4, ease: "power2.in" }, 26.67);
+      // ---- beat-driven pulses (trap half-time kick every 2 beats after the drop) ----
+      const BEAT = 0.3372, DROP = 10.83;
+      tl.set("#world", { scale: 1, opacity: 1 }, 0);
+      tl.set("#bgInner", { opacity: 0.85 }, 0);
+      tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, DROP);
+      tl.set("#flash", { opacity: 0 }, 0);
+      for (let t = DROP; t < 26.6; t += BEAT * 2) {
+        tl.fromTo("#world", { scale: 1.022 }, { scale: 1, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
+        tl.fromTo("#bgInner", { opacity: 1 }, { opacity: 0.72, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
+      }
+      for (let t = 0.045; t < DROP; t += BEAT * 4) tl.fromTo("#bgInner", { opacity: 0.88 }, { opacity: 0.7, duration: BEAT * 3, ease: "sine.out", immediateRender: false }, t);
+      for (let t = 27.68; t < 30; t += BEAT * 2) tl.fromTo("#glow", { scale: 1.08 }, { scale: 1, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
+
+      // ---- cursor path (phone px) ----
+      const path = [
+        [0.45, 470, 900], [1.6, 380, 560], [2.3, 430, 410], [3.6, 330, 650],
+        [4.9, 330, 218], [6.0, 410, 640], [7.0, 260, 380], [8.15, 220, 482],
+        [8.95, 475, 610], [10.6, 330, 760], [12.2, 62, 308], [12.9, 62, 448],
+        [13.7, 92, 200], [14.9, 252, 868], [15.9, 380, 760], [16.6, 270, 990],
+        [17.6, 420, 720], [18.3, 270, 885], [19.4, 430, 680], [21.0, 420, 900],
+        [21.95, 270, 970], [23.5, 360, 700], [24.6, 120, 640], [25.8, 430, 860], [26.6, 470, 1000],
+      ];
+      const clicks = [5.10, 7.30, 8.47, 9.15, 9.32, 9.48, 9.65, 15.21, 16.90, 18.58, 22.29];
+      function drive(sel, lag) {
+        tl.set(sel, { x: path[0][1], y: path[0][2] }, 0);
+        for (let i = 1; i < path.length; i++) {
+          const p = path[i - 1], c = path[i];
+          tl.to(sel, { x: c[1], y: c[2], duration: Math.min(0.9, c[0] - p[0] - 0.05), ease: "power3.inOut" }, p[0] + 0.05 + lag);
+        }
+      }
+      drive("#cursor", 0);
+      tl.fromTo("#cursor", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 0.45);
+      for (let i = 1; i <= NTRAIL; i++) {
+        drive("#trail" + i, i * 0.035);
+        tl.fromTo("#trail" + i, { opacity: 0, scale: 1 - i * 0.07 }, { opacity: 0.42 - i * 0.06, scale: 1 - i * 0.07, duration: 0.3 }, 0.5);
+      }
+      clicks.forEach((t, i) => {
+        tl.to("#cursor", { scale: 0.8, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.inOut" }, t - 0.04);
+        const r = document.createElement("div"); r.className = "ripple"; r.id = "rip" + i; $("#ripples").appendChild(r);
+        const at = path.reduce((a, p) => (p[0] <= t ? p : a), path[0]);
+        tl.set(r, { x: at[1], y: at[2], opacity: 0, scale: 0.2 }, 0);
+        tl.fromTo(r, { opacity: 0.9, scale: 0.2 }, { opacity: 0, scale: 1.4, duration: 0.45, ease: "power2.out" }, t);
+      });
+
+      // ---- HOME (0 – 5.4) ----
+      tl.fromTo("#phone", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.05);
+      tl.fromTo(["#vb1", "#vb2", "#vb3"], { rotation: -25 }, { rotation: 25, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 3, stagger: 0.2 }, 0);
+      tl.fromTo("#sold", { scale: 0, rotation: -20 }, { scale: 1, rotation: -6, duration: 0.45, ease: "back.out(3)" }, 2.07);
+      tl.to("#sold", { scale: 1.12, duration: 0.3372, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.74);
+      tl.to("#homeSearch", { borderColor: "#7b3cff", duration: 0.2 }, 5.10);
+
+      // ---- RESULTS (5.4 – 7.6) ----
+      swap(5.44, "#s-home", "#s-results");
+      const query = "Milano · sab 14";
+      const typedEl = $("#typed");
+      const typeProxy = { n: 0 };
+      tl.fromTo(typeProxy, { n: 0 }, { n: query.length, duration: 0.55, ease: "none", onUpdate: () => { typedEl.textContent = query.slice(0, Math.round(typeProxy.n)); } }, 5.55);
+      tl.fromTo("#caret", { opacity: 1 }, { opacity: 0, duration: 0.25, yoyo: true, repeat: 7, ease: "steps(1)" }, 5.44);
+      tl.fromTo("#list", { y: 0 }, { y: -930, duration: 1.0, ease: "power3.inOut" }, 6.11);
+      tl.fromTo("#row7", { scale: 1 }, { scale: 1.04, duration: 0.15, yoyo: true, repeat: 1 }, 7.28);
+
+      // ---- VENUE (7.6 – 10.2) ----
+      swap(7.46, "#s-results", "#s-venue");
+      tl.fromTo(["#nb1", "#nb2"], { rotation: -20 }, { rotation: 20, duration: 1, yoyo: true, repeat: 2, ease: "sine.inOut", stagger: 0.25 }, 7.5);
+      const venueLetters = splitLetters($("#venueName"));
+      tl.fromTo(venueLetters, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: "back.out(2)" }, 7.80);
+      tl.to("#daySat", { backgroundColor: "#7b3cff", borderColor: "#7b3cff", color: "#e9ddff", duration: 0.15 }, 8.47);
+      tl.to("#daySat b", { color: "#ffffff", duration: 0.15 }, 8.47);
+      tl.fromTo("#daySat", { scale: 1 }, { scale: 1.12, duration: 0.12, yoyo: true, repeat: 1 }, 8.47);
+      const guestsEl = $("#guests");
+      [3, 4, 5, 6].forEach((n, i) => {
+        const t = 9.32 + i * 0.1686;
+        tl.fromTo(guestsEl, { y: 0 }, { y: -6, duration: 0.06, yoyo: true, repeat: 1 }, t);
+      });
+      const gProxy = { n: 2 };
+      tl.fromTo(gProxy, { n: 2 }, { n: 6, duration: 0.5, ease: "steps(3)", onUpdate: () => { guestsEl.textContent = Math.round(gProxy.n); } }, 9.15);
+
+      // ---- MAP (10.2 – 16.8) ----
+      swap(10.62, "#s-venue", "#s-map");
+      freeSet.forEach((n, i) => tl.fromTo("#on-" + n, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 11.17 + i * 0.1686));
+      [["#tagT1", 12.52], ["#tagT2", 13.19], ["#tagV1", 13.87], ["#tagP2", 15.05]].forEach(([id, t], i, arr) => {
+        tl.fromTo(id, { opacity: 0, y: 10, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "back.out(2)" }, t);
+        const end = id === "#tagP2" ? 15.5 : (arr[i + 1] ? arr[i + 1][1] - 0.05 : t + 0.8);
+        tl.to(id, { opacity: 0, duration: 0.15 }, end);
+      });
+      tl.set(["#tagT1", "#tagT2", "#tagV1", "#tagP2"], { opacity: 0 }, 0);
+      tl.fromTo("#on-P2", { scale: 1 }, { scale: 1.35, duration: 0.15, yoyo: true, repeat: 1 }, 15.21);
+      tl.fromTo("#sheet", { y: 520 }, { y: 0, duration: 0.45, ease: "power3.out" }, 15.55);
+      tl.fromTo("#offers", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 15.89);
+      tl.to("#offers", { scale: 1.15, duration: 0.1686, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.22);
+      tl.fromTo("#enterBtn", { scale: 1 }, { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, 16.88);
+
+      // ---- AUCTION (16.75 – 22) ----
+      swap(17.1, "#s-map", "#s-auction");
+      tl.set("#win", { opacity: 0 }, 0);
+      tl.set(["#bid0", "#bid1", "#bid2"], { opacity: 0 }, 0);
+      tl.fromTo("#liveDot", { opacity: 1 }, { opacity: 0.2, duration: 0.3372, yoyo: true, repeat: 9 }, 17.24);
+      const countEl = $("#count"), priceEl = $("#price");
+      const cProxy = { v: 30 };
+      const fmt = (v) => "00:" + String(Math.max(0, Math.ceil(v))).padStart(2, "0");
+      tl.fromTo(cProxy, { v: 30 }, { v: 3, duration: 2.3, ease: "power1.in", onUpdate: () => { countEl.textContent = fmt(cProxy.v); } }, 17.29);
+      tl.fromTo(cProxy, { v: 3 }, { v: 0, duration: 0.95, ease: "steps(3)", immediateRender: false, onUpdate: () => { countEl.textContent = fmt(cProxy.v); } }, 19.59);
+      tl.fromTo("#barFill", { scaleX: 1 }, { scaleX: 0, duration: 3.3, ease: "power1.in" }, 17.29);
+      [19.59, 19.93, 20.27].forEach((t) => tl.fromTo("#count", { scale: 1.25, color: "#ff3d6e" }, { scale: 1, color: "#15121f", duration: 0.3, ease: "power2.out", immediateRender: false }, t));
+      tl.set("#count", { transformOrigin: "0% 50%", scale: 1, color: "#15121f" }, 0);
+      const pProxy = { v: 350 };
+      const setPrice = () => { priceEl.textContent = Math.round(pProxy.v) + "€"; };
+      tl.fromTo(pProxy, { v: 350 }, { v: 400, duration: 0.3, ease: "power2.out", onUpdate: setPrice }, 17.57);
+      tl.to(pProxy, { v: 450, duration: 0.3, ease: "power2.out", onUpdate: setPrice }, 17.91);
+      tl.to(pProxy, { v: 500, duration: 0.35, ease: "power2.out", onUpdate: setPrice }, 18.62);
+      [["#bid0", 17.57], ["#bid1", 17.91], ["#bid2", 18.62]].forEach(([id, t], i) => {
+        tl.fromTo(id, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, t);
+      });
+      // older bids slide down as new ones arrive
+      tl.fromTo("#bid0", { y: 0 }, { y: 90, duration: 0.3, ease: "power2.out", immediateRender: false }, 17.91);
+      tl.to("#bid0", { y: 180, duration: 0.3, ease: "power2.out" }, 18.62);
+      tl.fromTo("#bid1", { y: 0 }, { y: 90, duration: 0.3, ease: "power2.out", immediateRender: false }, 18.62);
+      tl.set("#bid0", { top: 470 }, 0); tl.set("#bid1", { top: 470 }, 0); tl.set("#bid2", { top: 470 }, 0);
+      tl.fromTo("#raiseBtn", { scale: 1 }, { scale: 0.93, duration: 0.08, yoyo: true, repeat: 1 }, 18.55);
+      tl.fromTo("#price", { scale: 1 }, { scale: 1.12, duration: 0.15, yoyo: true, repeat: 1 }, 18.62);
+      tl.set("#price", { transformOrigin: "0% 50%" }, 0);
+      // win
+      tl.fromTo("#win", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 20.61);
+      tl.fromTo("#winRing", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" }, 20.66);
+      tl.fromTo("#winCheck", { strokeDasharray: 90, strokeDashoffset: 90 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 20.85);
+      tl.fromTo(splitLetters($("#winTitle")), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.035, ease: "back.out(2)" }, 20.8);
+      document.querySelectorAll("#confetti .confetti").forEach((c, i) => {
+        const x = +c.dataset.x, y = +c.dataset.y, r = +c.dataset.r, f = +c.dataset.fall;
+        tl.fromTo(c, { x: 0, y: 0, rotation: 0, opacity: 1 }, { x: x, y: y, rotation: r / 2, duration: 0.5, ease: "power2.out" }, 20.62);
+        tl.to(c, { y: y + f, x: x * 1.2, rotation: r, duration: 1.1, ease: "power1.in" }, 21.12);
+      });
+      tl.set("#winCard", { opacity: 0 }, 0);
+      tl.fromTo("#winCard", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, 20.95);
+      tl.to("#winCard", { x: 60, y: 230, scale: 0.25, opacity: 0, duration: 0.34, ease: "power3.in" }, 21.28);
+      tl.to("#win", { opacity: 0, duration: 0.2 }, 21.6);
+      tl.fromTo("#tabBadge", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 21.62);
+
+      // ---- PAY + SPLIT (22 – 25.3) ----
+      swap(21.85, "#s-auction", "#s-pay");
+      tl.set(["#paidRow", "#split"], { opacity: 0 }, 0);
+      tl.fromTo("#payBtn", { scale: 1 }, { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, 22.27);
+      tl.fromTo("#paidRow", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, 22.40);
+      tl.fromTo("#payOk", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2.5)" }, 22.40);
+      tl.fromTo("#payCheck", { strokeDasharray: 60, strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.3 }, 22.63);
+      tl.to("#payBtn", { opacity: 0, y: 30, duration: 0.3 }, 23.1);
+      tl.fromTo("#split", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 23.30);
+      for (let i = 0; i < 6; i++) tl.fromTo("#av" + i, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 23.35 + i * 0.0843);
+      const paidEl = $("#paidCount");
+      for (let i = 0; i < 6; i++) {
+        const t = 23.98 + i * 0.1686;
+        tl.fromTo("#chk" + i, { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(3)" }, t);
+      }
+      tl.set("#chk0", { scale: 0 }, 0); tl.set(["#chk1", "#chk2", "#chk3", "#chk4", "#chk5"], { scale: 0 }, 0);
+      const paidProxy = { n: 0 };
+      tl.fromTo(paidProxy, { n: 0 }, { n: 6, duration: 1.01, ease: "steps(6)", onUpdate: () => { paidEl.textContent = Math.round(paidProxy.n) + " di 6 hanno pagato"; } }, 23.98);
+
+      // ---- PASS (25.3 – 26.9) ----
+      swap(25.2, "#s-pay", "#s-pass");
+      tl.set("#okPill", { opacity: 0 }, 0);
+      tl.fromTo("#scan", { y: 0, opacity: 0 }, { y: 280, opacity: 1, duration: 0.5, ease: "power1.inOut" }, 25.5);
+      tl.to("#scan", { opacity: 0, duration: 0.15 }, 26.0);
+      tl.fromTo("#okPill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 26.00);
+
+      // ---- kinetic type ----
+      function kinetic(id, t, hold) {
+        const ls = splitLetters($(id));
+        tl.fromTo(ls, { opacity: 0, y: 70, rotationX: -85 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.38, stagger: 0.035, ease: "back.out(1.8)" }, t);
+        tl.to(ls, { opacity: 0, y: -40, duration: 0.22, stagger: 0.015, ease: "power2.in" }, t + hold);
+      }
+      [["#k1", 1.06, 1.2], ["#k2", 3.42, 1.25], ["#k3", 9.15, 1.0], ["#k4", 15.21, 0.75], ["#k5", 17.24, 0.65], ["#k6", 18.58, 0.85], ["#k7", 20.61, 1.01], ["#k8", 23.30, 0.85]].forEach(([id, t, h]) => kinetic(id, t, h));
+
+      // ---- mascot ----
+      const M = "#mascot";
+      tl.set(M, { x: -220, y: 820 }, 0);
+      // hop in
+      [[0.045, -40], [0.38, 70], [0.72, 150]].forEach(([t, x]) => {
+        tl.to(M, { x: x, duration: 0.3, ease: "none" }, t);
+        tl.to(M + " .m-body", { y: -60, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, t);
+      });
+      tl.fromTo(M + " .m-body", { scaleY: 1 }, { scaleY: 0.85, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, 1.06);
+      // walk cycle while idle-moving
+      tl.fromTo(M + " .m-legL", { rotation: -12 }, { rotation: 12, duration: 0.18, yoyo: true, repeat: 5, transformOrigin: "50% 0%" }, 0.1);
+      tl.fromTo(M + " .m-legR", { rotation: 12 }, { rotation: -12, duration: 0.18, yoyo: true, repeat: 5, transformOrigin: "50% 0%" }, 0.1);
+      // looks around ("e il tuo tavolo?")
+      tl.to(M + " .m-pupils", { x: -6, duration: 0.2 }, 3.42);
+      tl.to(M + " .m-pupils", { x: 6, duration: 0.25 }, 3.75);
+      tl.to(M + " .m-pupils", { x: 0, duration: 0.2 }, 4.43);
+      tl.to(M, { rotation: -8, duration: 0.3372, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.42);
+      tl.set(M, { transformOrigin: "50% 100%" }, 0);
+      // multiplies (6 persone)
+      for (let i = 0; i < 5; i++) {
+        const c = document.createElement("div"); c.className = "mascot"; c.id = "clone" + i; c.innerHTML = MASCOT_SVG; $("#clones").appendChild(c);
+        const cx = 150 + (i + 1) * 120, cy = 860 - (i % 2) * 20;
+        tl.set(c, { x: cx, y: cy, scale: 0.75, opacity: 0, transformOrigin: "50% 100%" }, 0);
+        tl.fromTo(c, { opacity: 0, scale: 0 }, { opacity: 1, scale: 0.75, duration: 0.25, ease: "back.out(3)" }, 9.15 + i * 0.1686);
+        tl.to(c, { opacity: 0, scale: 0, duration: 0.2 }, 10.5 + i * 0.04);
+      }
+      // walks along with the map
+      tl.to(M, { x: 220, duration: 1.2, ease: "sine.inOut" }, 11.51);
+      tl.fromTo(M + " .m-legL", { rotation: -12 }, { rotation: 12, duration: 0.2, yoyo: true, repeat: 5, transformOrigin: "50% 0%", immediateRender: false }, 11.51);
+      tl.fromTo(M + " .m-legR", { rotation: 12 }, { rotation: -12, duration: 0.2, yoyo: true, repeat: 5, transformOrigin: "50% 0%", immediateRender: false }, 11.51);
+      // nervous at the auction
+      tl.to(M, { x: 200, duration: 0.06, yoyo: true, repeat: 9 }, 19.59);
+      // celebrates the win
+      tl.to(M, { y: 700, duration: 0.1686, yoyo: true, repeat: 3, ease: "power2.out" }, 20.61);
+      tl.to(M + " .m-top", { rotation: 360, duration: 0.6, ease: "power2.inOut", transformOrigin: "50% 50%" }, 20.75);
+      tl.to(M + " .m-smile", { scaleY: 1.8, duration: 0.2, transformOrigin: "50% 0%" }, 20.61);
+      tl.to(M + " .m-smile", { scaleY: 1, duration: 0.2 }, 22.0);
+      // hides during the end card build, then hops beside the logo and sits
+      tl.to(M, { x: -260, duration: 0.5, ease: "power2.in" }, 26.0);
+      tl.set(M, { x: 2100, y: 470 }, 27.0);
+      [[28.36, 1660], [28.70, 1530], [29.03, 1420]].forEach(([t, x]) => {
+        tl.to(M, { x: x, duration: 0.3, ease: "none" }, t);
+        tl.to(M + " .m-body", { y: -50, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, t);
+      });
+      tl.fromTo(M + " .m-body", { scaleY: 1 }, { scaleY: 0.8, duration: 0.12, transformOrigin: "50% 100%", immediateRender: false }, 29.37);
+
+      // ---- end card ----
+      tl.fromTo("#glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 27.01);
+      tl.set("#logoLegs", { clipPath: "inset(52% 0% 48% 0%)" }, 0);
+      tl.set("#logoTop", { clipPath: "polygon(0% 41%, 50% 0%, 100% 41%, 100% 50%, 50% 84%, 0% 50%)" }, 0);
+      tl.fromTo("#logoTop", { y: -700, rotation: -12 }, { y: 0, rotation: 0, duration: 0.3, ease: "power4.in" }, 26.71);
+      tl.fromTo("#logoLegs", { clipPath: "inset(52% 0% 48% 0%)" }, { clipPath: "inset(52% 0% 0% 0%)", duration: 0.3, ease: "power3.out" }, 27.06);
+      tl.set("#logoWrap", { scaleX: 1, scaleY: 1, y: 0 }, 0);
+      tl.fromTo("#logoWrap", { scaleY: 1, scaleX: 1 }, { scaleY: 0.9, scaleX: 1.06, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, 27.01);
+      tl.fromTo("#logoWrap", { y: 0 }, { y: -12, duration: 2.3, ease: "sine.inOut", immediateRender: false }, 27.35);
+      const sl = splitLetters($("#slogan"));
+      tl.fromTo(sl, { opacity: 0, y: 50, rotationX: -80 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.35, stagger: 0.04, ease: "back.out(1.8)" }, 27.68);
+      tl.fromTo("#slogan .acc .l", { textShadow: "0 0 0px rgba(167,123,255,0)" }, { textShadow: "0 0 34px rgba(167,123,255,0.9)", duration: 0.4 }, 29.03);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
