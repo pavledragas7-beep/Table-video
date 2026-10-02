@@ -15,23 +15,23 @@ const vo = [
 
 // [file, start, volume, maxDuration?]
 const sfx = [
-  ["impact-bass-1", 0.045, 0.45], ["click", 0.382, 0.6], ["impact-bass-2", 0.719, 0.4], ["whoosh-short", 0.98, 0.35], ["sparkle", 1.0, 0.25],
+  ["whoosh-cinematic", 0.0, 0.45, 1.6], ["sparkle", 0.9, 0.25],
   ["pop", 2.07, 0.5], ["whoosh-short", 3.42, 0.25], ["whoosh-short", 4.2, 0.35],
   ["click", 5.1, 0.7], ["whoosh-short", 5.44, 0.5], ["key-press", 5.6, 0.4], ["key-press", 5.85, 0.4], ["whoosh", 6.11, 0.5],
   ["click", 7.3, 0.7], ["whoosh-short", 7.46, 0.5], ["click", 8.47, 0.7],
   ["pop", 9.32, 0.45], ["pop", 9.49, 0.45], ["pop", 9.66, 0.45],
   ["whoosh-cinematic", 9.9, 0.55, 1.4], ["impact-bass-1", 10.83, 0.6], ["sparkle", 11.17, 0.45],
   ["click-soft", 12.52, 0.6], ["click-soft", 13.19, 0.6], ["whoosh-short", 13.87, 0.5], ["whoosh-short", 14.88, 0.5],
-  ["click", 15.21, 0.7], ["typing", 15.21, 0.3, 0.35], ["whoosh-short", 15.55, 0.45], ["notification", 15.89, 0.45, 1.0],
-  ["click", 16.9, 0.7], ["whoosh", 17.1, 0.55], ["typing", 17.24, 0.3, 0.4], ["coin", 17.57, 0.55], ["coin", 17.91, 0.55],
-  ["click", 18.58, 0.7], ["coin", 18.62, 0.7], ["typing", 18.58, 0.3, 0.4],
+  ["click", 15.21, 0.7], ["whoosh-short", 15.55, 0.45], ["notification", 15.89, 0.45, 1.0],
+  ["click", 16.9, 0.7], ["whoosh", 17.1, 0.55], ["coin", 17.57, 0.55], ["coin", 17.91, 0.55],
+  ["click", 18.58, 0.7], ["coin", 18.62, 0.7],
   ["tick", 19.59, 0.7], ["tick", 19.93, 0.7], ["tick", 20.27, 0.7],
-  ["win", 20.61, 0.7], ["impact-bass-2", 20.61, 0.5], ["whoosh-short", 21.28, 0.5], ["pop", 21.62, 0.55],
+  ["impact-bass-2", 20.61, 0.45], ["sparkle", 20.7, 0.4], ["whoosh-short", 21.28, 0.5], ["pop", 21.62, 0.55],
   ["whoosh-short", 21.85, 0.5], ["click", 22.29, 0.7], ["pay", 22.4, 0.65],
-  ["whoosh-short", 23.3, 0.45], ["typing", 23.3, 0.3, 0.4],
+  ["whoosh-short", 23.3, 0.45],
   ...[0, 1, 2, 3, 4, 5].map((i) => ["click-soft", +(23.98 + i * 0.1686).toFixed(3), 0.5]),
   ["whoosh-short", 25.2, 0.5], ["scan", 25.6, 0.6], ["ping", 26.0, 0.5, 0.9],
-  ["whoosh-cinematic", 26.4, 0.55, 1.2], ["impact-bass-2", 27.01, 0.8], ["typing", 27.68, 0.3, 1.1],
+  ["whoosh-cinematic", 26.4, 0.55, 1.2], ["impact-bass-2", 27.01, 0.8],
   ["sparkle", 29.03, 0.4],
 ];
 

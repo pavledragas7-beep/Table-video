@@ -8,6 +8,7 @@
       @font-face { font-family: "Space Grotesk"; font-weight: 400; src: url("assets/fonts/space-grotesk-latin-400-normal.woff2") format("woff2"); }
       @font-face { font-family: "Space Grotesk"; font-weight: 500; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
       @font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; src: url("assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
       @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
       @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
       @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
@@ -115,7 +116,7 @@
       .stepper { display: flex; align-items: center; justify-content: space-between; height: 72px; border-radius: 20px; background: var(--card); border: 1.5px solid var(--line); padding: 0 12px 0 22px; }
       .stp-btn { width: 50px; height: 50px; border-radius: 14px; background: var(--warm-2); font: 700 26px "Inter"; display: flex; align-items: center; justify-content: center; }
       .stp-btn.plus { background: var(--violet); color: #fff; }
-      .cta { height: 66px; border-radius: 20px; background: var(--violet); color: #fff; font: 700 19px "Inter"; display: flex; align-items: center; justify-content: center; }
+      .cta { height: 66px; border-radius: 20px; background: linear-gradient(90deg, #ff2e88, #c2187a); color: #fff; font: 700 19px "Inter"; display: flex; align-items: center; justify-content: center; }
       .cta.dark { background: var(--ink); color: #0d0c12; }
 
       /* map */
@@ -148,9 +149,9 @@
       .bid .amt { margin-left: auto; font: 700 22px "Space Grotesk"; }
       .bid.me { background: var(--violet); color: #fff; }
       .raise { height: 84px; border-radius: 24px; background: var(--violet); color: #fff; font: 700 30px "Space Grotesk"; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(255,46,136,0.35); }
-      #win { position: absolute; inset: 0; background: var(--violet); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; color: #fff; overflow: hidden; }
-      .win-ring { width: 170px; height: 170px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
-      .win-title { font: 700 64px "Space Grotesk"; letter-spacing: -0.02em; }
+      #win { position: absolute; inset: 0; background: radial-gradient(70% 45% at 50% 42%, rgba(255,46,136,0.55) 0%, rgba(13,12,18,1) 70%), #0d0c12; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; color: #fff; overflow: hidden; }
+      .win-ring { width: 170px; height: 170px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,179,209,0.7); box-shadow: 0 0 60px rgba(255,46,136,0.55); display: flex; align-items: center; justify-content: center; }
+      .win-title { font: 400 84px "Instrument Serif"; font-style: italic; letter-spacing: -0.01em; }
       .win-sub { font: 500 20px "Inter"; color: #ffd6e8; }
       .confetti { position: absolute; width: 12px; height: 20px; border-radius: 3px; }
 
@@ -172,14 +173,16 @@
       .ripple { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; border: 4px solid var(--violet); }
 
       /* hook + TikTok-style captions (screen space) */
-      #topShade { position: absolute; left: 0; top: 0; width: 1080px; height: 720px; background: linear-gradient(180deg, rgba(5,4,7,0.97) 0%, rgba(5,4,7,0.93) 58%, rgba(5,4,7,0.6) 78%, rgba(5,4,7,0) 100%); }
-      #hook { position: absolute; left: 60px; top: 640px; width: 960px; text-align: center; font: 700 168px "Space Grotesk"; line-height: 0.92; letter-spacing: -0.04em; color: #f6f1e9; text-shadow: 0 10px 50px rgba(0,0,0,0.6); }
-      #hook .hw { display: block; }
-      #hook .acc { color: var(--violet); text-shadow: 0 0 40px rgba(255,46,136,0.7); }
-      .cap { position: absolute; left: 50px; top: 250px; width: 980px; text-align: center; font: 700 104px "Space Grotesk"; line-height: 1.0; letter-spacing: -0.035em; color: #fff;
-        text-shadow: 0 6px 0 rgba(0,0,0,0.55), 0 0 40px rgba(0,0,0,0.6); }
-      .cap .cw { display: inline-block; margin: 0 0.12em; }
-      .cap .cw.acc { color: var(--violet); }
+      #topShade { position: absolute; left: 0; top: 0; width: 1080px; height: 760px; background: linear-gradient(180deg, rgba(5,4,7,0.88) 0%, rgba(5,4,7,0.7) 45%, rgba(5,4,7,0) 100%); }
+      .hl { position: absolute; left: 80px; top: 200px; width: 920px; text-align: center; color: #f6f1e9; }
+      .hl .kick { display: block; font: 600 22px "Inter"; letter-spacing: 0.42em; text-transform: uppercase; color: rgba(246,241,233,0.62); margin-bottom: 26px; }
+      .hl .kick i { display: inline-block; width: 36px; height: 1px; background: rgba(255,122,182,0.8); vertical-align: middle; margin: 0 18px; }
+      .hl .line { display: block; font: 500 98px "Space Grotesk"; line-height: 1.04; letter-spacing: -0.045em; }
+      .hl .m { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 0.04em 0.08em; margin-bottom: -0.08em; }
+      .hl .mi { display: inline-block; }
+      .hl .serif { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-size: 1.14em; letter-spacing: -0.01em; color: #ffb3d1; }
+      #hook.hl { top: 760px; }
+      #hook.hl .line { font-size: 132px; }
 
       /* end card */
       #endcard { display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -188,7 +191,7 @@
       #slogan { position: absolute; left: 90px; top: 1130px; width: 900px; text-align: center; font: 700 112px "Space Grotesk"; line-height: 1.02; letter-spacing: -0.03em; color: #f6f1e9; }
       #slogan .w { display: inline-block; white-space: nowrap; }
       #slogan .l { display: inline-block; }
-      #slogan .acc { color: var(--violet-soft); }
+      #slogan .acc { color: #ffb3d1; font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-size: 1.16em; letter-spacing: -0.01em; }
       #glow { position: absolute; left: 90px; top: 350px; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(255,46,136,0.55) 0%, rgba(255,46,136,0) 65%); }
 
       /* grain + vignette */
@@ -305,7 +308,7 @@
                   <div class="pad raise" id="raiseBtn" style="top:840px">+50€ · Rilancia</div>
                   <div id="win">
                     <div id="confetti" class="layer"></div>
-                    <div class="win-ring" id="winRing"><svg width="90" height="90" viewBox="0 0 90 90"><path id="winCheck" d="M20 47 L38 64 L71 28" fill="none" stroke="#ff2e88" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div class="win-ring" id="winRing"><svg width="90" height="90" viewBox="0 0 90 90"><path id="winCheck" d="M20 47 L38 64 L71 28" fill="none" stroke="#ffb3d1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                     <div class="win-title" id="winTitle">Hai vinto!</div>
                     <div class="win-sub">Tavolo P2 · Privé · 500€</div>
                     <div id="winCard" style="position:absolute;left:150px;top:760px;width:200px;height:120px;border-radius:20px;background:#fff;color:#0d0c12;display:flex;flex-direction:column;justify-content:center;padding:0 18px;font:700 18px 'Space Grotesk'"><span style="font:600 12px Inter;color:var(--muted);letter-spacing:.1em">SABATO 14</span>NOVA · P2</div>
@@ -359,8 +362,8 @@
       <!-- ===== hook + captions ===== -->
       <div id="type" class="layer clip" data-start="0" data-duration="26.8" data-track-index="2">
         <div id="topShade"></div>
-        <div id="hook"><span class="hw">Mai più</span><span class="hw">senza</span><span class="hw acc">tavolo.</span></div>
-        <div id="caps"></div>
+        <div id="hook" class="hl"><span class="kick"><i></i>Table<i></i></span><span class="line">Mai più</span><span class="line">senza <em>tavolo.</em></span></div>
+        <div id="heads"></div>
       </div>
 
       <!-- ===== end card ===== -->
@@ -398,69 +401,61 @@
       <audio id="vo-v13" src="assets/voice/v13.wav" data-start="25.33" data-duration="1.39" data-track-index="11" data-volume="1"></audio>
       <audio id="vo-v14" src="assets/voice/v14.wav" data-start="27.12" data-duration="0.58" data-track-index="11" data-volume="1"></audio>
       <audio id="vo-v15" src="assets/voice/v15.wav" data-start="27.85" data-duration="1.87" data-track-index="11" data-volume="1"></audio>
-      <audio id="sfx-00-impact-bass-1" src="assets/sfx/impact-bass-1.mp3" data-start="0.045" data-duration="2.12" data-track-index="12" data-volume="0.45"></audio>
-      <audio id="sfx-01-click" src="assets/sfx/click.mp3" data-start="0.382" data-duration="0.37" data-track-index="13" data-volume="0.6"></audio>
-      <audio id="sfx-02-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="0.719" data-duration="2.59" data-track-index="14" data-volume="0.4"></audio>
-      <audio id="sfx-03-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="0.98" data-duration="0.57" data-track-index="13" data-volume="0.35"></audio>
-      <audio id="sfx-04-sparkle" src="assets/sfx/sparkle.mp3" data-start="1" data-duration="1.80" data-track-index="15" data-volume="0.25"></audio>
-      <audio id="sfx-05-pop" src="assets/sfx/pop.mp3" data-start="2.07" data-duration="0.72" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-06-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="3.42" data-duration="0.57" data-track-index="12" data-volume="0.25"></audio>
-      <audio id="sfx-07-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="4.2" data-duration="0.57" data-track-index="12" data-volume="0.35"></audio>
-      <audio id="sfx-08-click" src="assets/sfx/click.mp3" data-start="5.1" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-09-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="5.44" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-10-key-press" src="assets/sfx/key-press.mp3" data-start="5.6" data-duration="0.43" data-track-index="12" data-volume="0.4"></audio>
-      <audio id="sfx-11-key-press" src="assets/sfx/key-press.mp3" data-start="5.85" data-duration="0.43" data-track-index="14" data-volume="0.4"></audio>
-      <audio id="sfx-12-whoosh" src="assets/sfx/whoosh.mp3" data-start="6.11" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-13-click" src="assets/sfx/click.mp3" data-start="7.3" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-14-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="7.46" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-15-click" src="assets/sfx/click.mp3" data-start="8.47" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-16-pop" src="assets/sfx/pop.mp3" data-start="9.32" data-duration="0.72" data-track-index="12" data-volume="0.45"></audio>
-      <audio id="sfx-17-pop" src="assets/sfx/pop.mp3" data-start="9.49" data-duration="0.72" data-track-index="13" data-volume="0.45"></audio>
-      <audio id="sfx-18-pop" src="assets/sfx/pop.mp3" data-start="9.66" data-duration="0.72" data-track-index="14" data-volume="0.45"></audio>
-      <audio id="sfx-19-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="9.9" data-duration="1.40" data-track-index="15" data-volume="0.55"></audio>
-      <audio id="sfx-20-impact-bass-1" src="assets/sfx/impact-bass-1.mp3" data-start="10.83" data-duration="2.12" data-track-index="12" data-volume="0.6"></audio>
-      <audio id="sfx-21-sparkle" src="assets/sfx/sparkle.mp3" data-start="11.17" data-duration="1.80" data-track-index="13" data-volume="0.45"></audio>
-      <audio id="sfx-22-click-soft" src="assets/sfx/click-soft.mp3" data-start="12.52" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio id="sfx-23-click-soft" src="assets/sfx/click-soft.mp3" data-start="13.19" data-duration="0.37" data-track-index="12" data-volume="0.6"></audio>
-      <audio id="sfx-24-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="13.87" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-25-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="14.88" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-26-click" src="assets/sfx/click.mp3" data-start="15.21" data-duration="0.37" data-track-index="13" data-volume="0.7"></audio>
-      <audio id="sfx-27-typing" src="assets/sfx/typing.mp3" data-start="15.21" data-duration="0.35" data-track-index="14" data-volume="0.3"></audio>
-      <audio id="sfx-28-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="15.55" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
-      <audio id="sfx-29-notification" src="assets/sfx/notification.mp3" data-start="15.89" data-duration="1.00" data-track-index="13" data-volume="0.45"></audio>
-      <audio id="sfx-30-click" src="assets/sfx/click.mp3" data-start="16.9" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-31-whoosh" src="assets/sfx/whoosh.mp3" data-start="17.1" data-duration="0.57" data-track-index="13" data-volume="0.55"></audio>
-      <audio id="sfx-32-typing" src="assets/sfx/typing.mp3" data-start="17.24" data-duration="0.40" data-track-index="14" data-volume="0.3"></audio>
-      <audio id="sfx-33-coin" src="assets/sfx/coin.mp3" data-start="17.57" data-duration="0.84" data-track-index="12" data-volume="0.55"></audio>
-      <audio id="sfx-34-coin" src="assets/sfx/coin.mp3" data-start="17.91" data-duration="0.84" data-track-index="13" data-volume="0.55"></audio>
-      <audio id="sfx-35-click" src="assets/sfx/click.mp3" data-start="18.58" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-36-coin" src="assets/sfx/coin.mp3" data-start="18.62" data-duration="0.84" data-track-index="14" data-volume="0.7"></audio>
-      <audio id="sfx-37-typing" src="assets/sfx/typing.mp3" data-start="18.58" data-duration="0.40" data-track-index="15" data-volume="0.3"></audio>
-      <audio id="sfx-38-tick" src="assets/sfx/tick.mp3" data-start="19.59" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-39-tick" src="assets/sfx/tick.mp3" data-start="19.93" data-duration="0.52" data-track-index="13" data-volume="0.7"></audio>
-      <audio id="sfx-40-tick" src="assets/sfx/tick.mp3" data-start="20.27" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-41-win" src="assets/sfx/win.mp3" data-start="20.61" data-duration="2.04" data-track-index="13" data-volume="0.7"></audio>
-      <audio id="sfx-42-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="20.61" data-duration="2.59" data-track-index="14" data-volume="0.5"></audio>
-      <audio id="sfx-43-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.28" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-44-pop" src="assets/sfx/pop.mp3" data-start="21.62" data-duration="0.72" data-track-index="15" data-volume="0.55"></audio>
-      <audio id="sfx-45-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.85" data-duration="0.57" data-track-index="16" data-volume="0.5"></audio>
-      <audio id="sfx-46-click" src="assets/sfx/click.mp3" data-start="22.29" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-47-pay" src="assets/sfx/pay.mp3" data-start="22.4" data-duration="1.04" data-track-index="15" data-volume="0.65"></audio>
-      <audio id="sfx-48-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="23.3" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
-      <audio id="sfx-49-typing" src="assets/sfx/typing.mp3" data-start="23.3" data-duration="0.40" data-track-index="13" data-volume="0.3"></audio>
-      <audio id="sfx-50-click-soft" src="assets/sfx/click-soft.mp3" data-start="23.98" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-51-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.149" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-52-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.317" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
-      <audio id="sfx-53-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.486" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-54-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.654" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-55-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.823" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
-      <audio id="sfx-56-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="25.2" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-57-scan" src="assets/sfx/scan.mp3" data-start="25.6" data-duration="0.73" data-track-index="13" data-volume="0.6"></audio>
-      <audio id="sfx-58-ping" src="assets/sfx/ping.mp3" data-start="26" data-duration="0.90" data-track-index="12" data-volume="0.5"></audio>
-      <audio id="sfx-59-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="26.4" data-duration="1.20" data-track-index="13" data-volume="0.55"></audio>
-      <audio id="sfx-60-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="27.01" data-duration="2.59" data-track-index="12" data-volume="0.8"></audio>
-      <audio id="sfx-61-typing" src="assets/sfx/typing.mp3" data-start="27.68" data-duration="1.10" data-track-index="13" data-volume="0.3"></audio>
-      <audio id="sfx-62-sparkle" src="assets/sfx/sparkle.mp3" data-start="29.03" data-duration="0.97" data-track-index="13" data-volume="0.4"></audio>
+      <audio id="sfx-00-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="0" data-duration="1.60" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-01-sparkle" src="assets/sfx/sparkle.mp3" data-start="0.9" data-duration="1.80" data-track-index="13" data-volume="0.25"></audio>
+      <audio id="sfx-02-pop" src="assets/sfx/pop.mp3" data-start="2.07" data-duration="0.72" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-03-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="3.42" data-duration="0.57" data-track-index="12" data-volume="0.25"></audio>
+      <audio id="sfx-04-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="4.2" data-duration="0.57" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-05-click" src="assets/sfx/click.mp3" data-start="5.1" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-06-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="5.44" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-07-key-press" src="assets/sfx/key-press.mp3" data-start="5.6" data-duration="0.43" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sfx-08-key-press" src="assets/sfx/key-press.mp3" data-start="5.85" data-duration="0.43" data-track-index="14" data-volume="0.4"></audio>
+      <audio id="sfx-09-whoosh" src="assets/sfx/whoosh.mp3" data-start="6.11" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-10-click" src="assets/sfx/click.mp3" data-start="7.3" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-11-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="7.46" data-duration="0.57" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-12-click" src="assets/sfx/click.mp3" data-start="8.47" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-13-pop" src="assets/sfx/pop.mp3" data-start="9.32" data-duration="0.72" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-14-pop" src="assets/sfx/pop.mp3" data-start="9.49" data-duration="0.72" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-15-pop" src="assets/sfx/pop.mp3" data-start="9.66" data-duration="0.72" data-track-index="14" data-volume="0.45"></audio>
+      <audio id="sfx-16-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="9.9" data-duration="1.40" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sfx-17-impact-bass-1" src="assets/sfx/impact-bass-1.mp3" data-start="10.83" data-duration="2.12" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-18-sparkle" src="assets/sfx/sparkle.mp3" data-start="11.17" data-duration="1.80" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-19-click-soft" src="assets/sfx/click-soft.mp3" data-start="12.52" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-20-click-soft" src="assets/sfx/click-soft.mp3" data-start="13.19" data-duration="0.37" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-21-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="13.87" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-22-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="14.88" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-23-click" src="assets/sfx/click.mp3" data-start="15.21" data-duration="0.37" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-24-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="15.55" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-25-notification" src="assets/sfx/notification.mp3" data-start="15.89" data-duration="1.00" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-26-click" src="assets/sfx/click.mp3" data-start="16.9" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-27-whoosh" src="assets/sfx/whoosh.mp3" data-start="17.1" data-duration="0.57" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-28-coin" src="assets/sfx/coin.mp3" data-start="17.57" data-duration="0.84" data-track-index="12" data-volume="0.55"></audio>
+      <audio id="sfx-29-coin" src="assets/sfx/coin.mp3" data-start="17.91" data-duration="0.84" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-30-click" src="assets/sfx/click.mp3" data-start="18.58" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-31-coin" src="assets/sfx/coin.mp3" data-start="18.62" data-duration="0.84" data-track-index="14" data-volume="0.7"></audio>
+      <audio id="sfx-32-tick" src="assets/sfx/tick.mp3" data-start="19.59" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-33-tick" src="assets/sfx/tick.mp3" data-start="19.93" data-duration="0.52" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-34-tick" src="assets/sfx/tick.mp3" data-start="20.27" data-duration="0.52" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-35-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="20.61" data-duration="2.59" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sfx-36-sparkle" src="assets/sfx/sparkle.mp3" data-start="20.7" data-duration="1.80" data-track-index="14" data-volume="0.4"></audio>
+      <audio id="sfx-37-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.28" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-38-pop" src="assets/sfx/pop.mp3" data-start="21.62" data-duration="0.72" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sfx-39-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="21.85" data-duration="0.57" data-track-index="16" data-volume="0.5"></audio>
+      <audio id="sfx-40-click" src="assets/sfx/click.mp3" data-start="22.29" data-duration="0.37" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-41-pay" src="assets/sfx/pay.mp3" data-start="22.4" data-duration="1.04" data-track-index="15" data-volume="0.65"></audio>
+      <audio id="sfx-42-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="23.3" data-duration="0.57" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-43-click-soft" src="assets/sfx/click-soft.mp3" data-start="23.98" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-44-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.149" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-45-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.317" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-46-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.486" data-duration="0.37" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-47-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.654" data-duration="0.37" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-48-click-soft" src="assets/sfx/click-soft.mp3" data-start="24.823" data-duration="0.37" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-49-whoosh-short" src="assets/sfx/whoosh-short.mp3" data-start="25.2" data-duration="0.57" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-50-scan" src="assets/sfx/scan.mp3" data-start="25.6" data-duration="0.73" data-track-index="13" data-volume="0.6"></audio>
+      <audio id="sfx-51-ping" src="assets/sfx/ping.mp3" data-start="26" data-duration="0.90" data-track-index="12" data-volume="0.5"></audio>
+      <audio id="sfx-52-whoosh-cinematic" src="assets/sfx/whoosh-cinematic.mp3" data-start="26.4" data-duration="1.20" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-53-impact-bass-2" src="assets/sfx/impact-bass-2.mp3" data-start="27.01" data-duration="2.59" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="sfx-54-sparkle" src="assets/sfx/sparkle.mp3" data-start="29.03" data-duration="0.97" data-track-index="13" data-volume="0.4"></audio>
       <!-- AUDIO:END -->
     </div>
 
@@ -548,7 +543,7 @@
 
       // confetti
       const confCols = ["#ffffff", "#ffd36e", "#ff4fa3", "#19c3ff", "#2bd4a4"];
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 0; i++) {
         const c = document.createElement("div"); c.className = "confetti";
         c.style.left = 250 + "px"; c.style.top = 420 + "px"; c.style.background = confCols[i % confCols.length];
         c.dataset.x = (rand() - 0.5) * 520; c.dataset.y = -260 - rand() * 300; c.dataset.r = (rand() - 0.5) * 720; c.dataset.fall = 500 + rand() * 500;
@@ -574,7 +569,7 @@
       // cursor + trail
       const CURSOR = `<svg width="40" height="48" viewBox="0 0 40 48"><path d="M4 3 L4 38 L13 30 L19 44 L26 41 L20 27 L33 27 Z" fill="#ffffff" stroke="#0d0c12" stroke-width="3" stroke-linejoin="round"/></svg>`;
       const TRAIL = `<svg width="40" height="48" viewBox="0 0 40 48"><path d="M4 3 L4 38 L13 30 L19 44 L26 41 L20 27 L33 27 Z" fill="#ff7ab6"/></svg>`;
-      const NTRAIL = 6;
+      const NTRAIL = 0;
       for (let i = NTRAIL; i >= 1; i--) { const g = document.createElement("div"); g.className = "cur"; g.id = "trail" + i; g.innerHTML = TRAIL; $("#cursors").appendChild(g); }
       const cur = document.createElement("div"); cur.className = "cur"; cur.id = "cursor"; cur.innerHTML = CURSOR; $("#cursors").appendChild(cur);
 
@@ -604,10 +599,7 @@
         tl.to(to, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, t);
         tl.to(from, { xPercent: -35, opacity: 0.4, duration: 0.45, ease: "power3.inOut" }, t);
         tl.set(from, { opacity: 0 }, t + 0.46);
-        // whip: motion blur through the cut
-        tl.fromTo("#screen", { filter: "blur(0px)" }, { filter: "blur(9px)", duration: 0.16, yoyo: true, repeat: 1, ease: "power2.in", immediateRender: false }, t + 0.06);
       }
-      tl.set("#screen", { filter: "blur(0px)" }, 0);
 
       // ---- camera ----
       // [t, focusX, focusY (phone px), screenX, screenY, scale, rotX, rotY, rotZ]
@@ -666,16 +658,10 @@
       const BEAT = 0.3372, DROP = 10.83;
       tl.set("#world", { scale: 1, opacity: 1 }, 0);
       tl.set("#bgInner", { opacity: 0 }, 0);
-      [[DROP, 22], [20.61, 16]].forEach(([t, amp]) => {
-        tl.fromTo("#world", { x: -amp, y: amp * 0.6 }, { x: amp, y: -amp * 0.6, duration: 0.04, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, t);
-        tl.set("#world", { x: 0, y: 0 }, t + 0.33);
-      });
-      tl.set("#world", { x: 0, y: 0 }, 0);
-      tl.fromTo("#flash", { opacity: 0.6 }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, 20.61);
-      tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, DROP);
+      tl.fromTo("#flash", { opacity: 0.32 }, { opacity: 0, duration: 0.9, ease: "power2.out" }, DROP);
       tl.set("#flash", { opacity: 0 }, 0);
       for (let t = DROP; t < 26.6; t += BEAT * 2) {
-        tl.fromTo("#world", { scale: 1.05 }, { scale: 1, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
+        tl.fromTo("#world", { scale: 1.012 }, { scale: 1, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
         tl.fromTo("#bgInner", { opacity: 1 }, { opacity: 0.72, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
         tl.fromTo("#beams", { opacity: 1 }, { opacity: 0.55, duration: BEAT * 1.6, ease: "power2.out", immediateRender: false }, t);
       }
@@ -700,7 +686,7 @@
         }
       }
       drive("#cursor", 0);
-      tl.fromTo("#cursor", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 4.2);
+      tl.fromTo("#cursor", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 4.2);
       for (let i = 1; i <= NTRAIL; i++) {
         drive("#trail" + i, i * 0.035);
         tl.fromTo("#trail" + i, { opacity: 0, scale: 1 - i * 0.07 }, { opacity: 0.42 - i * 0.06, scale: 1 - i * 0.07, duration: 0.3 }, 4.25);
@@ -721,7 +707,7 @@
       tl.fromTo("#screenDim", { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.out" }, 1.0);
       tl.fromTo("#glare", { x: 0, rotation: 18 }, { x: 1300, rotation: 18, duration: 1.2, ease: "power2.inOut" }, 1.35);
       tl.fromTo(["#vb1", "#vb2", "#vb3"], { rotation: -25 }, { rotation: 25, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 3, stagger: 0.2 }, 0);
-      tl.fromTo("#sold", { scale: 0, rotation: -20 }, { scale: 1, rotation: -6, duration: 0.45, ease: "back.out(3)" }, 2.07);
+      tl.fromTo("#sold", { scale: 0, rotation: -20 }, { scale: 1, rotation: -6, duration: 0.45, ease: "back.out(1.2)" }, 2.07);
       tl.to("#sold", { scale: 1.12, duration: 0.3372, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.74);
       tl.to("#homeSearch", { borderColor: "#ff2e88", duration: 0.2 }, 5.10);
 
@@ -739,7 +725,7 @@
       swap(7.46, "#s-results", "#s-venue");
       tl.fromTo(["#nb1", "#nb2"], { rotation: -20 }, { rotation: 20, duration: 1, yoyo: true, repeat: 2, ease: "sine.inOut", stagger: 0.25 }, 7.5);
       const venueLetters = splitLetters($("#venueName"));
-      tl.fromTo(venueLetters, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: "back.out(2)" }, 7.80);
+      tl.fromTo(venueLetters, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: "back.out(1.2)" }, 7.80);
       tl.to("#daySat", { backgroundColor: "#ff2e88", borderColor: "#ff2e88", color: "#ffd6e8", duration: 0.15 }, 8.47);
       tl.to("#daySat b", { color: "#ffffff", duration: 0.15 }, 8.47);
       tl.fromTo("#daySat", { scale: 1 }, { scale: 1.12, duration: 0.12, yoyo: true, repeat: 1 }, 8.47);
@@ -753,16 +739,16 @@
 
       // ---- MAP (10.2 – 16.8) ----
       swap(10.62, "#s-venue", "#s-map");
-      freeSet.forEach((n, i) => tl.fromTo("#on-" + n, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 11.17 + i * 0.1686));
+      freeSet.forEach((n, i) => tl.fromTo("#on-" + n, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 11.17 + i * 0.1686));
       [["#tagT1", 12.52], ["#tagT2", 13.19], ["#tagV1", 13.87], ["#tagP2", 15.05]].forEach(([id, t], i, arr) => {
-        tl.fromTo(id, { opacity: 0, y: 10, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "back.out(2)" }, t);
+        tl.fromTo(id, { opacity: 0, y: 10, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "back.out(1.2)" }, t);
         const end = id === "#tagP2" ? 15.5 : (arr[i + 1] ? arr[i + 1][1] - 0.05 : t + 0.8);
         tl.to(id, { opacity: 0, duration: 0.15 }, end);
       });
       tl.set(["#tagT1", "#tagT2", "#tagV1", "#tagP2"], { opacity: 0 }, 0);
       tl.fromTo("#on-P2", { scale: 1 }, { scale: 1.35, duration: 0.15, yoyo: true, repeat: 1 }, 15.21);
       tl.fromTo("#sheet", { y: 520 }, { y: 0, duration: 0.45, ease: "power3.out" }, 15.55);
-      tl.fromTo("#offers", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 15.89);
+      tl.fromTo("#offers", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 15.89);
       tl.to("#offers", { scale: 1.15, duration: 0.1686, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.22);
       tl.fromTo("#enterBtn", { scale: 1 }, { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, 16.88);
 
@@ -785,7 +771,7 @@
       tl.to(pProxy, { v: 450, duration: 0.3, ease: "power2.out", onUpdate: setPrice }, 17.91);
       tl.to(pProxy, { v: 500, duration: 0.35, ease: "power2.out", onUpdate: setPrice }, 18.62);
       [["#bid0", 17.57], ["#bid1", 17.91], ["#bid2", 18.62]].forEach(([id, t], i) => {
-        tl.fromTo(id, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, t);
+        tl.fromTo(id, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.2)" }, t);
       });
       // older bids slide down as new ones arrive
       tl.fromTo("#bid0", { y: 0 }, { y: 90, duration: 0.3, ease: "power2.out", immediateRender: false }, 17.91);
@@ -797,9 +783,9 @@
       tl.set("#price", { transformOrigin: "0% 50%" }, 0);
       // win
       tl.fromTo("#win", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 20.61);
-      tl.fromTo("#winRing", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(2.5)" }, 20.66);
+      tl.fromTo("#winRing", { scale: 0 }, { scale: 1, duration: 0.45, ease: "back.out(1.2)" }, 20.66);
       tl.fromTo("#winCheck", { strokeDasharray: 90, strokeDashoffset: 90 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 20.85);
-      tl.fromTo(splitLetters($("#winTitle")), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.035, ease: "back.out(2)" }, 20.8);
+      tl.fromTo(splitLetters($("#winTitle")), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.035, ease: "back.out(1.2)" }, 20.8);
       document.querySelectorAll("#confetti .confetti").forEach((c, i) => {
         const x = +c.dataset.x, y = +c.dataset.y, r = +c.dataset.r, f = +c.dataset.fall;
         tl.fromTo(c, { x: 0, y: 0, rotation: 0, opacity: 1 }, { x: x, y: y, rotation: r / 2, duration: 0.5, ease: "power2.out" }, 20.62);
@@ -809,22 +795,22 @@
       tl.fromTo("#winCard", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, 20.95);
       tl.to("#winCard", { x: 60, y: 230, scale: 0.25, opacity: 0, duration: 0.34, ease: "power3.in" }, 21.28);
       tl.to("#win", { opacity: 0, duration: 0.2 }, 21.6);
-      tl.fromTo("#tabBadge", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 21.62);
+      tl.fromTo("#tabBadge", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 21.62);
 
       // ---- PAY + SPLIT (22 – 25.3) ----
       swap(21.85, "#s-auction", "#s-pay");
       tl.set(["#paidRow", "#split"], { opacity: 0 }, 0);
       tl.fromTo("#payBtn", { scale: 1 }, { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, 22.27);
       tl.fromTo("#paidRow", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3 }, 22.40);
-      tl.fromTo("#payOk", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2.5)" }, 22.40);
+      tl.fromTo("#payOk", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(1.2)" }, 22.40);
       tl.fromTo("#payCheck", { strokeDasharray: 60, strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.3 }, 22.63);
       tl.to("#payBtn", { opacity: 0, y: 30, duration: 0.3 }, 23.1);
       tl.fromTo("#split", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 23.30);
-      for (let i = 0; i < 6; i++) tl.fromTo("#av" + i, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 23.35 + i * 0.0843);
+      for (let i = 0; i < 6; i++) tl.fromTo("#av" + i, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 23.35 + i * 0.0843);
       const paidEl = $("#paidCount");
       for (let i = 0; i < 6; i++) {
         const t = 23.98 + i * 0.1686;
-        tl.fromTo("#chk" + i, { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(3)" }, t);
+        tl.fromTo("#chk" + i, { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(1.2)" }, t);
       }
       tl.set("#chk0", { scale: 0 }, 0); tl.set(["#chk1", "#chk2", "#chk3", "#chk4", "#chk5"], { scale: 0 }, 0);
       const paidProxy = { n: 0 };
@@ -835,55 +821,53 @@
       tl.set("#okPill", { opacity: 0 }, 0);
       tl.fromTo("#scan", { y: 0, opacity: 0 }, { y: 280, opacity: 1, duration: 0.5, ease: "power1.inOut" }, 25.5);
       tl.to("#scan", { opacity: 0, duration: 0.15 }, 26.0);
-      tl.fromTo("#okPill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 26.00);
+      tl.fromTo("#okPill", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }, 26.00);
 
-      // ---- hook: one word per beat ----
-      [[".hw:nth-child(1)", 0.045], [".hw:nth-child(2)", 0.382], [".hw:nth-child(3)", 0.719]].forEach(([sel, t]) => {
-        tl.fromTo("#hook " + sel, { opacity: 0, scale: 1.7, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "expo.out" }, t);
-      });
-      tl.to("#hook", { opacity: 0, scale: 0.9, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, 0.98);
-      tl.fromTo("#topShade", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.9);
-
-      // ---- captions: 1-3 words per chunk, spoken word lights up ----
-      const VO = [
-        [1.06, 0.97, "Sabato *sera."], [2.07, 1.30, "Il locale è pieno."], [3.42, 1.14, "E il tuo *tavolo?"],
-        [4.76, 2.33, "Con *TABLE, lo trovi in un attimo."], [7.30, 2.66, "Scegli il locale, la data, quanti siete."],
-        [10.83, 1.33, "Guarda la *mappa."], [12.30, 3.52, "Scegli il tuo posto: vicino alla console, o in *privé."],
-        [15.95, 2.45, "Tavolo conteso? Entra nell'*asta."], [18.58, 0.81, "*Rilancia."], [20.61, 0.62, "*Vinci."],
-        [21.95, 1.14, "Paghi in *app."], [23.30, 1.80, "Dividi il conto con gli *amici."], [25.33, 1.39, "Entri senza *attese."],
-      ];
-      let capN = 0;
-      VO.forEach(([start, dur, text], li) => {
-        const words = text.split(" ");
-        const weight = (w) => w.replace(/[*]/g, "").length + 1.5 + (/[.,:?!]$/.test(w) ? 2 : 0);
-        const total = words.reduce((a, w) => a + weight(w), 0);
-        let acc = 0;
-        const timed = words.map((w) => { const t0 = start + (acc / total) * dur; acc += weight(w); return [w, t0, start + (acc / total) * dur]; });
-        // chunk: break after punctuation or every 3 words
-        const chunks = []; let cur = [];
-        timed.forEach((tw, i) => { cur.push(tw); if (/[.,:?!]$/.test(tw[0]) || cur.length === 3) { chunks.push(cur); cur = []; } });
-        if (cur.length) chunks.push(cur);
-        const nextLine = VO[li + 1] ? VO[li + 1][0] : start + dur + 0.6;
-        chunks.forEach((ch, ci) => {
-          const el = document.createElement("div"); el.className = "cap"; el.id = "cap" + capN++;
-          ch.forEach(([w]) => { const sp = document.createElement("span"); sp.className = "cw" + (w.startsWith("*") ? " acc" : ""); sp.textContent = w.replace("*", ""); el.appendChild(sp); });
-          $("#caps").appendChild(el);
-          const tIn = ch[0][1];
-          const tOut = ci < chunks.length - 1 ? chunks[ci + 1][0][1] : Math.min(start + dur + 0.35, nextLine - 0.02);
-          tl.set(el, { opacity: 0 }, 0);
-          tl.fromTo(el, { opacity: 1, scale: 0.82, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "back.out(2.6)", immediateRender: false }, tIn);
-          tl.set(el, { opacity: 0 }, tOut);
-          el.querySelectorAll(".cw").forEach((sp, wi) => {
-            const [, w0] = ch[wi];
-            if (sp.classList.contains("acc")) {
-              tl.fromTo(sp, { scale: 1 }, { scale: 1.12, duration: 0.12, yoyo: true, repeat: 1, immediateRender: false }, w0);
-            } else {
-              tl.set(sp, { color: "#ffffff" }, 0);
-              tl.set(sp, { color: "#ffd23f" }, w0);
-              tl.set(sp, { color: "#ffffff" }, ch[wi][2]);
-            }
+      // ---- editorial headlines: masked line reveals, one serif-italic accent ----
+      function buildHL(el) {
+        el.querySelectorAll(".line").forEach((line) => {
+          const html = line.innerHTML.replace(/<em>(.*?)<\/em>/g, (m, w) => w.split(" ").map((x) => "\u0001" + x).join(" "));
+          line.innerHTML = "";
+          html.split(" ").forEach((w, i, arr) => {
+            const serif = w.startsWith("\u0001");
+            const m = document.createElement("span"); m.className = "m";
+            const mi = document.createElement("span"); mi.className = "mi" + (serif ? " serif" : ""); mi.textContent = w.replace("\u0001", "");
+            m.appendChild(mi); line.appendChild(m);
+            if (i < arr.length - 1) line.appendChild(document.createTextNode(" "));
           });
         });
+        return el;
+      }
+      function revealHL(el, tIn, tOut) {
+        const words = el.querySelectorAll(".mi"), kick = el.querySelector(".kick");
+        tl.set(el, { opacity: 0 }, 0);
+        tl.set(el, { opacity: 1 }, tIn);
+        tl.fromTo(words, { yPercent: 115 }, { yPercent: 0, duration: 0.9, stagger: 0.07, ease: "expo.out", immediateRender: false }, tIn);
+        if (kick) tl.fromTo(kick, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 1.0, ease: "expo.out", immediateRender: false }, tIn);
+        tl.to(el, { opacity: 0, y: -14, duration: 0.35, ease: "power2.in" }, tOut);
+        tl.set(el, { y: 0 }, tOut + 0.36);
+      }
+      buildHL($("#hook")); revealHL($("#hook"), 0.12, 0.92);
+      tl.fromTo("#topShade", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.9);
+      const HEADS = [
+        [1.06, 3.2, "Sabato notte", ["Sabato <em>sera.</em>"]],
+        [3.42, 4.6, "Sold out", ["E il tuo <em>tavolo?</em>"]],
+        [4.76, 7.1, "La tua serata", ["Trovala in <em>un attimo.</em>"]],
+        [7.30, 10.2, "Scegli", ["Locale. Data.", "<em>Persone.</em>"]],
+        [10.83, 12.9, "Live map", ["La <em>mappa</em>", "dei tavoli."]],
+        [13.0, 15.7, "Il tuo posto", ["Console", "o <em>privé.</em>"]],
+        [15.95, 18.35, "Tavolo conteso", ["Entra", "<em>nell'asta.</em>"]],
+        [18.58, 20.4, "Asta live", ["<em>Rilancia.</em>"]],
+        [20.61, 21.8, "Aggiudicato", ["<em>Vinci.</em>"]],
+        [21.95, 23.15, "Pagamento", ["Paghi in <em>app.</em>"]],
+        [23.30, 25.15, "Split", ["Dividi con", "gli <em>amici.</em>"]],
+        [25.33, 26.55, "Ingresso", ["Entri senza <em>attese.</em>"]],
+      ];
+      HEADS.forEach(([tIn, tOut, kick, lines], i) => {
+        const el = document.createElement("div"); el.className = "hl"; el.id = "hl" + i;
+        el.innerHTML = `<span class="kick"><i></i>${kick}<i></i></span>` + lines.map((l) => `<span class="line">${l}</span>`).join("");
+        $("#heads").appendChild(el);
+        revealHL(buildHL(el), tIn, tOut);
       });
 
       // ---- end card ----
@@ -896,7 +880,7 @@
       tl.fromTo("#logoWrap", { scaleY: 1, scaleX: 1 }, { scaleY: 0.9, scaleX: 1.06, duration: 0.08, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, 27.01);
       tl.fromTo("#logoWrap", { y: 0 }, { y: -12, duration: 2.3, ease: "sine.inOut", immediateRender: false }, 27.35);
       const sl = splitLetters($("#slogan"));
-      tl.fromTo(sl, { opacity: 0, y: 50, rotationX: -80 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.35, stagger: 0.04, ease: "back.out(1.8)" }, 27.68);
+      tl.fromTo(sl, { opacity: 0, y: 50, rotationX: -80 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.35, stagger: 0.04, ease: "back.out(1.2)" }, 27.68);
       tl.fromTo("#slogan .acc .l", { textShadow: "0 0 0px rgba(255,122,182,0)" }, { textShadow: "0 0 34px rgba(255,122,182,0.9)", duration: 0.4 }, 29.03);
 
       window.__timelines["main"] = tl;
