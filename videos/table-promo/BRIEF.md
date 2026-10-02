@@ -17,12 +17,13 @@ voice: "elevenlabs:EXAVITQu4vr4xnSDxMaL (Sarah)"
 ## Intent
 Spot motion design premium per TABLE, piattaforma per la nightlife: prenotare tavoli nei locali,
 anche con un sistema ad aste. Quasi tutto dentro l'interfaccia (inventata), camera virtuale sempre
-in movimento, una scena al secondo, testi lettera per lettera, cursore con scia, mascotte.
+in movimento, una scena al secondo, testi lettera per lettera, cursore con scia.
 
 ## Customizations
-- Palette notturna: fondo blu notte #0b0a1f, UI bianco caldo #f6f1e9, accento viola #7b3cff, grana leggera.
+- Palette club (v2): nero #050407, foschia magenta/viola, accento neon #ff2e88, privé oro #d9b56f, UI in dark mode, fasci di luce da club, grana leggera.
+- Apertura premium (v2): striscia di luce anamorfica, telefono che emerge dal buio sfocato→nitido, schermo che si accende, riflesso sul vetro, testi blur-in.
+- Niente mascotte (rimossa su richiesta). Musica molto più bassa della voce.
 - Font: Space Grotesk (display) + Inter (UI).
-- Mascotte: il tavolino del logo con occhi e gambe che camminano.
 - Slogan finale (utente): "Own the night, own the Table".
 - Musica (utente): base trap "Hype Criminal" (solarflex), 178 BPM, drop a 10.83s; tagli e camera sulla griglia.
 

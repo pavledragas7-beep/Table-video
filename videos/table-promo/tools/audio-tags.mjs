@@ -15,11 +15,11 @@ const vo = [
 
 // [file, start, volume, maxDuration?]
 const sfx = [
-  ["hop", 0.045, 0.45], ["hop", 0.38, 0.45], ["hop", 0.72, 0.45], ["whoosh-short", 0.45, 0.5],
-  ["typing", 1.06, 0.35, 0.45], ["pop", 2.07, 0.6], ["typing", 3.42, 0.35, 0.55],
+  ["whoosh-cinematic", 0.0, 0.5, 1.6], ["sparkle", 1.0, 0.3], ["whoosh-short", 1.35, 0.25],
+  ["pop", 2.07, 0.5], ["whoosh-short", 3.42, 0.25], ["whoosh-short", 4.2, 0.35],
   ["click", 5.1, 0.7], ["whoosh-short", 5.44, 0.5], ["key-press", 5.6, 0.4], ["key-press", 5.85, 0.4], ["whoosh", 6.11, 0.5],
   ["click", 7.3, 0.7], ["whoosh-short", 7.46, 0.5], ["click", 8.47, 0.7],
-  ["pop", 9.15, 0.5], ["pop", 9.32, 0.5], ["pop", 9.48, 0.5], ["pop", 9.65, 0.5], ["typing", 9.15, 0.3, 0.4],
+  ["pop", 9.32, 0.45], ["pop", 9.49, 0.45], ["pop", 9.66, 0.45],
   ["whoosh-cinematic", 9.9, 0.55, 1.4], ["impact-bass-1", 10.83, 0.6], ["sparkle", 11.17, 0.45],
   ["click-soft", 12.52, 0.6], ["click-soft", 13.19, 0.6], ["whoosh-short", 13.87, 0.5], ["whoosh-short", 14.88, 0.5],
   ["click", 15.21, 0.7], ["typing", 15.21, 0.3, 0.35], ["whoosh-short", 15.55, 0.45], ["notification", 15.89, 0.45, 1.0],
@@ -32,11 +32,12 @@ const sfx = [
   ...[0, 1, 2, 3, 4, 5].map((i) => ["click-soft", +(23.98 + i * 0.1686).toFixed(3), 0.5]),
   ["whoosh-short", 25.2, 0.5], ["scan", 25.6, 0.6], ["ping", 26.0, 0.5, 0.9],
   ["whoosh-cinematic", 26.4, 0.55, 1.2], ["impact-bass-2", 27.01, 0.8], ["typing", 27.68, 0.3, 1.1],
-  ["hop", 28.36, 0.45], ["hop", 28.7, 0.45], ["hop", 29.03, 0.45], ["sparkle", 29.37, 0.4],
+  ["sparkle", 29.03, 0.4],
 ];
 
 // music: always present, ducked under the voice, short fade at the tail
-const B = 0.7, D = 0.4, R = 0.12;
+// bed is mastered hot (-7.5 LUFS) vs voice (-17 LUFS): ~-23 LUFS in the gaps, ~-30 LUFS under the voice
+const B = 0.16, D = 0.07, R = 0.12;
 const pts = [{ t: 0, v: B }];
 vo.forEach(([id, s]) => {
   const e = s + dur(`assets/voice/${id}.wav`);
