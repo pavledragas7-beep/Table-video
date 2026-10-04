@@ -13,4 +13,5 @@ Finché il file manca, al suo posto c'è un riquadro verde con il nome atteso.
 | `img/valle.jpg` | Foto di Valle / Bale dal sito attuale (hero, ≥ 2400 px di larghezza) |
 | `img/neva-uliveto.jpg` | Neva con i bimbi nell'uliveto (verticale 4:5) |
 | `img/frantoio.jpg` | Olive nel frantoio (verticale 4:5) |
-| `img/proizvodi/<slug>.jpg` | Foto prodotto, quadrata, fondo chiaro — slug elencati in `PRODUCTS` dentro `index.html` |
+| `img/proizvodi/<slug>.jpg` | Foto prodotto 3:2 orizzontale, fondo bianco — slug in `PRODUCTS` dentro `index.html`. Mancano ancora le 5 della linea professionale (tranne il toner) |
+| `img/poklon-men.jpg`, `img/poklon-women.jpg` | Crema mani uomo / donna con sacchetto regalo (già inserite) |
