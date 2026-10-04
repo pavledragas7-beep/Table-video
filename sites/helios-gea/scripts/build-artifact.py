@@ -13,10 +13,8 @@ head = re.sub(r'<meta (charset|name="viewport")[^>]*>\s*', "", head)
 head = head.replace('document.documentElement.classList.add("js")', 'document.documentElement.classList.add("js", "loaded")')
 
 extra = """<style>
-  .pre.rv, .pre .rv { opacity: 1 !important; transform: none !important; }
-  .pre [data-split] .w > span, [data-split].pre .w > span { transform: none !important; }
-  .pre.clip > img, .pre.clip > picture > img { clip-path: none !important; transform: none !important; }
-  .fill .fw { opacity: 1 !important; }
+  .js .pre { opacity: 1 !important; transform: none !important; }
+  .js [data-split].pre .w > span { transform: none !important; }
   .draft { position: fixed; z-index: 60; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); padding: 9px 16px; background: var(--ink); color: var(--paper); border: 1px solid var(--copper); font: 400 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 </style>"""
 body = re.sub(r'<div class="loader".*?</div>\s*</div>\s*</div>', "", body, count=1, flags=re.S)

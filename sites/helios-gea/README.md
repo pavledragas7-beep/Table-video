@@ -1,19 +1,15 @@
 # Helios Gea — sito (HR / EN)
 
-Pagina unica statica: `index.html` (nessuna build). Lingua di default croato, `?lang=en` per l'inglese.
+File: `index.html`, `assets/style.css`, `assets/main.js` (nessuna libreria, nessuna build).
+Lingua di default croato, `?lang=en` per l'inglese.
 
-Anteprima in un solo file con tutte le immagini incorporate: `python3 scripts/build-preview.py` → `dist/helios-gea-preview.html`.
+Principio: le foto si mostrano **intere, nelle proporzioni originali**, mai ritagliate né mascherate,
+su uno sfondo che si fonde con lo scatto (bianco per lo studio, nero per le pietre).
+Ogni foto si apre a schermo intero (lightbox con frecce, swipe, Esc).
 
-Struttura: hero → manifesto + 4 pilastri → O nama → 45ª parallela → nuova linea viso → prodotti (tab casa / professionale) → Private label → contatti con mappa.
+Immagini: `img/p/` (prodotti, studio) e `img/g/` (pietre e grafiche del brand), ognuna in due misure WebP
+(`-800` e `-1600`), ricavate dagli originali solo ridimensionandoli.
 
-## Foto
-
-| File | Contenuto | Stato |
-|---|---|---|
-| `img/valle.jpg` | Foto di Valle / Bale (hero, verticale, ≥ 1400 px) | manca → si vede `hero-olive.jpg` |
-| `img/neva-uliveto.jpg` | Neva con i bimbi nell'uliveto (4:5) | manca → il blocco "O nama" va a una colonna |
-| `img/frantoio.jpg` | Olive nel frantoio (5:4) | manca → si vede `komina.jpg` |
-| `img/proizvodi/*.jpg` | Foto prodotto linea casa | presenti |
-| `img/cream-stones.jpg`, `img/toner-stones.jpg` | Linea viso su pietre nere | presenti |
-| `img/poklon-*.jpg` | Creme mani con sacchetto regalo | presenti |
-| `img/seal.png` | Sigillo Helios Gea (usato come maschera colorabile via CSS) | presente |
+Anteprime in un solo file:
+- `python3 scripts/build-preview.py` → `dist/helios-gea-preview.html`
+- `python3 scripts/build-artifact.py` → `dist/helios-gea-anteprima.html` (versione per il link da telefono)
