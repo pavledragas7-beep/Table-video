@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="hr" data-lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helios Gea · 45 degrees</title>
+<meta name="description" content="Helios Gea d.o.o. – prirodna kozmetika 45 degrees na bazi komine masline iz Istre i razvoj personaliziranih proizvoda s vašim brendom.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f6f2e9;
+    --paper: #fbf9f4;
+    --olive: #4f5a2c;
+    --olive-dark: #2f3619;
+    --olive-soft: #8a9361;
+    --gold: #b8955a;
+    --ink: #24261c;
+    --muted: #6b6c5e;
+    --line: #ddd6c6;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Jost", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 300 17px/1.7 var(--sans); }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; margin: 0; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font: 500 12px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+
+  /* Language switching: every translatable node exists twice */
+  html[data-lang="hr"] [lang="en"], html[data-lang="en"] [lang="hr"] { display: none !important; }
+
+  /* Photo slots: show a labelled olive placeholder until the real photo is dropped in img/ */
+  .photo { position: relative; overflow: hidden; background: linear-gradient(135deg, #6f7a45, #3c4521); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo.missing::after {
+    content: attr(data-label); position: absolute; inset: 0; display: grid; place-items: center;
+    padding: 16px; text-align: center; color: rgba(255,255,255,.75); font: 400 13px/1.4 var(--sans); letter-spacing: .08em;
+  }
+
+  /* Header */
+  header { position: fixed; inset: 0 0 auto; z-index: 10; transition: background .3s, box-shadow .3s; }
+  header.solid { background: rgba(251,249,244,.96); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(6px); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 22px/1 var(--serif); letter-spacing: .14em; color: #fff; }
+  header.solid .logo, header.solid nav a, header.solid .lang button { color: var(--olive-dark); }
+  .logo svg { width: 28px; height: 28px; }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a { text-decoration: none; color: #fff; font-size: 14px; letter-spacing: .08em; }
+  nav a:hover { color: var(--gold) !important; }
+  .lang { display: flex; gap: 4px; }
+  .lang button { background: none; border: 0; padding: 4px 6px; color: #fff; font: 500 13px var(--sans); letter-spacing: .1em; cursor: pointer; opacity: .55; }
+  .lang button[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+  .menu-btn { display: none; background: none; border: 0; color: inherit; cursor: pointer; padding: 6px; }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; }
+  .hero .photo { position: absolute; inset: 0; }
+  .hero .photo.missing::after { place-items: start end; padding: 96px 24px; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,22,10,.35) 0%, rgba(20,22,10,.15) 40%, rgba(20,22,10,.7) 100%); }
+  .hero .wrap { position: relative; z-index: 1; padding-bottom: 72px; width: 100%; }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 84px); max-width: 15ch; font-weight: 400; }
+  .hero p { max-width: 46ch; font-size: 18px; margin: 20px 0 40px; opacity: .92; }
+  .doors { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); gap: 16px; }
+  .door { display: block; padding: 22px 24px; border: 1px solid rgba(255,255,255,.45); text-decoration: none; background: rgba(255,255,255,.06); backdrop-filter: blur(4px); transition: background .25s; }
+  .door:hover { background: rgba(255,255,255,.16); }
+  .door strong { display: block; font: 500 26px/1.1 var(--serif); margin-bottom: 4px; }
+  .door span { font-size: 14px; opacity: .85; }
+
+  section { padding: 112px 0; }
+  .section-head { max-width: 720px; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(34px, 4.4vw, 56px); margin-top: 16px; }
+
+  /* 45 degrees intro + pillars */
+  .brand-intro { background: var(--cream); }
+  .brand-mark { font: 400 clamp(80px, 13vw, 168px)/.9 var(--serif); color: var(--olive); }
+  .brand-mark sup { font-size: .45em; vertical-align: top; color: var(--gold); }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); margin-top: 64px; }
+  .pillar { padding: 32px 28px 8px 0; }
+  .pillar + .pillar { padding-left: 28px; border-left: 1px solid var(--line); }
+  .pillar .num { font: italic 400 20px var(--serif); color: var(--gold); }
+  .pillar h3 { font-size: 28px; margin: 10px 0 10px; color: var(--olive-dark); }
+  .pillar p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  /* Story */
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .story + .story { margin-top: 112px; }
+  .story.flip .photo { order: 2; }
+  .story .photo { aspect-ratio: 4 / 5; }
+  .story h3 { font-size: clamp(28px, 3vw, 38px); color: var(--olive-dark); margin: 14px 0 18px; }
+  .story p { margin: 0 0 16px; color: #45473a; }
+  .story .block + .block { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--line); }
+
+  .parallel { background: var(--olive-dark); color: #efeadc; text-align: center; }
+  .parallel .deg { font: 400 clamp(72px, 12vw, 150px)/1 var(--serif); color: var(--gold); }
+  .parallel h2 { font-size: clamp(30px, 3.6vw, 46px); margin: 18px auto 24px; max-width: 20ch; }
+  .parallel p { max-width: 62ch; margin: 0 auto; opacity: .85; }
+  .parallel svg { width: min(520px, 100%); height: auto; margin: 48px auto 0; display: block; opacity: .7; }
+
+  /* Products */
+  .products { background: var(--cream); }
+  .line-title { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 32px; }
+  .line-title h3 { font-size: 32px; color: var(--olive-dark); }
+  .line + .line { margin-top: 88px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 32px 24px; }
+  .product .photo { aspect-ratio: 1; background: linear-gradient(160deg, #ece6d6, #d9d0ba); }
+  .product .photo.missing::after { color: var(--muted); }
+  .product .photo img { object-fit: contain; padding: 8%; }
+  .product h4 { font: 500 21px/1.2 var(--serif); margin: 16px 0 4px; }
+  .product > span { color: var(--muted); font-size: 14px; letter-spacing: .06em; }
+  .badge { display: inline-block; margin-left: 6px; padding: 2px 8px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--gold); vertical-align: middle; }
+
+  /* Private label */
+  .pl { background: var(--paper); }
+  .pl-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; }
+  .pl-top p { margin: 0 0 18px; color: #45473a; }
+  .pl-top .lead { font: 400 24px/1.45 var(--serif); color: var(--olive-dark); }
+  .offer { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .offer li { background: var(--paper); padding: 28px 24px 32px; font-size: 16px; line-height: 1.55; }
+  .offer li b { display: block; font: italic 400 18px var(--serif); color: var(--gold); margin-bottom: 10px; }
+  .pl-close { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 72px; }
+  .pl-close p { margin: 0 0 18px; color: #45473a; }
+  .motto { margin-top: 88px; padding: 64px 24px; background: var(--olive); color: #f4efe1; text-align: center; font: italic 400 clamp(26px, 3.2vw, 40px)/1.3 var(--serif); }
+
+  /* Contact */
+  .contact { background: var(--olive-dark); color: #efeadc; padding: 96px 0 40px; }
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px; }
+  .contact h2 { font-size: clamp(34px, 4vw, 52px); }
+  .contact h3 { font: 500 12px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .contact p { margin: 0; font-size: 18px; }
+  .contact a { text-decoration: none; border-bottom: 1px solid rgba(239,234,220,.35); }
+  .contact a:hover { color: var(--gold); border-color: var(--gold); }
+  .legal { margin-top: 80px; padding-top: 24px; border-top: 1px solid rgba(239,234,220,.15); font-size: 13px; opacity: .6; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 960px) {
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .pillar:nth-child(3) { padding-left: 0; border-left: 0; }
+    .offer { grid-template-columns: 1fr 1fr; }
+    .story, .pl-top, .pl-close { grid-template-columns: 1fr; gap: 40px; }
+    .story.flip .photo { order: 0; }
+    .story .photo { aspect-ratio: 4 / 3; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid > :first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    section { padding: 80px 0; }
+    .menu-btn { display: block; color: #fff; }
+    header.solid .menu-btn { color: var(--olive-dark); }
+    nav { position: fixed; inset: 72px 0 auto; flex-direction: column; align-items: flex-start; gap: 0; padding: 8px 16px 20px; background: var(--paper); box-shadow: 0 12px 24px rgba(0,0,0,.08); display: none; }
+    nav.open { display: flex; }
+    nav a { color: var(--olive-dark); padding: 12px 0; font-size: 16px; width: 100%; border-bottom: 1px solid var(--line); }
+    nav .lang { padding-top: 14px; }
+    nav .lang button { color: var(--olive-dark); }
+    .doors { grid-template-columns: 1fr; }
+    .pillars, .offer, .contact-grid { grid-template-columns: 1fr; }
+    .pillar, .pillar + .pillar { padding: 24px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+    .grid { grid-template-columns: 1fr 1fr; gap: 24px 14px; }
+    .product h4 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="top-bar">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Helios Gea">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <circle cx="16" cy="16" r="6"/>
+        <path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M6.8 25.2l2.8-2.8M22.4 9.6l2.8-2.8"/>
+      </svg>
+      HELIOS GEA
+    </a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+    <nav>
+      <a href="#o-nama"><span lang="hr">O nama</span><span lang="en">About us</span></a>
+      <a href="#proizvodi"><span lang="hr">45 degrees</span><span lang="en">45 degrees</span></a>
+      <a href="#private-label">Private label</a>
+      <a href="#kontakt"><span lang="hr">Kontakti</span><span lang="en">Contact</span></a>
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button data-set-lang="hr" aria-pressed="true">HR</button>
+        <button data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO: foto di Valle/Bale (quella già presente sul sito attuale) -->
+  <section class="hero" style="padding:0">
+    <div class="photo" data-label="img/valle.jpg — foto di Valle / Bale"><img src="img/valle.jpg" alt="Bale, Istra"></div>
+    <div class="wrap">
+      <p class="eyebrow" style="color:#e6d3a8;margin:0 0 20px">Bale · Istra · 45°N</p>
+      <h1>
+        <span lang="hr">Iza svake uspješne poslovne priče krije se inovacija</span>
+        <span lang="en">Success is just another word for innovation</span>
+      </h1>
+      <p>
+        <span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i razvoj personaliziranih proizvoda s vašim brendom.</span>
+        <span lang="en">Natural cosmetics based on organic olive pulp from Istria — and the development of personalized products that carry your brand.</span>
+      </p>
+      <div class="doors">
+        <a class="door" href="#proizvodi">
+          <strong>45 degrees</strong>
+          <span lang="hr">Linija prirodne kozmetike</span><span lang="en">Line of cosmetics</span>
+        </a>
+        <a class="door" href="#private-label">
+          <strong>Private label</strong>
+          <span lang="hr">Proizvodi s vašim logotipom</span><span lang="en">Products branded with your logo</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 45 DEGREES: pilastri -->
+  <section class="brand-intro" id="o-nama">
+    <div class="wrap">
+      <div class="brand-mark reveal">45<sup>°</sup> <span style="font-size:.32em;letter-spacing:.2em;color:var(--olive-soft)">DEGREES</span></div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="num">01</div>
+          <h3><span lang="hr">Inovacija</span><span lang="en">Innovation</span></h3>
+          <p><span lang="hr">Iza svake uspješne poslovne priče krije se inovacija.</span><span lang="en">Success is just another word for innovation.</span></p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">02</div>
+          <h3><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></h3>
+          <p><span lang="hr">Biomasa od komine masline ima glavnu ulogu u našem razvoju.</span><span lang="en">Olive pulp biomass is at the heart of our business.</span></p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">03</div>
+          <h3><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></h3>
+          <p><span lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom.</span><span lang="en">We believe in a long-lasting mutual relationship with nature.</span></p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">04</div>
+          <h3><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></h3>
+          <p><span lang="hr">Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline.</span><span lang="en">Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O NAMA / ABOUT US -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span lang="hr">O nama</span><span lang="en">About us</span></p>
+        <h2><span lang="hr">Ideja iz prirode</span><span lang="en">The story about dedication to nature</span></h2>
+      </div>
+
+      <div class="story">
+        <div class="photo reveal" data-label="img/neva-uliveto.jpg — Neva con i bimbi nell'uliveto"><img src="img/neva-uliveto.jpg" alt=""></div>
+        <div class="reveal">
+          <div class="block">
+            <p lang="hr">Priča o tvrtki Helios Gea rođena je 2009. godine u Istri, predivnom djeliću Mediterana prošaranom tartufima, vinovom lozom i stoljetnim maslinicima. Upravo s maslinama nama se dogodila ljubav na prvi pogled. Nakon što smo otkrili koliko ljekovitih svojstava sadrži taj maleni zeleni plod, maslina je postala srž naše poslovne ideje u narednim godinama.</p>
+            <p lang="en">The story of Helios Gea company was born in Istria, Croatia, a charming Mediterranean region rich with truffles, vineyards and olive groves. It was these very olives and their medicinal benefits that caught our attention and became the core of our business in the following years.</p>
+          </div>
+          <div class="block">
+            <p class="eyebrow"><span lang="hr">Održivi razvoj</span><span lang="en">Sustainability</span></p>
+            <h3><span lang="hr">U skladu s prirodom i lokalnom zajednicom</span><span lang="en">In harmony with nature and the local community</span></h3>
+            <p lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom i lokalnom zajednicom te tako zajednički gradimo ispravan put do uspjeha. Stvorivši prirodnu kozmetiku za njegu kože, Helios Gea promovira ekološke inovacije, zdrav život, potrebe i životni stil naših klijenata te proizvode izvrsne kakvoće.</p>
+            <p lang="hr">Tijekom proizvodnje koristimo isključivo kominu masline iz Istre koja dolazi s eko farmi te je strogo kontrolirana, a time pomažemo zbrinjavanju komine lokalnim maslinarima i gradimo ekološke vrijednosti u regiji.</p>
+            <p lang="en">We believe in a long-lasting mutual relationship with nature and local community, the only road to success we want to take. Respect towards nature, respect towards our clients and employees, respect towards beauty. By creating natural and chemical-free skin care cosmetics, Helios Gea wants to promote principles of ecological innovation, healthy life, our clients’ needs and products of highest quality.</p>
+            <p lang="en">We are the only company that enables olive producers to productively dispose of olive pulp, thus helping to maintain ecological values in the region. Our goal is to embrace nature, beauty, local community and future innovations in a story worth to be told. And experienced.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="story flip">
+        <div class="photo reveal" data-label="img/frantoio.jpg — olive nel frantoio"><img src="img/frantoio.jpg" alt=""></div>
+        <div class="reveal">
+          <p class="eyebrow"><span lang="hr">Inovacija</span><span lang="en">Innovation</span></p>
+          <h3>
+            <span lang="hr">Inovativan način prerade komine masline s primjenom u kozmetičke svrhe</span>
+            <span lang="en">Innovative method of processing olive pulp biomass for cosmetic purposes</span>
+          </h3>
+          <p lang="hr">Zahvaljujući brojnim istraživanjima i mukotrpnom radu pronašli smo inovativan način prerade biomase od komine masline za dobivanje zdravstveno ispravnog aktivnog elementa s primjenom u kozmetičke svrhe. Slijedili smo instinkt i inspiraciju te u isto vrijeme nastojali zadržati skladan odnos s prirodom. Danas s ponosom možemo reći kako smo uspjeli u tome.</p>
+          <p lang="en">Our extensive research and hard work resulted in an innovative procedure for extracting a medically approved active element from olive pulp biomass for cosmetic use. We followed our instinct and inspiration, while using our best efforts to maintain a harmonious relationship with nature. Today, we can proudly say we have succeeded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 45. PARALELA -->
+  <section class="parallel">
+    <div class="wrap reveal">
+      <div class="deg">45°</div>
+      <h2><span lang="hr">45. paralela kao inspiracija za brend</span><span lang="en">The 45th parallel as the inspiration for the brand</span></h2>
+      <p lang="hr">Općinom Bale, odnosno njezinim najjužnijim dijelom prolazi 45. paralela, što znači da se nalazi na najidealnijem mjestu – na pola puta između Ekvatora i Sjevernog pola. Otuda inspiracija za ime linije proizvoda „45 degrees”.</p>
+      <p lang="en">The 45th parallel passes through the small town of Bale and its most southern part, which means halfway between the Equator and the North Pole – the most ideal place to live. Hence the inspiration for the name of the product line “45 degrees”.</p>
+      <svg viewBox="0 0 520 120" fill="none" aria-hidden="true">
+        <path d="M10 60 H510" stroke="#b8955a" stroke-width="1" stroke-dasharray="4 6"/>
+        <path d="M10 18 H510" stroke="#efeadc" stroke-opacity=".25"/>
+        <path d="M10 102 H510" stroke="#efeadc" stroke-opacity=".25"/>
+        <circle cx="300" cy="60" r="5" fill="#b8955a"/>
+        <circle cx="300" cy="60" r="14" stroke="#b8955a" stroke-opacity=".5"/>
+        <text x="300" y="38" fill="#efeadc" font-family="Jost, sans-serif" font-size="12" letter-spacing="3" text-anchor="middle">BALE · 45°N</text>
+        <text x="10" y="12" fill="#efeadc" fill-opacity=".5" font-family="Jost, sans-serif" font-size="10" letter-spacing="2">90°N</text>
+        <text x="10" y="117" fill="#efeadc" fill-opacity=".5" font-family="Jost, sans-serif" font-size="10" letter-spacing="2">0°</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- PROIZVODI 45 DEGREES -->
+  <section class="products" id="proizvodi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">45 degrees</p>
+        <h2><span lang="hr">Naši proizvodi</span><span lang="en">Our products</span></h2>
+      </div>
+
+      <div class="line">
+        <div class="line-title reveal">
+          <h3><span lang="hr">Linija proizvoda za kućnu upotrebu</span><span lang="en">Home care products</span></h3>
+        </div>
+        <div class="grid" id="home-line"></div>
+      </div>
+
+      <div class="line">
+        <div class="line-title reveal">
+          <h3><span lang="hr">Linija proizvoda za profesionalnu upotrebu</span><span lang="en">Professional products</span></h3>
+        </div>
+        <div class="grid" id="pro-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HELIOS GEA: ATTIVITÀ PRIVATE LABEL -->
+  <section class="pl" id="private-label">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Helios Gea d.o.o. · Private label</p>
+        <h2><span lang="hr">Od ideje do gotovog proizvoda</span><span lang="en">From concept to finished product</span></h2>
+      </div>
+
+      <div class="pl-top reveal">
+        <div>
+          <p class="lead" lang="hr">Helios Gea d.o.o. bavi se razvojem i realizacijom personaliziranih proizvoda prilagođenih potrebama i identitetu naših klijenata.</p>
+          <p class="lead" lang="en">Helios Gea d.o.o. specializes in the development and production of personalized products tailored to the needs and identity of our clients.</p>
+        </div>
+        <div>
+          <p lang="hr">Našim partnerima omogućujemo da svoje ideje pretvore u gotove proizvode brendirane njihovim logotipom i vizualnim identitetom – od odabira proizvoda i sastava, preko ambalaže i dizajna, do finalne proizvodnje.</p>
+          <p lang="hr">Proizvodnju realiziramo u suradnji s renomiranim i provjerenim proizvođačima iz Hrvatske i inozemstva. Zahvaljujući širokoj mreži proizvodnih partnera, možemo ponuditi rješenja iz različitih kategorija i prilagoditi ih specifičnim zahtjevima svakog klijenta.</p>
+          <p lang="en">We help our partners turn their ideas into finished products branded with their own logo and visual identity – from product selection and formulation to packaging, design and final production.</p>
+          <p lang="en">We work with a network of renowned and trusted manufacturing partners in Croatia and abroad. Thanks to our extensive network of production partners, we can offer solutions across a wide range of categories and adapt them to the specific requirements of each client.</p>
+        </div>
+      </div>
+
+      <p class="eyebrow reveal" style="margin:72px 0 -48px"><span lang="hr">Naša ponuda uključuje</span><span lang="en">Our portfolio includes</span></p>
+      <ul class="offer reveal">
+        <li><b>01</b><span lang="hr">Kozmetičke proizvode za njegu lica i tijela</span><span lang="en">Cosmetic products for face and body care</span></li>
+        <li><b>02</b><span lang="hr">Proizvode za njegu kose</span><span lang="en">Hair care products</span></li>
+        <li><b>03</b><span lang="hr">Proizvode za oralnu higijenu i njegu</span><span lang="en">Oral care and hygiene products</span></li>
+        <li><b>04</b><span lang="hr">Hotelsku kozmetiku i amenities proizvode</span><span lang="en">Hotel cosmetics and amenities</span></li>
+        <li><b>05</b><span lang="hr">Popratne sadržaje i dodatke uz kozmetičke proizvode, uključujući različite wellness, lifestyle i praktične proizvode koji mogu biti personalizirani i usklađeni s identitetom brenda</span><span lang="en">Complementary products and accessories that accompany cosmetic products, including various wellness, lifestyle and practical items that can be personalized and aligned with the brand identity</span></li>
+        <li><b>06</b><span lang="hr">Personalizirane poklon proizvode</span><span lang="en">Personalized gifts and promotional products</span></li>
+        <li><b>07</b><span lang="hr">Poklon pakete i brendirane poklon kutije različitih vrsta, materijala i dimenzija, izrađene prema željama klijenta</span><span lang="en">Gift sets and branded gift boxes in various styles, materials and sizes, created according to the client's requirements</span></li>
+        <li><b>08</b><span lang="hr">Dodatke prehrani i proizvode iz segmenta wellnessa</span><span lang="en">Food supplements and other wellness products</span></li>
+      </ul>
+
+      <div class="pl-close reveal">
+        <div>
+          <p lang="hr">Posebnu vrijednost vidimo u mogućnosti da za klijenta objedinimo proizvod, personalizaciju, ambalažu, brendiranje i prateće sadržaje u jedno cjelovito rješenje.</p>
+          <p lang="hr">Na taj način možemo kreirati kompletne kolekcije i poklon pakete – od kozmetičkih proizvoda i hotelskih amenitiesa do dodataka za wellness, lifestyle i poslovne poklone – sve vizualno usklađeno s brendom i namjenom proizvoda.</p>
+          <p lang="en">Our particular strength lies in our ability to combine product development, personalization, packaging, branding and complementary products into one complete solution.</p>
+          <p lang="en">We can create complete collections and gift sets – from cosmetic products and hotel amenities to wellness, lifestyle and corporate gifts – all visually aligned with the brand and the intended purpose of the product.</p>
+        </div>
+        <div>
+          <p lang="hr">Bilo da je riječ o proizvodima za vlastiti brend, korporativnim poklonima, hotelskoj kozmetici, promotivnim proizvodima ili proizvodima namijenjenima prodaji, naš cilj je ponuditi kvalitetno, funkcionalno i vizualno prepoznatljivo rješenje koje odgovara potrebama i pozicioniranju svakog klijenta.</p>
+          <p lang="en">Whether you are looking for products for your own brand, corporate gifts, hotel cosmetics, promotional products or products intended for retail, our goal is to provide a high-quality, functional and visually distinctive solution tailored to each client's needs and market positioning.</p>
+        </div>
+      </div>
+
+      <div class="motto reveal">
+        <span lang="hr">Od ideje do gotovog proizvoda – stvaramo proizvode koji nose vaš brend.</span>
+        <span lang="en">From concept to finished product – we create products that carry your brand.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- KONTAKTI -->
+<footer class="contact" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow" style="margin-bottom:16px"><span lang="hr">Kontakti</span><span lang="en">Contact</span></p>
+        <h2><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></h2>
+      </div>
+      <div>
+        <h3><span lang="hr">Telefon</span><span lang="en">Phone</span></h3>
+        <p><a href="tel:+385993664333">+385 99 3664333</a></p>
+      </div>
+      <div>
+        <h3><span lang="hr">Adresa</span><span lang="en">Address</span></h3>
+        <p>Helios Gea d.o.o.<br>Rovinjska 43<br>52211 Bale, <span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
+        <p style="margin-top:14px;font-size:15px">
+          <a href="https://www.google.com/maps/search/?api=1&query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener">
+            <span lang="hr">Kako do nas →</span><span lang="en">Get directions →</span>
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="legal">© <span id="year">2026</span> Helios Gea d.o.o. · Bale, Istra</div>
+  </div>
+</footer>
+
+<script>
+  // 45 degrees catalogue. Photo files go in img/proizvodi/<slug>.jpg (or .png — change the extension here).
+  const PRODUCTS = {
+    "home-line": [
+      { slug: "body-cream-lotion-236", name: "Absolute body cream lotion", size: "236 ml" },
+      { slug: "body-polish-236", name: "Absolute body polish", size: "236 ml" },
+      { slug: "foot-balm-75", name: "Absolute foot balm", size: "75 ml" },
+      { slug: "men-hand-cream-50", name: "Men hand cream", size: "50 ml" },
+      { slug: "women-hand-cream-mask-50", name: "Women hand absolute cream mask", size: "50 ml" },
+      { slug: "facial-rich-cream-50", name: "Absolute facial rich cream", size: "50 ml", isNew: true },
+      { slug: "facial-spray-toner-200", name: "Hydrating facial spray toner", size: "200 ml", isNew: true },
+    ],
+    "pro-line": [
+      { slug: "pro-body-cream-lotion-473", name: "Professional absolute body cream lotion", size: "473 ml" },
+      { slug: "pro-body-polish-473", name: "Professional absolute body polish", size: "473 ml" },
+      { slug: "pro-hand-cream-mask-236", name: "Professional absolute hand cream mask", size: "236 ml" },
+      { slug: "pro-foot-balm-236", name: "Professional absolute foot balm", size: "236 ml" },
+      { slug: "pro-facial-rich-cream-200", name: "Professional facial rich cream", size: "200 ml", isNew: true },
+      { slug: "pro-facial-spray-toner-200", name: "Hydrating facial spray toner", size: "200 ml", isNew: true },
+    ],
+  };
+
+  for (const [id, items] of Object.entries(PRODUCTS)) {
+    document.getElementById(id).innerHTML = items.map(p => `
+      <article class="product reveal">
+        <div class="photo" data-label="img/proizvodi/${p.slug}.jpg">
+          <img src="img/proizvodi/${p.slug}.jpg" alt="45 degrees ${p.name}" loading="lazy">
+        </div>
+        <h4>${p.name}${p.isNew ? ' <span class="badge"><span lang="hr">Novo</span><span lang="en">New</span></span>' : ""}</h4>
+        <span>${p.size}</span>
+      </article>`).join("");
+  }
+
+  // Photo slots without a file yet fall back to the labelled placeholder
+  document.querySelectorAll(".photo img").forEach(img => {
+    const fail = () => { img.parentElement.classList.add("missing"); img.remove(); };
+    if (img.complete && img.naturalWidth === 0) fail(); else img.addEventListener("error", fail);
+  });
+
+  // Language: ?lang=en, then the saved choice, then Croatian
+  function setLang(lang) {
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-set-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.setLang === lang));
+    try { localStorage.setItem("hg-lang", lang); } catch (e) {}
+  }
+  let saved = null;
+  try { saved = localStorage.getItem("hg-lang"); } catch (e) {}
+  setLang(new URLSearchParams(location.search).get("lang") || saved || "hr");
+  document.querySelectorAll("[data-set-lang]").forEach(b => b.addEventListener("click", () => setLang(b.dataset.setLang)));
+
+  // Header turns solid after the hero
+  const bar = document.getElementById("top-bar");
+  const onScroll = () => bar.classList.toggle("solid", scrollY > innerHeight * 0.6 || nav.classList.contains("open"));
+  const nav = document.querySelector("nav");
+  const menuBtn = document.querySelector(".menu-btn");
+  menuBtn.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open);
+    onScroll();
+  });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); onScroll(); }));
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Gentle reveal on scroll
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
