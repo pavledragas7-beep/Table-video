@@ -218,19 +218,6 @@
   $(".pills")?.addEventListener("pointerleave", () => setTip(null));
   langHooks.push(() => setTip(null));
 
-  /* ---------- Story: pinned stage follows the steps ---------- */
-  const steps = $$(".step"), stagePrints = $$(".stage-frame .print"), dots = $$(".stage-dots i");
-  const setStep = i => {
-    steps.forEach((s, k) => s.classList.toggle("on", k === i));
-    stagePrints.forEach((p, k) => p.classList.toggle("on", k === i));
-    dots.forEach((d, k) => d.classList.toggle("on", k === i));
-  };
-  if (steps.length) {
-    setStep(0);
-    const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setStep(steps.indexOf(e.target)); }), { rootMargin: "-48% 0px -48% 0px" });
-    steps.forEach(s => sio.observe(s));
-  }
-
   /* ---------- 45° globe (orthographic, canvas) ---------- */
   const cv = $("#globe");
   if (cv) {

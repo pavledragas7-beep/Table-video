@@ -1,6 +1,6 @@
 /* Helios Gea · 45 degrees — immersive build
    Concept: the site is a sequence of full-screen scenes, not a document. Photos are always whole
-   (cards, frames, prints) and the motion lives around them: an olive branch under the sun, a pinned story stage,
+   (cards, frames, prints) and the motion lives around them: an olive branch under the sun, story chapters,
    a live globe, a product showroom and running film strips. Long copy sits behind "read more". */
 :root {
   --night: #0d100b;
@@ -177,23 +177,18 @@ html:not(.js) .loader { display: none; }
 
 /* ---------- Story: pinned stage + steps ---------- */
 .story { background: var(--cream); color: var(--ink); }
-.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 110px); }
-.stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; }
-.stage-frame { position: relative; width: min(100%, 72vh); aspect-ratio: 1; }
-.stage-frame .print { position: absolute; inset: 0; opacity: 0; transform: scale(.94) rotate(-1.5deg); transition: opacity .9s var(--ease), transform 1.1s var(--ease); pointer-events: none; }
-.stage-frame .print.on { opacity: 1; transform: none; pointer-events: auto; }
-.stage-frame .print:nth-child(2).on { transform: rotate(1deg); }
-.stage-dots { position: absolute; left: 0; right: 0; bottom: -42px; display: flex; justify-content: center; gap: 8px; }
-.stage-dots i { width: 28px; height: 2px; background: var(--line); transition: background .4s; }
-.stage-dots i.on { background: var(--copper); }
-.steps { padding-block: 22vh 30vh; }
-.step { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; opacity: .25; transition: opacity .6s var(--ease); }
-.step.on { opacity: 1; }
-.step .label { margin-bottom: 22px; }
-.step h2 { font-size: clamp(38px, 4.6vw, 76px); margin-bottom: 28px; }
-.step h2 em { color: var(--copper); }
-.step .lead { font-size: clamp(19px, 1.6vw, 22px); line-height: 1.6; color: var(--ink); max-width: 34em; }
-.step .body p { color: #4a4a40; }
+.chapters { display: grid; gap: clamp(90px, 12vw, 170px); padding-block: clamp(100px, 12vw, 170px); }
+.chapter { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 110px); align-items: center; }
+.chapter:nth-child(even) .ch-media { order: 2; }
+.ch-media .print { width: min(100%, 560px); margin-inline: auto; }
+.chapter:nth-child(odd) .ch-media .print { transform: rotate(-1.2deg); }
+.chapter:nth-child(even) .ch-media .print { transform: rotate(1deg); }
+.ch-media .print:hover { transform: none; }
+.chapter .label { margin-bottom: 22px; }
+.chapter h2 { font-size: clamp(38px, 4.6vw, 76px); margin-bottom: 28px; }
+.chapter h2 em { color: var(--copper); }
+.chapter .lead { font-size: clamp(19px, 1.6vw, 22px); line-height: 1.6; color: var(--ink); max-width: 34em; }
+.chapter .body p { color: #4a4a40; }
 
 /* ---------- 45° globe ---------- */
 .globe-sec { background: var(--night); overflow: hidden; }
@@ -412,14 +407,12 @@ html:not(.js) .loader { display: none; }
   .menu-open .nav { opacity: 1; transform: none; pointer-events: auto; }
   .nav a { padding: 16px; font-size: 13px; }
   .burger { display: block; }
-  .story-grid, .globe-grid, .face-grid, .show-grid, .pl-head, .pl-more, .contact-grid { grid-template-columns: 1fr; }
+  .globe-grid, .face-grid, .show-grid, .pl-head, .pl-more, .contact-grid { grid-template-columns: 1fr; }
   .contact-info { position: static; }
   .f-row { grid-template-columns: 1fr; }
-  .stage { top: 64px; height: auto; padding-block: 14px 10px; z-index: 2; background: var(--cream); }
-  .stage-frame { width: min(62vw, 340px); }
-  .stage-dots { bottom: -22px; }
-  .steps { padding-block: 40px 20vh; }
-  .step { min-height: 64vh; }
+  .chapter { grid-template-columns: 1fr; }
+  .chapter:nth-child(even) .ch-media { order: 0; }
+  .ch-media .print { width: min(86%, 420px); }
   .globe-grid { min-height: 0; }
   .globe-wrap { margin-inline: auto; }
   .face-grid > :last-child { margin-top: 0; }
@@ -454,3 +447,5 @@ html:not(.js) .loader { display: none; }
   .pinfo { margin-top: 12px; padding-top: 12px; }
   .pinfo .teaser { display: none; }
 }
+.sheet { visibility: hidden; transition: visibility 0s .7s; }
+.sheet.open { visibility: visible; transition: none; }
