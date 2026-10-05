@@ -71,10 +71,12 @@
 
   /* ---------- Header + menu + active section ---------- */
   const hdr = $(".hdr"), burger = $(".burger");
+  hdr.classList.toggle("ink", scrollY <= innerHeight * .6);
   let lastY = scrollY;
   addEventListener("scroll", () => {
     const y = scrollY, open = document.body.classList.contains("menu-open");
     hdr.classList.toggle("solid", y > innerHeight * .6 || open);
+    hdr.classList.toggle("ink", y <= innerHeight * .6 && !open);
     hdr.classList.toggle("hide", !open && y > innerHeight && y > lastY + 6);
     if (y < lastY - 6) hdr.classList.remove("hide");
     lastY = y;
@@ -83,6 +85,7 @@
     const open = document.body.classList.toggle("menu-open");
     burger.setAttribute("aria-expanded", open);
     hdr.classList.toggle("solid", open || scrollY > innerHeight * .6);
+    hdr.classList.toggle("ink", !open && scrollY <= innerHeight * .6);
   });
   $$(".nav a").forEach(a => a.addEventListener("click", () => { document.body.classList.remove("menu-open"); burger.setAttribute("aria-expanded", false); }));
   const navIO = new IntersectionObserver(es => es.forEach(e => {
@@ -135,7 +138,60 @@
     lx = null;
   });
 
-  /* ---------- HERO: the photo drifts a few pixels with the pointer ---------- */
+
+  /* ---------- HERO: procedural olive branch (seeded, so it is the same on every visit) ---------- */
+  const svg = $(".branch");
+  if (svg) {
+    const NS = "http://www.w3.org/2000/svg";
+    let seed = 45;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.append(e); return e; };
+    const pt = (P, t) => { const u = 1 - t; return [0, 1].map(i => u * u * u * P[0][i] + 3 * u * u * t * P[1][i] + 3 * u * t * t * P[2][i] + t * t * t * P[3][i]); };
+    const ang = (P, t) => { const u = 1 - t; const d = [0, 1].map(i => 3 * u * u * (P[1][i] - P[0][i]) + 6 * u * t * (P[2][i] - P[1][i]) + 3 * t * t * (P[3][i] - P[2][i])); return Math.atan2(d[1], d[0]) * 180 / Math.PI; };
+    const sway = el("g", { class: "sway" }, svg);
+    const gStem = el("g", {}, sway), gLeaf = el("g", {}, sway), gFruit = el("g", {}, sway);
+    let order = 0;
+    const holder = (parent, x, y, deg) => {
+      const o = el("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})` }, parent);
+      const g = el("g", { class: "grow", style: `--g:${(1.1 + order++ * .035).toFixed(2)}s` }, o);
+      return el("g", { class: "flutter", style: `--d:${(rnd() * -6).toFixed(2)}s;--fd:${(5 + rnd() * 4).toFixed(1)}s;--fa:${(2 + rnd() * 4).toFixed(1)}deg` }, g);
+    };
+    const leaf = (x, y, deg, L) => {
+      const W = L * (.12 + rnd() * .03), f = holder(gLeaf, x, y, deg);
+      el("path", { class: rnd() < .33 ? "lf under" : "lf", d: `M0 0C${L * .22} ${-W * 1.15} ${L * .68} ${-W * 1.05} ${L} 0C${L * .68} ${W * 1.05} ${L * .22} ${W * 1.15} 0 0Z` }, f);
+      el("path", { class: "rib", d: `M${L * .04} 0Q${L * .5} ${W * .12} ${L * .9} 0` }, f);
+    };
+    const olive = (x, y, deg) => {
+      const len = 14 + rnd() * 16, f = holder(gFruit, x, y, deg);
+      el("path", { class: "ostalk", d: `M0 0Q${len * .5} ${rnd() * 6 - 3} ${len} 0` }, f);
+      const rx = 17 + rnd() * 4, ry = 12.5 + rnd() * 2.5;
+      el("ellipse", { cx: len + rx - 2, cy: 0, rx, ry, fill: rnd() < .3 ? "url(#ob)" : "url(#og)" }, f);
+      el("ellipse", { class: "ohl", cx: len + rx * .7, cy: -ry * .4, rx: rx * .28, ry: ry * .18 }, f);
+    };
+    const cluster = (P, t, n) => {
+      const [x, y] = pt(P, t);
+      for (let i = 0; i < n; i++) olive(x, y, 70 + i * 22 + rnd() * 16);
+    };
+    const twig = (P, width, leafLen, pairs) => {
+      el("path", { class: "stem", pathLength: 1, "stroke-width": width, d: `M${P[0]}C${P[1]} ${P[2]} ${P[3]}` }, gStem);
+      for (let i = 1; i <= pairs; i++) {
+        const t = i / (pairs + .5) + (rnd() - .5) * .03;
+        const [x, y] = pt(P, t), a = ang(P, t), L = leafLen * (1 - t * .4) * (.85 + rnd() * .3);
+        [-1, 1].forEach(side => { if (rnd() > .1) leaf(x, y, a + side * (32 + rnd() * 24), L * (.9 + rnd() * .2)); });
+      }
+      const [x, y] = pt(P, 1); leaf(x, y, ang(P, 1) + (rnd() - .5) * 20, leafLen * .7);
+    };
+    const add = (a, b) => [a[0] + b[0], a[1] + b[1]];
+    const M = [[1030, 30], [790, 130], [560, 360], [210, 780]];
+    const s1 = pt(M, .26), s2 = pt(M, .5), s3 = pt(M, .7);
+    const T1 = [s1, add(s1, [-30, 110]), add(s1, [-120, 220]), add(s1, [-230, 280])];
+    const T2 = [s2, add(s2, [-90, -50]), add(s2, [-210, -70]), add(s2, [-320, -30])];
+    const T3 = [s3, add(s3, [40, 100]), add(s3, [30, 200]), add(s3, [-20, 280])];
+    twig(M, 7, 128, 9); twig(T1, 3.6, 104, 5); twig(T2, 3.2, 96, 5); twig(T3, 3.4, 100, 5);
+    cluster(T1, .45, 3); cluster(T1, .85, 2); cluster(M, .62, 2); cluster(T3, .6, 3); cluster(M, .9, 2); cluster(T2, .7, 2);
+  }
+
+  /* ---------- HERO: the branch drifts a few pixels with the pointer ---------- */
   const hero = $(".hero");
   if (hero && fine && !reduce) {
     hero.addEventListener("pointermove", e => {
@@ -257,15 +313,21 @@
   /* ---------- Showroom ---------- */
   $$(".showroom .panel").forEach(panel => {
     const items = $$(".plist button", panel), views = $$(".show-frame > *", panel), count = $(".count b", panel);
+    const infos = $$(".pinfo", panel);
     let cur = 0;
     const sel = i => {
       cur = (i + items.length) % items.length;
       items.forEach((b, k) => b.setAttribute("aria-current", k === cur));
       views.forEach((v, k) => v.classList.toggle("on", k === cur));
+      infos.forEach((v, k) => v.classList.toggle("on", k === cur));
       if (count) count.textContent = String(cur + 1).padStart(2, "0");
     };
     items.forEach((b, k) => {
-      b.addEventListener("click", () => sel(k));
+      b.addEventListener("click", () => {
+        sel(k);
+        const more = $("[data-sheet]", infos[k]);
+        if (more) openSheet(more); // tapping a product opens its description straight away
+      });
     });
     $(".prev", panel)?.addEventListener("click", () => sel(cur - 1));
     $(".next", panel)?.addEventListener("click", () => sel(cur + 1));
@@ -276,6 +338,54 @@
     o.setAttribute("aria-selected", o === t);
     document.getElementById(o.getAttribute("aria-controls")).hidden = o !== t;
   })));
+
+
+  /* ---------- Product sheet (description & use) ---------- */
+  const sheet = $(".sheet");
+  let sheetFrom = null;
+  const openSheet = btn => {
+    const info = btn.closest(".pinfo"), panel = btn.closest(".panel");
+    const idx = $$(".pinfo", panel).indexOf(info);
+    const view = $$(".show-frame > *", panel)[idx];
+    const media = $(".sheet-media", sheet);
+    media.innerHTML = "";
+    const img = view && $("img", view);
+    if (img) { const i = new Image(); i.src = view.dataset.full || img.src; i.alt = img.alt; media.append(i); }
+    else if (view) media.append(view.cloneNode(true));
+    $(".sheet-body", sheet).innerHTML = $("template", info).innerHTML;
+    $(".sheet-title", sheet)?.setAttribute("id", "sheet-title");
+    sheetFrom = btn;
+    sheet.classList.add("open"); sheet.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    $(".sheet-panel", sheet).scrollTop = 0;
+    $(".sheet-close", sheet).focus({ preventScroll: true });
+  };
+  const closeSheet = (restore = true) => {
+    if (!sheet.classList.contains("open")) return;
+    sheet.classList.remove("open"); sheet.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (restore) sheetFrom?.focus({ preventScroll: true });
+  };
+  $$("[data-sheet]").forEach(b => b.addEventListener("click", () => openSheet(b)));
+  $$("[data-close]", sheet).forEach(b => b.addEventListener("click", () => closeSheet()));
+  addEventListener("keydown", e => { if (e.key === "Escape" && sheet.classList.contains("open")) closeSheet(); });
+
+  // "Send an enquiry" from a product: preset the form, then go there
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-enquire]");
+    if (!a) return;
+    e.preventDefault();
+    closeSheet(false);
+    const f = $("#upit");
+    if (f) {
+      const topic = f.querySelector('input[name=topic][value="45 degrees"]'); if (topic) topic.checked = true;
+      const msg = $("#f-msg");
+      const line = (lang() === "en" ? "Enquiry about: " : "Upit za: ") + a.dataset.enquire;
+      if (msg && !msg.value.includes(a.dataset.enquire)) msg.value = msg.value ? `${line}\n${msg.value}` : `${line}\n`;
+    }
+    $("#kontakt").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    setTimeout(() => $("#f-name")?.focus({ preventScroll: true }), 900);
+  });
 
   /* ---------- Film strips: duplicate content for a seamless loop ---------- */
   $$(".strip").forEach(s => {
