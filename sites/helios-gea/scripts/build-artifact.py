@@ -15,6 +15,7 @@ head = head.replace('document.documentElement.classList.add("js")', 'document.do
 extra = """<style>
   .js .pre { opacity: 1 !important; transform: none !important; }
   .js [data-split].pre .w > span { transform: none !important; }
+  .fill .fw { opacity: 1 !important; }
   .draft { position: fixed; z-index: 60; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); padding: 9px 16px; background: var(--ink); color: var(--paper); border: 1px solid var(--copper); font: 400 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 </style>"""
 body = re.sub(r'<div class="loader".*?</div>\s*</div>\s*</div>', "", body, count=1, flags=re.S)

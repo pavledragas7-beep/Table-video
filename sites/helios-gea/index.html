@@ -38,44 +38,27 @@
 
 <main id="top">
 
-  <!-- 01 · HERO: a ring of whole photos you can spin -->
-  <section class="scene hero grain">
-    <div class="hero-wordmark" aria-hidden="true">45°</div>
-    <div class="ring-stage" tabindex="0" aria-label="45 degrees – galerija proizvoda">
-      <div class="ring">
-          <button class="print " type="button" data-full="img/p/gift-men-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Men hand cream"><img src="img/p/gift-men-800.webp" alt="Men hand cream" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" alt="45 degrees Absolute" decoding="async"></button>
-          <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/olive-sea-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees · Bale Valle"><img src="img/g/olive-sea-800.webp" alt="45 degrees · Bale Valle" decoding="async"></button>
-          <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
-          <button class="print " type="button" data-full="img/p/facial-rich-cream-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-800.webp" alt="Absolute facial rich cream" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" alt="Absolute foot balm" decoding="async"></button>
-          <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" decoding="async"></button>
-          <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" alt="Hydrating facial spray toner" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" alt="45 degrees natural cosmetics" decoding="async"></button>
-      </div>
-    </div>
-    <div class="drag-hint" aria-hidden="true"><svg viewBox="0 0 34 12" fill="none" stroke="currentColor"><path d="M1 6h32M27 1l6 5-6 5M7 1 1 6l6 5"/></svg><span lang="hr">Povucite</span><span lang="en">Drag</span></div>
+  <!-- 01 · HERO: one photo, whole, on a ground that matches it -->
+  <section class="scene hero">
+    <figure class="hero-photo" data-cursor="Pogledaj|View">
+      <button class="hero-print" type="button" data-full="img/g/toner-stones-1600.webp" data-group="hero" data-cap="Hydrating facial spray toner · 200 ml" aria-label="Hydrating facial spray toner"><img src="img/g/toner-stones-1600.webp" srcset="img/g/toner-stones-800.webp 800w, img/g/toner-stones-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 64vw" width="1600" height="1066" alt="45 degrees Absolute facial spray toner" fetchpriority="high" decoding="async"></button>
+      <figcaption><span class="label plain"><span lang="hr">Novo</span><span lang="en">New</span></span> Hydrating facial spray toner · 200 ml</figcaption>
+    </figure>
     <div class="hero-copy">
       <div class="wrap">
-        <div>
-          <p class="label">Bale Valle · Istra · 45°N</p>
-          <h1 data-split>
-            <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
-            <span lang="en">Success is just another word for <em>innovation</em></span>
-          </h1>
-        </div>
-        <div class="hero-side">
-          <p><span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i proizvodi s vašim brendom.</span><span lang="en">Natural cosmetics based on organic olive pulp from Istria — and products that carry your brand.</span></p>
-          <div class="ctas">
-            <a class="btn solid magnetic" href="#proizvodi">45 degrees <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-            <a class="btn ghost magnetic" href="#private-label">Private label <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-          </div>
+        <p class="label hero-in">Bale Valle · Istra · 45°N</p>
+        <h1 data-split>
+          <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
+          <span lang="en">Success is just another word for <em>innovation</em></span>
+        </h1>
+        <p class="lead hero-in"><span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i proizvodi s vašim brendom.</span><span lang="en">Natural cosmetics based on organic olive pulp from Istria — and products that carry your brand.</span></p>
+        <div class="ctas hero-in">
+          <a class="btn solid magnetic" href="#proizvodi">45 degrees <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+          <a class="btn ghost magnetic" href="#private-label">Private label <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
         </div>
       </div>
     </div>
+    <a class="scroll-cue hero-in" href="#prica" aria-label="Scroll"><i></i></a>
   </section>
 
   <!-- 02 · MANIFESTO: one sentence, lit word by word; pillars as pills -->
@@ -101,9 +84,9 @@
     <div class="wrap story-grid">
       <div class="stage">
         <div class="stage-frame">
-          <button class="print on" type="button" data-full="img/g/olive-sea-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Maslina · 45° · Helios Gea"><img src="img/g/olive-sea-800.webp" alt="Maslina · 45° · Helios Gea" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" loading="lazy" decoding="async"></button>
-          <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline imaju glavnu ulogu u našem razvoju"><img src="img/g/komina-800.webp" alt="Priroda i komina masline imaju glavnu ulogu u našem razvoju" loading="lazy" decoding="async"></button>
+          <button class="print on" type="button" data-full="img/g/olive-sea-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Maslina · 45° · Helios Gea"><img src="img/g/olive-sea-800.webp" width="800" height="800" alt="Maslina · 45° · Helios Gea" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" width="800" height="800" alt="Invest in your skin" loading="lazy" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline imaju glavnu ulogu u našem razvoju"><img src="img/g/komina-800.webp" width="800" height="800" alt="Priroda i komina masline imaju glavnu ulogu u našem razvoju" loading="lazy" decoding="async"></button>
           <div class="stage-dots" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
       </div>
@@ -180,8 +163,8 @@
         <a class="btn ghost magnetic rv" href="#proizvodi"><span lang="hr">Svi proizvodi</span><span lang="en">All products</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
       <div class="face-grid">
-        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/cream-stones-1600.webp" data-group="face" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/g/cream-stones-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Absolute facial rich cream</h3><span>50 ml</span></div></div>
-        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/toner-stones-1600.webp" data-group="face" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/g/toner-stones-800.webp" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Hydrating facial spray toner</h3><span>200 ml</span></div></div>
+        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/cream-stones-1600.webp" data-group="face" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/g/cream-stones-800.webp" width="800" height="533" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Absolute facial rich cream</h3><span>50 ml</span></div></div>
+        <div class="rv"><button class="print tilt" type="button" data-full="img/p/facial-toner-1600.webp" data-group="face" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" width="800" height="533" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Hydrating facial spray toner</h3><span>200 ml</span></div></div>
       </div>
     </div>
   </section>
@@ -213,13 +196,13 @@
           </ul>
           <div class="show-stage rv">
             <div class="show-frame">
-                <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="products" data-cap="Absolute body cream lotion · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="products" data-cap="Absolute body polish · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" loading="lazy" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/foot-balm-1600.webp" data-group="products" data-cap="Absolute foot balm · 75 ml" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/p/foot-balm-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="products" data-cap="Men hand cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="products" data-cap="Women hand absolute cream mask · 50 ml" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/facial-rich-cream-1600.webp" data-group="products" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
-                <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="products" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="products" data-cap="Absolute body cream lotion · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" width="800" height="531" alt="Absolute body cream lotion" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="products" data-cap="Absolute body polish · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" width="800" height="531" alt="Absolute body polish" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/foot-balm-1600.webp" data-group="products" data-cap="Absolute foot balm · 75 ml" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/p/foot-balm-800.webp" width="800" height="532" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="products" data-cap="Men hand cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" width="800" height="533" alt="Men hand cream" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="products" data-cap="Women hand absolute cream mask · 50 ml" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" width="800" height="533" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/facial-rich-cream-1600.webp" data-group="products" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-800.webp" width="800" height="533" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="products" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" width="800" height="533" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button>
             </div>
             <div class="show-meta"><span class="count"><b>01</b> / 07</span><div class="arrows"><button class="prev" type="button" aria-label="Prethodno / Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M15 8H2M7 3 2 8l5 5"/></svg></button><button class="next" type="button" aria-label="Sljedeće / Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button></div></div>
           </div>
@@ -262,27 +245,27 @@
       <p class="rv"><span lang="hr">Dodirnite fotografiju za prikaz preko cijelog zaslona.</span><span lang="en">Tap any photo to view it full screen.</span></p>
     </div>
     <div class="strip" style="--dur:70s">
-        <button class="print " type="button" data-full="img/p/gift-men-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/gift-men-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/facial-rich-cream-grey-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-grey-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/display-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/p/display-800.webp" alt="45 degrees" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/facial-rich-cream-jar-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-jar-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/p/gift-women-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/gift-women-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/gift-men-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/gift-men-800.webp" width="800" height="533" alt="Men hand cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" width="800" height="531" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/facial-rich-cream-grey-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-grey-800.webp" width="800" height="533" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" width="800" height="531" alt="Absolute body polish" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/display-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/p/display-800.webp" width="800" height="531" alt="45 degrees" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" width="800" height="533" alt="Men hand cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/facial-rich-cream-jar-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-jar-800.webp" width="800" height="533" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" width="800" height="533" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/gift-women-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/gift-women-800.webp" width="800" height="533" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
     </div>
     <div class="strip rev" style="--dur:80s">
-        <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" alt="45 degrees Absolute" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/foot-balm-post-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/foot-balm-post-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/seal-portrait-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees · Helios Gea"><img src="img/g/seal-portrait-800.webp" alt="45 degrees · Helios Gea" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" alt="45 degrees natural cosmetics" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/body-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/body-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/wrist-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/g/wrist-800.webp" alt="45 degrees" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline"><img src="img/g/komina-800.webp" alt="Priroda i komina masline" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" width="800" height="800" alt="45 degrees Absolute" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/foot-balm-post-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/foot-balm-post-800.webp" width="800" height="800" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" width="800" height="800" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/seal-portrait-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees · Helios Gea"><img src="img/g/seal-portrait-800.webp" width="700" height="700" alt="45 degrees · Helios Gea" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" width="800" height="800" alt="Invest in your skin" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" width="800" height="800" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" width="800" height="800" alt="45 degrees natural cosmetics" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/body-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/body-lotion-800.webp" width="800" height="800" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/wrist-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/g/wrist-800.webp" width="800" height="800" alt="45 degrees" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline"><img src="img/g/komina-800.webp" width="800" height="800" alt="Priroda i komina masline" loading="lazy" decoding="async"></button>
     </div>
   </section>
 
@@ -338,18 +321,42 @@
     <p class="q wrap rv"><span lang="hr">Od ideje do gotovog proizvoda – stvaramo proizvode koji nose vaš brend.</span><span lang="en">From concept to finished product – we create products that carry your brand.</span></p>
   </section>
 
-  <!-- 10 · CONTACT -->
+  <!-- 10 · CONTACT + FORM -->
   <section class="scene contact" id="kontakt">
     <i class="seal seal-big" aria-hidden="true"></i>
     <div class="wrap contact-grid">
-      <div>
+      <div class="contact-info">
         <p class="label rv"><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></p>
         <a class="phone rv" href="tel:+385993664333">+385 99 3664333</a>
+        <p class="addr rv">Helios Gea d.o.o.<br>Rovinjska 43, 52211 Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
+        <a class="btn ghost magnetic rv" href="https://www.google.com/maps/search/?api=1&amp;query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
-      <div class="rv">
-        <p class="addr">Helios Gea d.o.o.<br>Rovinjska 43, 52211 Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
-        <a class="btn ghost magnetic" href="https://www.google.com/maps/search/?api=1&query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-      </div>
+
+      <!-- data-endpoint: URL that receives the form (e.g. Formspree, or your own script). Empty = not connected yet. -->
+      <form class="form rv" id="upit" data-endpoint="" novalidate>
+        <h3><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span></h3>
+        <div class="f-row">
+          <div class="field"><label for="f-name"><span lang="hr">Ime i prezime</span><span lang="en">Full name</span> *</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-email">E-mail *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-phone"><span lang="hr">Telefon</span><span lang="en">Phone</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-company"><span lang="hr">Tvrtka</span><span lang="en">Company</span></label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+        </div>
+        <fieldset class="field chips">
+          <legend><span lang="hr">Zanima me</span><span lang="en">I'm interested in</span></legend>
+          <label><input type="radio" name="topic" value="45 degrees" checked><span>45 degrees</span></label>
+          <label><input type="radio" name="topic" value="Private label"><span>Private label</span></label>
+          <label><input type="radio" name="topic" value="Ostalo / Other"><span lang="hr">Ostalo</span><span lang="en">Other</span></label>
+        </fieldset>
+        <div class="field"><label for="f-msg"><span lang="hr">Poruka</span><span lang="en">Message</span> *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
+        <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry.</span></span></label>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="f-foot">
+          <button class="btn solid" type="submit"><span lang="hr">Pošalji upit</span><span lang="en">Send enquiry</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
+          <p class="f-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
     <footer class="foot">
       <div class="wrap">

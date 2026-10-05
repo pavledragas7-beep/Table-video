@@ -88,7 +88,7 @@
   const navIO = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) $$(".nav a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === `#${e.target.id}`));
   }), { rootMargin: "-45% 0px -50% 0px" });
-  $$("main [id]").forEach(s => navIO.observe(s));
+  $$("main section[id]").forEach(s => navIO.observe(s));
 
   /* ---------- Lightbox (whole photos at full size) ---------- */
   const lb = $(".lb"), lbImg = $(".lb-stage img", lb);
@@ -135,59 +135,19 @@
     lx = null;
   });
 
-  /* ---------- HERO: draggable 3D ring of prints ---------- */
-  const stage = $(".ring-stage"), ring = $(".ring");
-  if (stage && ring) {
-    const cards = $$(".print", ring), step = 360 / cards.length;
-    let rot = 0, vel = 0, dragging = false, moved = 0, px = 0, auto = reduce ? 0 : -.06, visible = true;
-    cards.forEach((c, i) => c.style.setProperty("--a", `${i * step}deg`));
-    const size = () => {
-      const w = innerWidth, h = innerHeight;
-      const narrow = w < 700;
-      const cw = narrow ? clamp(w * .36, 120, 220) : clamp(Math.min(w * .2, h * .3), 140, 290);
-      const r = narrow ? w * .5 : clamp(w * .34, 260, 520);
-      ring.style.setProperty("--cw", `${cw}px`);
-      ring.style.setProperty("--r", `${r}px`);
-    };
-    size(); addEventListener("resize", size);
-    new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(stage);
-    const frame = () => {
-      if (visible) {
-        if (!dragging) { vel += (auto - vel) * .03; rot += vel; }
-        ring.style.transform = `translateZ(calc(var(--r) * -1)) rotateX(-7deg) rotateY(${rot}deg)`;
-        cards.forEach((c, i) => {
-          const a = ((i * step + rot) % 360 + 360) % 360;
-          const z = Math.cos(a * Math.PI / 180);
-          c.style.setProperty("--dim", ((1 - z) / 2 * .8).toFixed(3));
-        });
-      }
-      requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-    stage.addEventListener("pointerdown", e => { dragging = true; moved = 0; px = e.clientX; vel = 0; stage.setPointerCapture(e.pointerId); });
-    stage.addEventListener("pointermove", e => {
-      if (!dragging) return;
-      const dx = e.clientX - px; px = e.clientX; moved += Math.abs(dx);
-      vel = dx * .22; rot += vel;
+  /* ---------- HERO: the photo drifts a few pixels with the pointer ---------- */
+  const hero = $(".hero");
+  if (hero && fine && !reduce) {
+    hero.addEventListener("pointermove", e => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", (((e.clientX - r.left) / r.width) - .5) * 2);
+      hero.style.setProperty("--my", (((e.clientY - r.top) / r.height) - .5) * 2);
     });
-    const up = () => { dragging = false; };
-    stage.addEventListener("pointerup", e => {
-      up();
-      if (moved < 6) {
-        const hit = document.elementsFromPoint(e.clientX, e.clientY).find(el => el.classList?.contains("print"));
-        if (hit) openLb(hit);
-      }
-    });
-    stage.addEventListener("pointercancel", up);
-    cards.forEach(c => c.addEventListener("click", e => e.preventDefault()));
-    stage.addEventListener("keydown", e => {
-      if (e.key === "ArrowRight") vel = -4;
-      if (e.key === "ArrowLeft") vel = 4;
-    });
+    hero.addEventListener("pointerleave", () => { hero.style.setProperty("--mx", 0); hero.style.setProperty("--my", 0); });
   }
 
-  /* ---------- Generic zoomable prints (outside the ring) ---------- */
-  $$("[data-full]").filter(b => !b.closest(".ring")).forEach(b => b.addEventListener("click", () => openLb(b)));
+  /* ---------- Every whole photo opens full screen ---------- */
+  $$("[data-full]").forEach(b => b.addEventListener("click", () => openLb(b)));
 
   /* ---------- Manifesto: words light up on scroll; pillar pills ---------- */
   const man = $(".manifesto");
@@ -306,7 +266,6 @@
     };
     items.forEach((b, k) => {
       b.addEventListener("click", () => sel(k));
-      if (fine) b.addEventListener("pointerenter", () => sel(k));
     });
     $(".prev", panel)?.addEventListener("click", () => sel(cur - 1));
     $(".next", panel)?.addEventListener("click", () => sel(cur + 1));
@@ -368,6 +327,61 @@
       t.addEventListener("pointerleave", () => { t.style.transform = ""; });
     });
   } else $(".cursor")?.remove();
+
+
+  /* ---------- Enquiry form ---------- */
+  const form = $("#upit");
+  if (form) {
+    const status = $(".f-status", form);
+    const T = {
+      hr: { req: "Obavezno polje.", mail: "Unesite ispravnu e-mail adresu.", consent: "Potrebna je vaša suglasnost.", fix: "Provjerite označena polja.",
+            sending: "Šaljem…", ok: "Hvala! Vaš upit je poslan, javit ćemo vam se uskoro.", fail: "Slanje nije uspjelo. Nazovite nas na +385 99 3664333.",
+            off: "Obrazac još nije povezan s e-mail adresom. Za upit nas nazovite na +385 99 3664333." },
+      en: { req: "Required field.", mail: "Enter a valid e-mail address.", consent: "Your consent is required.", fix: "Please check the highlighted fields.",
+            sending: "Sending…", ok: "Thank you! Your enquiry has been sent, we will get back to you soon.", fail: "Sending failed. Please call us on +385 99 3664333.",
+            off: "The form is not connected to an e-mail address yet. Please call us on +385 99 3664333." }
+    };
+    const t = k => T[lang()][k];
+    const mark = (el, msg) => {
+      const box = el.closest(".field, .consent");
+      box.classList.toggle("bad", !!msg);
+      let err = $(".err", box);
+      if (msg && !err && box.classList.contains("field")) { err = document.createElement("span"); err.className = "err"; box.append(err); }
+      if (err) err.textContent = msg || "";
+      el.setAttribute("aria-invalid", msg ? "true" : "false");
+    };
+    const check = el => {
+      if (el.type === "checkbox") return mark(el, el.checked ? "" : t("consent")), el.checked;
+      const v = el.value.trim();
+      let msg = "";
+      if (el.required && !v) msg = t("req");
+      else if (el.type === "email" && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = t("mail");
+      mark(el, msg);
+      return !msg;
+    };
+    const fields = $$("input[required], textarea[required], input[type=email]", form);
+    fields.forEach(el => el.addEventListener(el.type === "checkbox" ? "change" : "blur", () => check(el)));
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      status.className = "f-status";
+      const bad = fields.filter(el => !check(el));
+      if (bad.length) { status.textContent = t("fix"); status.classList.add("warn"); bad[0].focus(); return; }
+      if (form.website.value) return; // bot trap
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) { status.textContent = t("off"); status.classList.add("warn"); return; }
+      form.classList.add("sending");
+      status.textContent = t("sending");
+      try {
+        const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        if (!res.ok) throw new Error(res.status);
+        form.reset();
+        status.textContent = t("ok"); status.classList.add("ok");
+      } catch (err) {
+        status.textContent = t("fail"); status.classList.add("warn");
+      } finally { form.classList.remove("sending"); }
+    });
+    langHooks.push(() => { fields.forEach(el => { if (el.getAttribute("aria-invalid") === "true") check(el); }); status.textContent = ""; status.className = "f-status"; });
+  }
 
   let saved = null;
   try { saved = localStorage.getItem("hg-lang"); } catch (e) {}
