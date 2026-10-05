@@ -3,9 +3,10 @@
 File: `index.html`, `assets/style.css`, `assets/main.js` (nessuna libreria, nessuna build).
 Lingua di default croato, `?lang=en` per l'inglese.
 
-Principio: le foto si mostrano **intere, nelle proporzioni originali**, mai ritagliate né mascherate,
-su uno sfondo che si fonde con lo scatto (bianco per lo studio, nero per le pietre).
-Ogni foto si apre a schermo intero (lightbox con frecce, swipe, Esc).
+Concetto: una sequenza di scene interattive, non un documento. Le foto sono sempre **intere, nelle proporzioni originali**.
+Scene: anello 3D di foto trascinabile → frase manifesto che si accende → racconto con foto fissa che cambia →
+globo con la 45ª parallela → linea viso → showroom prodotti → nastri di foto → private label → motto → contatti.
+I testi lunghi stanno dietro "Pročitajte više". Ogni foto si apre a schermo intero.
 
 Immagini: `img/p/` (prodotti, studio) e `img/g/` (pietre e grafiche del brand), ognuna in due misure WebP
 (`-800` e `-1600`), ricavate dagli originali solo ridimensionandoli.

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Helios Gea · 45 degrees</title>
 <meta name="description" content="Helios Gea d.o.o. – prirodna kozmetika 45 degrees na bazi organske komine masline iz Istre i razvoj personaliziranih proizvoda s vašim brendom.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0d100b">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="img/seal.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +15,22 @@
 </head>
 <body>
 
+<div class="loader" aria-hidden="true">
+  <div class="loader-inner"><i class="seal"></i><div class="loader-count"><b>0</b><sup>°</sup></div></div>
+</div>
+<div class="cursor" aria-hidden="true"><span></span></div>
+
 <header class="hdr">
   <div class="wrap bar">
     <a class="brand" href="#top" aria-label="Helios Gea"><i class="seal" aria-hidden="true"></i>HELIOS GEA</a>
     <nav class="nav" id="nav">
-      <a href="#o-nama"><span lang="hr">O nama</span><span lang="en">About</span></a>
+      <a href="#prica"><span lang="hr">Priča</span><span lang="en">Story</span></a>
       <a href="#proizvodi">45 degrees</a>
       <a href="#private-label">Private label</a>
       <a href="#kontakt"><span lang="hr">Kontakt</span><span lang="en">Contact</span></a>
     </nav>
     <div class="tools">
-      <div class="lang" role="group" aria-label="Jezik / Language">
-        <button data-set-lang="hr" aria-pressed="true">HR</button><i>/</i><button data-set-lang="en" aria-pressed="false">EN</button>
-      </div>
+      <div class="lang" role="group" aria-label="Jezik / Language"><button data-set-lang="hr" aria-pressed="true">HR</button><i>/</i><button data-set-lang="en" aria-pressed="false">EN</button></div>
       <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
     </div>
   </div>
@@ -35,129 +38,125 @@
 
 <main id="top">
 
-  <!-- HERO: copy + cross-fading slider of whole studio photos on white -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="label">Bale Valle · Istra · 45°N</p>
-        <h1 data-split>
-          <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
-          <span lang="en">Success is just another word for <em>innovation</em></span>
-        </h1>
-        <p class="lead">
-          <span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i razvoj personaliziranih proizvoda s vašim brendom.</span>
-          <span lang="en">Natural cosmetics based on organic olive pulp from Istria — and the development of personalized products that carry your brand.</span>
-        </p>
-        <div class="ctas">
-          <a class="btn solid" href="#proizvodi">45 degrees <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-          <a class="btn line" href="#private-label">Private label <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-        </div>
-        <div class="facts"><span><b>45°N</b> Bale · Valle</span><span><b>2009</b> Istra</span><span>Organic olive pulp</span></div>
+  <!-- 01 · HERO: a ring of whole photos you can spin -->
+  <section class="scene hero grain">
+    <div class="hero-wordmark" aria-hidden="true">45°</div>
+    <div class="ring-stage" tabindex="0" aria-label="45 degrees – galerija proizvoda">
+      <div class="ring">
+          <button class="print " type="button" data-full="img/p/gift-men-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Men hand cream"><img src="img/p/gift-men-800.webp" alt="Men hand cream" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" alt="45 degrees Absolute" decoding="async"></button>
+          <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/olive-sea-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees · Bale Valle"><img src="img/g/olive-sea-800.webp" alt="45 degrees · Bale Valle" decoding="async"></button>
+          <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
+          <button class="print " type="button" data-full="img/p/facial-rich-cream-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-800.webp" alt="Absolute facial rich cream" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" alt="Absolute foot balm" decoding="async"></button>
+          <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" decoding="async"></button>
+          <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" alt="Hydrating facial spray toner" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="ring" data-cursor="Povuci|Drag" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" alt="45 degrees natural cosmetics" decoding="async"></button>
       </div>
-
-      <div class="slider" tabindex="0" aria-roledescription="carousel" aria-label="45 degrees">
-        <div class="slides ph">
-          <figure class="slide on" data-name="Men hand cream" data-size="50 ml"><img src="img/p/gift-men-800.webp" srcset="img/p/gift-men-800.webp 800w, img/p/gift-men-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1066" alt="45 degrees Men hand cream" fetchpriority="high"></figure>
-          <figure class="slide" data-name="Absolute body cream lotion" data-size="236 ml"><img src="img/p/body-cream-lotion-800.webp" srcset="img/p/body-cream-lotion-800.webp 800w, img/p/body-cream-lotion-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1063" alt="45 degrees Absolute body cream lotion"></figure>
-          <figure class="slide" data-name="Absolute body polish" data-size="236 ml"><img src="img/p/body-polish-800.webp" srcset="img/p/body-polish-800.webp 800w, img/p/body-polish-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1063" alt="45 degrees Absolute body polish" loading="lazy"></figure>
-          <figure class="slide" data-name="Women hand absolute cream mask" data-size="50 ml"><img src="img/p/gift-women-800.webp" srcset="img/p/gift-women-800.webp 800w, img/p/gift-women-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1066" alt="45 degrees Women hand absolute cream mask" loading="lazy"></figure>
-          <figure class="slide" data-name="Absolute facial rich cream" data-size="50 ml"><span class="tag"><span lang="hr">Novo</span><span lang="en">New</span></span><img src="img/p/facial-rich-cream-800.webp" srcset="img/p/facial-rich-cream-800.webp 800w, img/p/facial-rich-cream-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1066" alt="45 degrees Absolute facial rich cream" loading="lazy"></figure>
-          <figure class="slide" data-name="Men hand cream" data-size="50 ml"><img src="img/p/display-800.webp" srcset="img/p/display-800.webp 800w, img/p/display-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 56vw" width="1600" height="1063" alt="45 degrees – Nature has always been our inspiration" loading="lazy"></figure>
+    </div>
+    <div class="drag-hint" aria-hidden="true"><svg viewBox="0 0 34 12" fill="none" stroke="currentColor"><path d="M1 6h32M27 1l6 5-6 5M7 1 1 6l6 5"/></svg><span lang="hr">Povucite</span><span lang="en">Drag</span></div>
+    <div class="hero-copy">
+      <div class="wrap">
+        <div>
+          <p class="label">Bale Valle · Istra · 45°N</p>
+          <h1 data-split>
+            <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
+            <span lang="en">Success is just another word for <em>innovation</em></span>
+          </h1>
         </div>
-        <div class="slider-bar">
-          <span class="slider-count"><b>01</b> / 06</span>
-          <div class="slider-name"><h4>Men hand cream</h4><span>50 ml</span></div>
-          <div class="arrows">
-            <button class="prev" type="button" aria-label="Prethodno / Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M15 8H2M7 3 2 8l5 5"/></svg></button>
-            <button class="next" type="button" aria-label="Sljedeće / Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
+        <div class="hero-side">
+          <p><span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i proizvodi s vašim brendom.</span><span lang="en">Natural cosmetics based on organic olive pulp from Istria — and products that carry your brand.</span></p>
+          <div class="ctas">
+            <a class="btn solid magnetic" href="#proizvodi">45 degrees <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+            <a class="btn ghost magnetic" href="#private-label">Private label <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Organic olive pulp</span><span>Bale Valle · Istria</span><span>45° N</span><span>Eco certified</span><span>Helios Gea</span><span>Since 2009</span>
-      <span>Organic olive pulp</span><span>Bale Valle · Istria</span><span>45° N</span><span>Eco certified</span><span>Helios Gea</span><span>Since 2009</span>
-    </div>
-  </div>
-
-  <!-- PILLARS -->
-  <section class="pillars-sec pad">
+  <!-- 02 · MANIFESTO: one sentence, lit word by word; pillars as pills -->
+  <section class="scene manifesto">
     <div class="wrap">
-      <div class="pillars-head">
-        <h2 class="h2" data-split>
-          <span lang="hr">Biomasa od komine masline ima <em>glavnu ulogu</em> u našem razvoju.</span>
-          <span lang="en">Olive pulp biomass is at the <em>heart</em> of our business.</span>
-        </h2>
-        <i class="seal rv" aria-hidden="true"></i>
+      <i class="seal rv" aria-hidden="true"></i>
+      <h2 class="fill">
+        <span lang="hr">Biomasa od komine masline ima <em>glavnu ulogu</em> u našem razvoju.</span>
+        <span lang="en">Olive pulp biomass is at the <em>heart</em> of our business.</span>
+      </h2>
+      <div class="pills rv">
+        <button class="pill" type="button" data-hr="Iza svake uspješne poslovne priče krije se inovacija." data-en="Success is just another word for innovation."><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button>
+        <button class="pill" type="button" data-hr="Biomasa od komine masline ima glavnu ulogu u našem razvoju." data-en="Olive pulp biomass is at the heart of our business."><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></button>
+        <button class="pill" type="button" data-hr="Mi vjerujemo u dugoročan i harmoničan odnos s prirodom." data-en="We believe in a long-lasting mutual relationship with nature."><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></button>
+        <button class="pill" type="button" data-hr="Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline." data-en="Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass."><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></button>
       </div>
-      <div class="pillars" data-stagger>
-        <div class="pillar rv"><div class="n">01</div>
-          <h3><span lang="hr">Inovacija</span><span lang="en">Innovation</span></h3>
-          <p><span lang="hr">Iza svake uspješne poslovne priče krije se inovacija.</span><span lang="en">Success is just another word for innovation.</span></p></div>
-        <div class="pillar rv"><div class="n">02</div>
-          <h3><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></h3>
-          <p><span lang="hr">Biomasa od komine masline ima glavnu ulogu u našem razvoju.</span><span lang="en">Olive pulp biomass is at the heart of our business.</span></p></div>
-        <div class="pillar rv"><div class="n">03</div>
-          <h3><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></h3>
-          <p><span lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom.</span><span lang="en">We believe in a long-lasting mutual relationship with nature.</span></p></div>
-        <div class="pillar rv"><div class="n">04</div>
-          <h3><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></h3>
-          <p><span lang="hr">Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline.</span><span lang="en">Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass.</span></p></div>
-      </div>
+      <p class="pill-tip" aria-live="polite" data-hr="Odaberite pojam ↑" data-en="Pick a word ↑"></p>
     </div>
   </section>
 
-  <!-- O NAMA -->
-  <section class="pad" id="o-nama">
-    <div class="wrap split">
-      <figure class="frame">
-        <button class="zoomable rv" type="button" data-group="story" data-full="img/g/olive-sea-1600.webp" aria-label="Maslina · 45° · Helios Gea"><span class="ph" style="display:block"><img src="img/g/olive-sea-800.webp" srcset="img/g/olive-sea-800.webp 800w, img/g/olive-sea-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 46vw" width="1600" height="1600" loading="lazy" alt="Maslina · 45° · Helios Gea"></span></button>
-      </figure>
-      <div class="story-text">
-        <p class="label rv"><span lang="hr">O nama</span><span lang="en">About us</span></p>
-        <h2 class="h2" data-split><span lang="hr">Ideja iz prirode</span><span lang="en">The story about dedication to nature</span></h2>
-        <div class="rv" style="margin-top:32px">
-          <p class="intro" lang="hr">Priča o tvrtki Helios Gea rođena je 2009. godine u Istri, predivnom djeliću Mediterana prošaranom tartufima, vinovom lozom i stoljetnim maslinicima. Upravo s maslinama nama se dogodila ljubav na prvi pogled. Nakon što smo otkrili koliko ljekovitih svojstava sadrži taj maleni zeleni plod, maslina je postala srž naše poslovne ideje u narednim godinama.</p>
-          <p class="intro" lang="en">The story of Helios Gea company was born in Istria, Croatia, a charming Mediterranean region rich with truffles, vineyards and olive groves. It was these very olives and their medicinal benefits that caught our attention and became the core of our business in the following years.</p>
-        </div>
-        <div class="sub rv">
-          <p class="label"><span lang="hr">Održivi razvoj</span><span lang="en">Sustainability</span></p>
-          <p lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom i lokalnom zajednicom te tako zajednički gradimo ispravan put do uspjeha. Stvorivši prirodnu kozmetiku za njegu kože, Helios Gea promovira ekološke inovacije, zdrav život, potrebe i životni stil naših klijenata te proizvode izvrsne kakvoće.</p>
-          <p lang="hr">Tijekom proizvodnje koristimo isključivo kominu masline iz Istre koja dolazi s eko farmi te je strogo kontrolirana, a time pomažemo zbrinjavanju komine lokalnim maslinarima i gradimo ekološke vrijednosti u regiji.</p>
-          <p lang="en">We believe in a long-lasting mutual relationship with nature and local community, the only road to success we want to take. Respect towards nature, respect towards our clients and employees, respect towards beauty. By creating natural and chemical-free skin care cosmetics, Helios Gea wants to promote principles of ecological innovation, healthy life, our clients’ needs and products of highest quality.</p>
-          <p lang="en">We are the only company that enables olive producers to productively dispose of olive pulp, thus helping to maintain ecological values in the region. Our goal is to embrace nature, beauty, local community and future innovations in a story worth to be told. And experienced.</p>
+  <!-- 03 · STORY: pinned stage, the photo changes with each chapter -->
+  <section class="scene story" id="prica">
+    <div class="wrap story-grid">
+      <div class="stage">
+        <div class="stage-frame">
+          <button class="print on" type="button" data-full="img/g/olive-sea-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Maslina · 45° · Helios Gea"><img src="img/g/olive-sea-800.webp" alt="Maslina · 45° · Helios Gea" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" loading="lazy" decoding="async"></button>
+          <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline imaju glavnu ulogu u našem razvoju"><img src="img/g/komina-800.webp" alt="Priroda i komina masline imaju glavnu ulogu u našem razvoju" loading="lazy" decoding="async"></button>
+          <div class="stage-dots" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- INOVACIJA -->
-  <section class="innov pad">
-    <div class="wrap split rev">
-      <figure class="frame">
-        <button class="zoomable rv" type="button" data-group="story" data-full="img/g/komina-1600.webp" aria-label="Komina masline"><span class="ph" style="display:block"><img src="img/g/komina-800.webp" srcset="img/g/komina-800.webp 800w, img/g/komina-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 46vw" width="1600" height="1600" loading="lazy" alt="Priroda i komina masline imaju glavnu ulogu u našem razvoju"></span></button>
-      </figure>
-      <div>
-        <p class="label rv"><span lang="hr">Inovacija</span><span lang="en">Innovation</span></p>
-        <h2 data-split>
-          <span lang="hr">Inovativan način prerade komine masline s primjenom u kozmetičke svrhe</span>
-          <span lang="en">Innovative method of processing olive pulp biomass for cosmetic purposes</span>
-        </h2>
-        <p class="rv" lang="hr">Zahvaljujući brojnim istraživanjima i mukotrpnom radu pronašli smo inovativan način prerade biomase od komine masline za dobivanje zdravstveno ispravnog aktivnog elementa s primjenom u kozmetičke svrhe. Slijedili smo instinkt i inspiraciju te u isto vrijeme nastojali zadržati skladan odnos s prirodom. Danas s ponosom možemo reći kako smo uspjeli u tome.</p>
-        <p class="rv" lang="en">Our extensive research and hard work resulted in an innovative procedure for extracting a medically approved active element from olive pulp biomass for cosmetic use. We followed our instinct and inspiration, while using our best efforts to maintain a harmonious relationship with nature. Today, we can proudly say we have succeeded.</p>
+      <div class="steps">
+        <article class="step">
+          <p class="label">01 · <span lang="hr">O nama</span><span lang="en">About us</span></p>
+          <h2><span lang="hr">Ideja iz <em>prirode</em></span><span lang="en">The story about dedication to <em>nature</em></span></h2>
+          <p class="lead" lang="hr">Priča o tvrtki Helios Gea rođena je 2009. godine u Istri, predivnom djeliću Mediterana prošaranom tartufima, vinovom lozom i stoljetnim maslinicima.</p>
+          <p class="lead" lang="en">The story of Helios Gea company was born in Istria, Croatia, a charming Mediterranean region rich with truffles, vineyards and olive groves.</p>
+          <details class="more"><summary><i></i><span lang="hr">Pročitajte više</span><span lang="en">Read more</span></summary>
+            <div class="body">
+              <p lang="hr">Upravo s maslinama nama se dogodila ljubav na prvi pogled. Nakon što smo otkrili koliko ljekovitih svojstava sadrži taj maleni zeleni plod, maslina je postala srž naše poslovne ideje u narednim godinama.</p>
+              <p lang="en">It was these very olives and their medicinal benefits that caught our attention and became the core of our business in the following years.</p>
+            </div>
+          </details>
+        </article>
+        <article class="step">
+          <p class="label">02 · Helios Gea</p>
+          <h2><span lang="hr">Održivi <em>razvoj</em></span><span lang="en"><em>Sustainability</em></span></h2>
+          <p class="lead" lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom i lokalnom zajednicom te tako zajednički gradimo ispravan put do uspjeha.</p>
+          <p class="lead" lang="en">We believe in a long-lasting mutual relationship with nature and local community, the only road to success we want to take.</p>
+          <details class="more"><summary><i></i><span lang="hr">Pročitajte više</span><span lang="en">Read more</span></summary>
+            <div class="body">
+              <p lang="hr">Stvorivši prirodnu kozmetiku za njegu kože, Helios Gea promovira ekološke inovacije, zdrav život, potrebe i životni stil naših klijenata te proizvode izvrsne kakvoće.</p>
+              <p lang="hr">Tijekom proizvodnje koristimo isključivo kominu masline iz Istre koja dolazi s eko farmi te je strogo kontrolirana, a time pomažemo zbrinjavanju komine lokalnim maslinarima i gradimo ekološke vrijednosti u regiji.</p>
+              <p lang="en">Respect towards nature, respect towards our clients and employees, respect towards beauty. By creating natural and chemical-free skin care cosmetics, Helios Gea wants to promote principles of ecological innovation, healthy life, our clients’ needs and products of highest quality.</p>
+              <p lang="en">We are the only company that enables olive producers to productively dispose of olive pulp, thus helping to maintain ecological values in the region. Our goal is to embrace nature, beauty, local community and future innovations in a story worth to be told. And experienced.</p>
+            </div>
+          </details>
+        </article>
+        <article class="step">
+          <p class="label">03 · <span lang="hr">Inovacija</span><span lang="en">Innovation</span></p>
+          <h2 style="font-size:clamp(30px,3.2vw,52px)"><span lang="hr">Inovativan način prerade komine masline s primjenom u <em>kozmetičke svrhe</em></span><span lang="en">Innovative method of processing olive pulp biomass for <em>cosmetic purposes</em></span></h2>
+          <details class="more"><summary><i></i><span lang="hr">Pročitajte više</span><span lang="en">Read more</span></summary>
+            <div class="body">
+              <p lang="hr">Zahvaljujući brojnim istraživanjima i mukotrpnom radu pronašli smo inovativan način prerade biomase od komine masline za dobivanje zdravstveno ispravnog aktivnog elementa s primjenom u kozmetičke svrhe. Slijedili smo instinkt i inspiraciju te u isto vrijeme nastojali zadržati skladan odnos s prirodom. Danas s ponosom možemo reći kako smo uspjeli u tome.</p>
+              <p lang="en">Our extensive research and hard work resulted in an innovative procedure for extracting a medically approved active element from olive pulp biomass for cosmetic use. We followed our instinct and inspiration, while using our best efforts to maintain a harmonious relationship with nature. Today, we can proudly say we have succeeded.</p>
+            </div>
+          </details>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 45. PARALELA -->
-  <section class="parallel pad">
-    <div class="wrap parallel-grid">
-      <div><div class="deg" aria-label="45°"><b>45</b><sup></sup></div></div>
+  <!-- 04 · 45°: live globe -->
+  <section class="scene globe-sec grain">
+    <div class="wrap globe-grid">
+      <div class="globe-wrap rv" data-cursor="Okreni|Spin">
+        <canvas id="globe" aria-label="Globus: 45. paralela prolazi kroz Bale"></canvas>
+        <span class="globe-tag">Bale · 45°N</span>
+      </div>
       <div>
-        <p class="label rv">45 degrees</p>
+        <div class="deg" aria-label="45°"><b>45</b><sup>°</sup></div>
         <h2 data-split><span lang="hr">45. paralela kao inspiracija za brend</span><span lang="en">The 45th parallel as the inspiration for the brand</span></h2>
         <p class="rv" lang="hr">Općinom Bale, odnosno njezinim najjužnijim dijelom prolazi 45. paralela, što znači da se nalazi na najidealnijem mjestu – na pola puta između Ekvatora i Sjevernog pola. Otuda inspiracija za ime linije proizvoda „45 degrees”.</p>
         <p class="rv" lang="en">The 45th parallel passes through the small town of Bale and its most southern part, which means halfway between the Equator and the North Pole – the most ideal place to live. Hence the inspiration for the name of the product line “45 degrees”.</p>
@@ -170,36 +169,30 @@
     </div>
   </section>
 
-  <!-- LINIJA ZA LICE -->
-  <section class="face pad">
+  <!-- 05 · FACE LINE -->
+  <section class="scene face">
     <div class="wrap">
       <div class="face-head">
         <div>
           <p class="label rv"><span lang="hr">Novo · Njega lica</span><span lang="en">New · Facial care</span></p>
-          <h2 class="h2" data-split>Absolute <em>facial</em></h2>
+          <h2 data-split>Absolute <em>facial</em></h2>
         </div>
-        <a class="btn light rv" href="#proizvodi"><span lang="hr">Svi proizvodi</span><span lang="en">All products</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+        <a class="btn ghost magnetic rv" href="#proizvodi"><span lang="hr">Svi proizvodi</span><span lang="en">All products</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
-      <div class="face-grid" data-stagger>
-        <article class="face-item rv">
-          <button class="zoomable" type="button" data-group="face" data-full="img/g/cream-stones-1600.webp" data-cap="Absolute facial rich cream · 50 ml" aria-label="Absolute facial rich cream"><span class="ph" style="display:block;--bg:var(--night)"><img src="img/g/cream-stones-800.webp" srcset="img/g/cream-stones-800.webp 800w, img/g/cream-stones-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 46vw" width="1600" height="1066" loading="lazy" alt="45 degrees Absolute facial rich cream"></span></button>
-          <div class="meta"><h3>Absolute facial rich cream</h3><span>50 ml</span></div>
-        </article>
-        <article class="face-item rv">
-          <button class="zoomable" type="button" data-group="face" data-full="img/g/toner-stones-1600.webp" data-cap="Hydrating facial spray toner · 200 ml" aria-label="Hydrating facial spray toner"><span class="ph" style="display:block;--bg:var(--night)"><img src="img/g/toner-stones-800.webp" srcset="img/g/toner-stones-800.webp 800w, img/g/toner-stones-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 46vw" width="1600" height="1066" loading="lazy" alt="45 degrees Hydrating facial spray toner"></span></button>
-          <div class="meta"><h3>Hydrating facial spray toner</h3><span>200 ml</span></div>
-        </article>
+      <div class="face-grid">
+        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/cream-stones-1600.webp" data-group="face" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/g/cream-stones-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Absolute facial rich cream</h3><span>50 ml</span></div></div>
+        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/toner-stones-1600.webp" data-group="face" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/g/toner-stones-800.webp" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Hydrating facial spray toner</h3><span>200 ml</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- PROIZVODI -->
-  <section class="pad" id="proizvodi">
+  <!-- 06 · SHOWROOM -->
+  <section class="scene showroom" id="proizvodi">
     <div class="wrap">
-      <div class="products-head">
+      <div class="show-head">
         <div>
           <p class="label rv">45 degrees</p>
-          <h2 class="h2" data-split><span lang="hr">Naši proizvodi</span><span lang="en">Our products</span></h2>
+          <h2 data-split><span lang="hr">Naši proizvodi</span><span lang="en">Our products</span></h2>
         </div>
         <div class="tabs rv" role="tablist">
           <button role="tab" aria-selected="true" aria-controls="p-home" id="t-home"><span lang="hr">Kućna upotreba</span><span lang="en">Home care</span></button>
@@ -208,153 +201,165 @@
       </div>
 
       <div class="panel" id="p-home" role="tabpanel" aria-labelledby="t-home">
-        <p class="label dim" style="margin-bottom:32px"><span lang="hr">Linija proizvoda za kućnu upotrebu</span><span lang="en">Home care products</span></p>
-        <div class="cards" data-stagger>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/body-cream-lotion-1600.webp" data-cap="Absolute body cream lotion · 236 ml" aria-label="Absolute body cream lotion"><span class="ph" style="display:block"><img src="img/p/body-cream-lotion-800.webp" srcset="img/p/body-cream-lotion-800.webp 800w, img/p/body-cream-lotion-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1063" loading="lazy" alt="Absolute body cream lotion"></span></button>
-            <div class="meta"><span class="n">01</span><h4>Absolute body cream lotion</h4><span class="size">236 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/body-polish-1600.webp" data-cap="Absolute body polish · 236 ml" aria-label="Absolute body polish"><span class="ph" style="display:block"><img src="img/p/body-polish-800.webp" srcset="img/p/body-polish-800.webp 800w, img/p/body-polish-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1063" loading="lazy" alt="Absolute body polish"></span></button>
-            <div class="meta"><span class="n">02</span><h4>Absolute body polish</h4><span class="size">236 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/foot-balm-1600.webp" data-cap="Absolute foot balm · 75 ml" aria-label="Absolute foot balm"><span class="ph" style="display:block"><img src="img/p/foot-balm-800.webp" srcset="img/p/foot-balm-800.webp 800w, img/p/foot-balm-1600.webp 900w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="900" height="598" loading="lazy" alt="Absolute foot balm"></span></button>
-            <div class="meta"><span class="n">03</span><h4>Absolute foot balm</h4><span class="size">75 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/men-hand-cream-1600.webp" data-cap="Men hand cream · 50 ml" aria-label="Men hand cream"><span class="ph" style="display:block"><img src="img/p/men-hand-cream-800.webp" srcset="img/p/men-hand-cream-800.webp 800w, img/p/men-hand-cream-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Men hand cream"></span></button>
-            <div class="meta"><span class="n">04</span><h4>Men hand cream</h4><span class="size">50 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/women-hand-mask-1600.webp" data-cap="Women hand absolute cream mask · 50 ml" aria-label="Women hand absolute cream mask"><span class="ph" style="display:block"><img src="img/p/women-hand-mask-800.webp" srcset="img/p/women-hand-mask-800.webp 800w, img/p/women-hand-mask-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Women hand absolute cream mask"></span></button>
-            <div class="meta"><span class="n">05</span><h4>Women hand absolute cream mask</h4><span class="size">50 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/facial-rich-cream-1600.webp" data-cap="Absolute facial rich cream · 50 ml" aria-label="Absolute facial rich cream"><span class="ph" style="display:block"><span class="tag"><span lang="hr">Novo</span><span lang="en">New</span></span><img src="img/p/facial-rich-cream-800.webp" srcset="img/p/facial-rich-cream-800.webp 800w, img/p/facial-rich-cream-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Absolute facial rich cream"></span></button>
-            <div class="meta"><span class="n">06</span><h4>Absolute facial rich cream</h4><span class="size">50 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/facial-toner-1600.webp" data-cap="Hydrating facial spray toner · 200 ml" aria-label="Hydrating facial spray toner"><span class="ph" style="display:block"><span class="tag"><span lang="hr">Novo</span><span lang="en">New</span></span><img src="img/p/facial-toner-800.webp" srcset="img/p/facial-toner-800.webp 800w, img/p/facial-toner-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Hydrating facial spray toner"></span></button>
-            <div class="meta"><span class="n">07</span><h4>Hydrating facial spray toner</h4><span class="size">200 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/gift-women-1600.webp" data-cap="Women hand absolute cream mask · 50 ml" aria-label="Women hand absolute cream mask"><span class="ph" style="display:block"><img src="img/p/gift-women-800.webp" srcset="img/p/gift-women-800.webp 800w, img/p/gift-women-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Women hand absolute cream mask"></span></button>
-            <div class="meta"><span class="n">✦</span><h4>Women hand absolute cream mask</h4><span class="size">50 ml</span></div></article>
-          <article class="card rv"><button class="zoomable" type="button" data-group="products" data-full="img/p/gift-men-1600.webp" data-cap="Men hand cream · 50 ml" aria-label="Men hand cream"><span class="ph" style="display:block"><img src="img/p/gift-men-800.webp" srcset="img/p/gift-men-800.webp 800w, img/p/gift-men-1600.webp 1600w" sizes="(max-width: 560px) 92vw, (max-width: 1100px) 46vw, 30vw" width="1600" height="1066" loading="lazy" alt="Men hand cream"></span></button>
-            <div class="meta"><span class="n">✦</span><h4>Men hand cream</h4><span class="size">50 ml</span></div></article>
+        <div class="show-grid">
+          <ul class="plist rv">
+              <li><button type="button"><span class="n">01</span><h4>Absolute body cream lotion</h4><span class="size">236 ml</span></button></li>
+              <li><button type="button"><span class="n">02</span><h4>Absolute body polish</h4><span class="size">236 ml</span></button></li>
+              <li><button type="button"><span class="n">03</span><h4>Absolute foot balm</h4><span class="size">75 ml</span></button></li>
+              <li><button type="button"><span class="n">04</span><h4>Men hand cream</h4><span class="size">50 ml</span></button></li>
+              <li><button type="button"><span class="n">05</span><h4>Women hand absolute cream mask</h4><span class="size">50 ml</span></button></li>
+              <li><button type="button"><span class="n">06</span><h4>Absolute facial rich cream<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">50 ml</span></button></li>
+              <li><button type="button"><span class="n">07</span><h4>Hydrating facial spray toner<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
+          </ul>
+          <div class="show-stage rv">
+            <div class="show-frame">
+                <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="products" data-cap="Absolute body cream lotion · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="products" data-cap="Absolute body polish · 236 ml" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/foot-balm-1600.webp" data-group="products" data-cap="Absolute foot balm · 75 ml" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/p/foot-balm-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="products" data-cap="Men hand cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="products" data-cap="Women hand absolute cream mask · 50 ml" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/facial-rich-cream-1600.webp" data-group="products" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+                <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="products" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button>
+            </div>
+            <div class="show-meta"><span class="count"><b>01</b> / 07</span><div class="arrows"><button class="prev" type="button" aria-label="Prethodno / Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M15 8H2M7 3 2 8l5 5"/></svg></button><button class="next" type="button" aria-label="Sljedeće / Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button></div></div>
+          </div>
         </div>
       </div>
 
       <div class="panel" id="p-pro" role="tabpanel" aria-labelledby="t-pro" hidden>
-        <p class="label dim" style="margin-bottom:32px"><span lang="hr">Linija proizvoda za profesionalnu upotrebu</span><span lang="en">Professional products</span></p>
-        <div class="pro-list">
-          <div class="pro-row"><span class="n">01</span><h4>Professional absolute body cream lotion</h4><span class="pill">Pro</span><span class="size">473 ml</span></div>
-          <div class="pro-row"><span class="n">02</span><h4>Professional absolute body polish</h4><span class="pill">Pro</span><span class="size">473 ml</span></div>
-          <div class="pro-row"><span class="n">03</span><h4>Professional absolute hand cream mask</h4><span class="pill">Pro</span><span class="size">236 ml</span></div>
-          <div class="pro-row"><span class="n">04</span><h4>Professional absolute foot balm</h4><span class="pill">Pro</span><span class="size">236 ml</span></div>
-          <div class="pro-row"><span class="n">05</span><h4>Professional facial rich cream</h4><span class="pill"><span lang="hr">Novo</span><span lang="en">New</span></span><span class="size">200 ml</span></div>
-          <div class="pro-row"><span class="n">06</span><h4>Hydrating facial spray toner</h4><span class="pill"><span lang="hr">Novo</span><span lang="en">New</span></span><span class="size">200 ml</span></div>
+        <div class="show-grid">
+          <ul class="plist">
+              <li><button type="button"><span class="n">01</span><h4>Professional absolute body cream lotion</h4><span class="size">473 ml</span></button></li>
+              <li><button type="button"><span class="n">02</span><h4>Professional absolute body polish</h4><span class="size">473 ml</span></button></li>
+              <li><button type="button"><span class="n">03</span><h4>Professional absolute hand cream mask</h4><span class="size">236 ml</span></button></li>
+              <li><button type="button"><span class="n">04</span><h4>Professional absolute foot balm</h4><span class="size">236 ml</span></button></li>
+              <li><button type="button"><span class="n">05</span><h4>Professional facial rich cream<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
+              <li><button type="button"><span class="n">06</span><h4>Hydrating facial spray toner<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
+          </ul>
+          <div class="show-stage">
+            <div class="show-frame">
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">473<small>ml</small></div><p class="label">Professional absolute body cream lotion</p></div></div>
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">473<small>ml</small></div><p class="label">Professional absolute body polish</p></div></div>
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">236<small>ml</small></div><p class="label">Professional absolute hand cream mask</p></div></div>
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">236<small>ml</small></div><p class="label">Professional absolute foot balm</p></div></div>
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">200<small>ml</small></div><p class="label">Professional facial rich cream</p></div></div>
+                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">200<small>ml</small></div><p class="label">Hydrating facial spray toner</p></div></div>
+            </div>
+            <div class="show-meta"><span class="count"><b>01</b> / 06</span><div class="arrows"><button class="prev" type="button" aria-label="Prethodno / Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M15 8H2M7 3 2 8l5 5"/></svg></button><button class="next" type="button" aria-label="Sljedeće / Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button></div></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALERIJA: brand visuals exactly as supplied -->
-  <section class="gallery-sec pad">
-    <div class="wrap">
-      <p class="label rv">45 degrees · Bale Valle · Istria</p>
-      <h2 class="h2" data-split><span lang="hr">Galerija</span><span lang="en">Gallery</span></h2>
-      <div class="gallery">
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/model-products-1600.webp" aria-label="45 degrees"><span class="ph" style="display:block"><img src="img/g/model-products-800.webp" srcset="img/g/model-products-800.webp 800w, img/g/model-products-1600.webp 1500w" sizes="(max-width: 900px) 46vw, 31vw" width="1500" height="1500" loading="lazy" alt="45 degrees Absolute"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/spa-lotion-1600.webp" aria-label="Absolute body cream lotion"><span class="ph" style="display:block"><img src="img/g/spa-lotion-800.webp" srcset="img/g/spa-lotion-800.webp 800w, img/g/spa-lotion-1600.webp 1600w" sizes="(max-width: 900px) 46vw, 31vw" width="1600" height="1600" loading="lazy" alt="Absolute body cream lotion"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/p/facial-rich-cream-jar-1600.webp" aria-label="Absolute facial rich cream"><span class="ph" style="display:block"><img src="img/p/facial-rich-cream-jar-800.webp" srcset="img/p/facial-rich-cream-jar-800.webp 800w, img/p/facial-rich-cream-jar-1600.webp 1600w" sizes="(max-width: 900px) 46vw, 31vw" width="1600" height="1066" loading="lazy" alt="Absolute facial rich cream"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/legs-foot-balm-1600.webp" aria-label="Absolute foot balm"><span class="ph" style="display:block"><img src="img/g/legs-foot-balm-800.webp" srcset="img/g/legs-foot-balm-800.webp 800w, img/g/legs-foot-balm-1600.webp 1500w" sizes="(max-width: 900px) 46vw, 31vw" width="1500" height="1500" loading="lazy" alt="Absolute foot balm"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/seal-portrait-1600.webp" aria-label="45 degrees · Helios Gea"><span class="ph" style="display:block"><img src="img/g/seal-portrait-800.webp" width="700" height="700" loading="lazy" alt="45 degrees · Helios Gea organic olive pulp"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/invest-skin-1600.webp" aria-label="Invest in your skin"><span class="ph" style="display:block"><img src="img/g/invest-skin-800.webp" srcset="img/g/invest-skin-800.webp 800w, img/g/invest-skin-1600.webp 1600w" sizes="(max-width: 900px) 46vw, 31vw" width="1600" height="1600" loading="lazy" alt="Invest in your skin. It's going to be with you for a long time."></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/hand-cream-1600.webp" aria-label="45 degrees natural cosmetics"><span class="ph" style="display:block"><img src="img/g/hand-cream-800.webp" srcset="img/g/hand-cream-800.webp 800w, img/g/hand-cream-1600.webp 1500w" sizes="(max-width: 900px) 46vw, 31vw" width="1500" height="1500" loading="lazy" alt="45 degrees natural cosmetics"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/foot-balm-post-1600.webp" aria-label="Absolute foot balm"><span class="ph" style="display:block"><img src="img/g/foot-balm-post-800.webp" srcset="img/g/foot-balm-post-800.webp 800w, img/g/foot-balm-post-1600.webp 1045w" sizes="(max-width: 900px) 46vw, 31vw" width="1045" height="1045" loading="lazy" alt="Absolute foot balm – completely natural premium organic olive pulp from Istria eco gardens"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/p/facial-rich-cream-grey-1600.webp" aria-label="Absolute facial rich cream"><span class="ph" style="display:block"><img src="img/p/facial-rich-cream-grey-800.webp" srcset="img/p/facial-rich-cream-grey-800.webp 800w, img/p/facial-rich-cream-grey-1600.webp 1600w" sizes="(max-width: 900px) 46vw, 31vw" width="1600" height="1066" loading="lazy" alt="Absolute facial rich cream"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/body-lotion-1600.webp" aria-label="Absolute body cream lotion"><span class="ph" style="display:block"><img src="img/g/body-lotion-800.webp" srcset="img/g/body-lotion-800.webp 800w, img/g/body-lotion-1600.webp 1500w" sizes="(max-width: 900px) 46vw, 31vw" width="1500" height="1500" loading="lazy" alt="Absolute body cream lotion"></span></button>
-        <button class="zoomable rv" type="button" data-group="gallery" data-full="img/g/wrist-1600.webp" aria-label="45 degrees"><span class="ph" style="display:block"><img src="img/g/wrist-800.webp" srcset="img/g/wrist-800.webp 800w, img/g/wrist-1600.webp 1285w" sizes="(max-width: 900px) 46vw, 31vw" width="1285" height="1285" loading="lazy" alt="45 degrees"></span></button>
+  <!-- 07 · FILM STRIPS -->
+  <section class="scene strips">
+    <div class="wrap strips-head">
+      <div>
+        <p class="label rv">45 degrees · Bale Valle · Istria</p>
+        <h2 data-split><span lang="hr">Galerija</span><span lang="en">Gallery</span></h2>
       </div>
+      <p class="rv"><span lang="hr">Dodirnite fotografiju za prikaz preko cijelog zaslona.</span><span lang="en">Tap any photo to view it full screen.</span></p>
+    </div>
+    <div class="strip" style="--dur:70s">
+        <button class="print " type="button" data-full="img/p/gift-men-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/gift-men-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/body-cream-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/p/body-cream-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/facial-rich-cream-grey-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-grey-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/body-polish-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body polish"><img src="img/p/body-polish-800.webp" alt="Absolute body polish" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/display-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/p/display-800.webp" alt="45 degrees" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/men-hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Men hand cream"><img src="img/p/men-hand-cream-800.webp" alt="Men hand cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/facial-rich-cream-jar-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/p/facial-rich-cream-jar-800.webp" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/women-hand-mask-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/women-hand-mask-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/p/gift-women-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Women hand absolute cream mask"><img src="img/p/gift-women-800.webp" alt="Women hand absolute cream mask" loading="lazy" decoding="async"></button>
+    </div>
+    <div class="strip rev" style="--dur:80s">
+        <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" alt="45 degrees Absolute" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/foot-balm-post-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/foot-balm-post-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/seal-portrait-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees · Helios Gea"><img src="img/g/seal-portrait-800.webp" alt="45 degrees · Helios Gea" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" alt="Invest in your skin" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" alt="45 degrees natural cosmetics" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/body-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/body-lotion-800.webp" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/wrist-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/g/wrist-800.webp" alt="45 degrees" loading="lazy" decoding="async"></button>
+        <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline"><img src="img/g/komina-800.webp" alt="Priroda i komina masline" loading="lazy" decoding="async"></button>
     </div>
   </section>
 
-  <!-- PRIVATE LABEL -->
-  <section class="pl pad" id="private-label">
+  <!-- 08 · PRIVATE LABEL -->
+  <section class="scene pl" id="private-label">
     <div class="wrap">
       <div class="pl-head">
         <div>
           <p class="label rv">Helios Gea d.o.o. · Private label</p>
-          <h2 class="h2" data-split>
-            <span lang="hr">Od ideje do <em>gotovog</em> proizvoda</span>
-            <span lang="en">From concept to <em>finished</em> product</span>
-          </h2>
+          <h2 data-split><span lang="hr">Od ideje do <em>gotovog</em> proizvoda</span><span lang="en">From concept to <em>finished</em> product</span></h2>
         </div>
         <div class="rv">
           <p class="lead" lang="hr">Helios Gea d.o.o. bavi se razvojem i realizacijom personaliziranih proizvoda prilagođenih potrebama i identitetu naših klijenata.</p>
           <p class="lead" lang="en">Helios Gea d.o.o. specializes in the development and production of personalized products tailored to the needs and identity of our clients.</p>
         </div>
       </div>
-      <div class="pl-body">
-        <p class="rv" lang="hr">Našim partnerima omogućujemo da svoje ideje pretvore u gotove proizvode brendirane njihovim logotipom i vizualnim identitetom – od odabira proizvoda i sastava, preko ambalaže i dizajna, do finalne proizvodnje.</p>
-        <p class="rv" lang="hr">Proizvodnju realiziramo u suradnji s renomiranim i provjerenim proizvođačima iz Hrvatske i inozemstva. Zahvaljujući širokoj mreži proizvodnih partnera, možemo ponuditi rješenja iz različitih kategorija i prilagoditi ih specifičnim zahtjevima svakog klijenta.</p>
-        <p class="rv" lang="en">We help our partners turn their ideas into finished products branded with their own logo and visual identity – from product selection and formulation to packaging, design and final production.</p>
-        <p class="rv" lang="en">We work with a network of renowned and trusted manufacturing partners in Croatia and abroad. Thanks to our extensive network of production partners, we can offer solutions across a wide range of categories and adapt them to the specific requirements of each client.</p>
-      </div>
-
-      <p class="label offer-label rv"><span lang="hr">Naša ponuda uključuje</span><span lang="en">Our portfolio includes</span></p>
       <ul class="offer" data-stagger>
-        <li class="rv"><b>01</b><span><span lang="hr">Kozmetičke proizvode za njegu lica i tijela</span><span lang="en">Cosmetic products for face and body care</span></span></li>
-        <li class="rv"><b>02</b><span><span lang="hr">Proizvode za njegu kose</span><span lang="en">Hair care products</span></span></li>
-        <li class="rv"><b>03</b><span><span lang="hr">Proizvode za oralnu higijenu i njegu</span><span lang="en">Oral care and hygiene products</span></span></li>
-        <li class="rv"><b>04</b><span><span lang="hr">Hotelsku kozmetiku i amenities proizvode</span><span lang="en">Hotel cosmetics and amenities</span></span></li>
-        <li class="rv"><b>05</b><span><span lang="hr">Popratne sadržaje i dodatke uz kozmetičke proizvode, uključujući različite wellness, lifestyle i praktične proizvode koji mogu biti personalizirani i usklađeni s identitetom brenda</span><span lang="en">Complementary products and accessories that accompany cosmetic products, including various wellness, lifestyle and practical items that can be personalized and aligned with the brand identity</span></span></li>
-        <li class="rv"><b>06</b><span><span lang="hr">Personalizirane poklon proizvode</span><span lang="en">Personalized gifts and promotional products</span></span></li>
-        <li class="rv"><b>07</b><span><span lang="hr">Poklon pakete i brendirane poklon kutije različitih vrsta, materijala i dimenzija, izrađene prema željama klijenta</span><span lang="en">Gift sets and branded gift boxes in various styles, materials and sizes, created according to the client's requirements</span></span></li>
-        <li class="rv"><b>08</b><span><span lang="hr">Dodatke prehrani i proizvode iz segmenta wellnessa</span><span lang="en">Food supplements and other wellness products</span></span></li>
+        <li class="rv"><b>01</b><span><span lang="hr">Kozmetičke proizvode za njegu lica i tijela</span><span lang="en">Cosmetic products for face and body care</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>02</b><span><span lang="hr">Proizvode za njegu kose</span><span lang="en">Hair care products</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>03</b><span><span lang="hr">Proizvode za oralnu higijenu i njegu</span><span lang="en">Oral care and hygiene products</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>04</b><span><span lang="hr">Hotelsku kozmetiku i amenities proizvode</span><span lang="en">Hotel cosmetics and amenities</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>05</b><span><span lang="hr">Popratne sadržaje i dodatke uz kozmetičke proizvode, uključujući različite wellness, lifestyle i praktične proizvode koji mogu biti personalizirani i usklađeni s identitetom brenda</span><span lang="en">Complementary products and accessories that accompany cosmetic products, including various wellness, lifestyle and practical items that can be personalized and aligned with the brand identity</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>06</b><span><span lang="hr">Personalizirane poklon proizvode</span><span lang="en">Personalized gifts and promotional products</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>07</b><span><span lang="hr">Poklon pakete i brendirane poklon kutije različitih vrsta, materijala i dimenzija, izrađene prema željama klijenta</span><span lang="en">Gift sets and branded gift boxes in various styles, materials and sizes, created according to the client's requirements</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
+        <li class="rv"><b>08</b><span><span lang="hr">Dodatke prehrani i proizvode iz segmenta wellnessa</span><span lang="en">Food supplements and other wellness products</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
       </ul>
-
-      <div class="pl-close">
+      <div class="pl-more">
         <div class="rv">
           <p class="big" lang="hr">Posebnu vrijednost vidimo u mogućnosti da za klijenta objedinimo proizvod, personalizaciju, ambalažu, brendiranje i prateće sadržaje u jedno cjelovito rješenje.</p>
           <p class="big" lang="en">Our particular strength lies in our ability to combine product development, personalization, packaging, branding and complementary products into one complete solution.</p>
         </div>
         <div class="rv">
-          <p lang="hr">Na taj način možemo kreirati kompletne kolekcije i poklon pakete – od kozmetičkih proizvoda i hotelskih amenitiesa do dodataka za wellness, lifestyle i poslovne poklone – sve vizualno usklađeno s brendom i namjenom proizvoda.</p>
-          <p lang="hr">Bilo da je riječ o proizvodima za vlastiti brend, korporativnim poklonima, hotelskoj kozmetici, promotivnim proizvodima ili proizvodima namijenjenima prodaji, naš cilj je ponuditi kvalitetno, funkcionalno i vizualno prepoznatljivo rješenje koje odgovara potrebama i pozicioniranju svakog klijenta.</p>
-          <p lang="en">We can create complete collections and gift sets – from cosmetic products and hotel amenities to wellness, lifestyle and corporate gifts – all visually aligned with the brand and the intended purpose of the product.</p>
-          <p lang="en">Whether you are looking for products for your own brand, corporate gifts, hotel cosmetics, promotional products or products intended for retail, our goal is to provide a high-quality, functional and visually distinctive solution tailored to each client's needs and market positioning.</p>
+          <details class="more"><summary><i></i><span lang="hr">Kako radimo</span><span lang="en">How we work</span></summary>
+            <div class="body">
+              <p lang="hr">Našim partnerima omogućujemo da svoje ideje pretvore u gotove proizvode brendirane njihovim logotipom i vizualnim identitetom – od odabira proizvoda i sastava, preko ambalaže i dizajna, do finalne proizvodnje.</p>
+              <p lang="hr">Proizvodnju realiziramo u suradnji s renomiranim i provjerenim proizvođačima iz Hrvatske i inozemstva. Zahvaljujući širokoj mreži proizvodnih partnera, možemo ponuditi rješenja iz različitih kategorija i prilagoditi ih specifičnim zahtjevima svakog klijenta.</p>
+              <p lang="hr">Na taj način možemo kreirati kompletne kolekcije i poklon pakete – od kozmetičkih proizvoda i hotelskih amenitiesa do dodataka za wellness, lifestyle i poslovne poklone – sve vizualno usklađeno s brendom i namjenom proizvoda.</p>
+              <p lang="hr">Bilo da je riječ o proizvodima za vlastiti brend, korporativnim poklonima, hotelskoj kozmetici, promotivnim proizvodima ili proizvodima namijenjenima prodaji, naš cilj je ponuditi kvalitetno, funkcionalno i vizualno prepoznatljivo rješenje koje odgovara potrebama i pozicioniranju svakog klijenta.</p>
+              <p lang="en">We help our partners turn their ideas into finished products branded with their own logo and visual identity – from product selection and formulation to packaging, design and final production.</p>
+              <p lang="en">We work with a network of renowned and trusted manufacturing partners in Croatia and abroad. Thanks to our extensive network of production partners, we can offer solutions across a wide range of categories and adapt them to the specific requirements of each client.</p>
+              <p lang="en">We can create complete collections and gift sets – from cosmetic products and hotel amenities to wellness, lifestyle and corporate gifts – all visually aligned with the brand and the intended purpose of the product.</p>
+              <p lang="en">Whether you are looking for products for your own brand, corporate gifts, hotel cosmetics, promotional products or products intended for retail, our goal is to provide a high-quality, functional and visually distinctive solution tailored to each client's needs and market positioning.</p>
+            </div>
+          </details>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="motto">
-    <div class="wrap">
-      <p class="label rv">Helios Gea d.o.o.</p>
-      <p class="q" data-split>
-        <span lang="hr">Od ideje do gotovog proizvoda – stvaramo proizvode koji nose <em>vaš brend.</em></span>
-        <span lang="en">From concept to finished product – we create products that carry <em>your brand.</em></span>
-      </p>
-    </div>
+  <!-- 09 · MOTTO -->
+  <section class="scene motto">
+    <div class="motto-line" aria-hidden="true"><span lang="hr">Od ideje do <em>gotovog</em> proizvoda ✦ Od ideje do <em>gotovog</em> proizvoda ✦</span><span lang="en">From concept to <em>finished</em> product ✦ From concept to <em>finished</em> product ✦</span></div>
+    <p class="q wrap rv"><span lang="hr">Od ideje do gotovog proizvoda – stvaramo proizvode koji nose vaš brend.</span><span lang="en">From concept to finished product – we create products that carry your brand.</span></p>
   </section>
 
-  <!-- KONTAKT -->
-  <section class="contact pad" id="kontakt">
+  <!-- 10 · CONTACT -->
+  <section class="scene contact" id="kontakt">
+    <i class="seal seal-big" aria-hidden="true"></i>
     <div class="wrap contact-grid">
       <div>
-        <p class="label rv"><span lang="hr">Kontakti</span><span lang="en">Contact</span></p>
-        <h2 class="h2" data-split><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></h2>
-        <div class="rv">
-          <div class="c-row"><span class="label plain dim"><span lang="hr">Telefon</span><span lang="en">Phone</span></span><a class="v" href="tel:+385993664333">+385 99 3664333</a></div>
-          <div class="c-row"><span class="label plain dim"><span lang="hr">Adresa</span><span lang="en">Address</span></span><span class="v">Helios Gea d.o.o.<br>Rovinjska 43, 52211 Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></span></div>
-        </div>
-        <a class="btn line rv" style="margin-top:40px" href="https://www.google.com/maps/search/?api=1&query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener">
-          <span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg>
-        </a>
+        <p class="label rv"><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></p>
+        <a class="phone rv" href="tel:+385993664333">+385 99 3664333</a>
       </div>
-      <div class="map rv">
-        <iframe title="Helios Gea – Rovinjska 43, Bale" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Rovinjska+43,+52211+Bale,+Croatia&z=15&output=embed"></iframe>
-        <div class="pin">Bale · Valle — 45° N</div>
+      <div class="rv">
+        <p class="addr">Helios Gea d.o.o.<br>Rovinjska 43, 52211 Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
+        <a class="btn ghost magnetic" href="https://www.google.com/maps/search/?api=1&query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
     </div>
+    <footer class="foot">
+      <div class="wrap">
+        <span class="brand"><i class="seal" aria-hidden="true"></i>HELIOS GEA</span>
+        <span>45 degrees · Bale Valle · Istria</span>
+        <span>© <span id="year">2026</span> Helios Gea d.o.o.</span>
+      </div>
+    </footer>
   </section>
 </main>
-
-<footer class="foot">
-  <div class="wrap">
-    <span class="brand"><i class="seal" aria-hidden="true"></i>HELIOS GEA</span>
-    <span>45 degrees · Bale Valle · Istria</span>
-    <span>© <span id="year">2026</span> Helios Gea d.o.o.</span>
-  </div>
-</footer>
 
 <div class="lb" role="dialog" aria-modal="true" aria-label="Foto" aria-hidden="true">
   <div class="lb-top"><span class="lb-count">01 / 01</span><button class="lb-close" type="button" aria-label="Zatvori / Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
