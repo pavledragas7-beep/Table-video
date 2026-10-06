@@ -153,57 +153,74 @@
   });
 
 
-  /* ---------- HERO: procedural olive branch (seeded, so it is the same on every visit) ---------- */
-  const svg = $(".branch");
-  if (svg) {
-    const NS = "http://www.w3.org/2000/svg";
-    let seed = 45;
+  /* ---------- Procedural olive branches (seeded, so every visit draws the same branch) ---------- */
+  const NS = "http://www.w3.org/2000/svg";
+  const svgEl = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.append(e); return e; };
+  const bz = (P, t) => { const u = 1 - t; return [0, 1].map(i => u * u * u * P[0][i] + 3 * u * u * t * P[1][i] + 3 * u * t * t * P[2][i] + t * t * t * P[3][i]); };
+  const bzA = (P, t) => { const u = 1 - t; const d = [0, 1].map(i => 3 * u * u * (P[1][i] - P[0][i]) + 6 * u * t * (P[2][i] - P[1][i]) + 3 * t * t * (P[3][i] - P[2][i])); return Math.atan2(d[1], d[0]) * 180 / Math.PI; };
+  const add = (a, b) => [a[0] + b[0], a[1] + b[1]];
+  function growBranch(svg, seed, delay0, scale, build) {
     const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.append(e); return e; };
-    const pt = (P, t) => { const u = 1 - t; return [0, 1].map(i => u * u * u * P[0][i] + 3 * u * u * t * P[1][i] + 3 * u * t * t * P[2][i] + t * t * t * P[3][i]); };
-    const ang = (P, t) => { const u = 1 - t; const d = [0, 1].map(i => 3 * u * u * (P[1][i] - P[0][i]) + 6 * u * t * (P[2][i] - P[1][i]) + 3 * t * t * (P[3][i] - P[2][i])); return Math.atan2(d[1], d[0]) * 180 / Math.PI; };
-    const sway = el("g", { class: "sway" }, svg);
-    const gStem = el("g", {}, sway), gLeaf = el("g", {}, sway), gFruit = el("g", {}, sway);
+    const sway = svgEl("g", { class: "sway" }, svg);
+    const gStem = svgEl("g", {}, sway), gLeaf = svgEl("g", {}, sway), gFruit = svgEl("g", {}, sway);
     let order = 0;
     const holder = (parent, x, y, deg) => {
-      const o = el("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})` }, parent);
-      const g = el("g", { class: "grow", style: `--g:${(1.1 + order++ * .035).toFixed(2)}s` }, o);
-      return el("g", { class: "flutter", style: `--d:${(rnd() * -6).toFixed(2)}s;--fd:${(5 + rnd() * 4).toFixed(1)}s;--fa:${(2 + rnd() * 4).toFixed(1)}deg` }, g);
+      const o = svgEl("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})` }, parent);
+      const g = svgEl("g", { class: "grow", style: `--g:${(delay0 + order++ * .035).toFixed(2)}s` }, o);
+      return svgEl("g", { class: "flutter", style: `--d:${(rnd() * -6).toFixed(2)}s;--fd:${(5 + rnd() * 4).toFixed(1)}s;--fa:${(2 + rnd() * 4).toFixed(1)}deg` }, g);
     };
     const leaf = (x, y, deg, L) => {
       const W = L * (.12 + rnd() * .03), f = holder(gLeaf, x, y, deg);
-      el("path", { class: rnd() < .33 ? "lf under" : "lf", d: `M0 0C${L * .22} ${-W * 1.15} ${L * .68} ${-W * 1.05} ${L} 0C${L * .68} ${W * 1.05} ${L * .22} ${W * 1.15} 0 0Z` }, f);
-      el("path", { class: "rib", d: `M${L * .04} 0Q${L * .5} ${W * .12} ${L * .9} 0` }, f);
+      svgEl("path", { class: rnd() < .33 ? "lf under" : "lf", d: `M0 0C${L * .22} ${-W * 1.15} ${L * .68} ${-W * 1.05} ${L} 0C${L * .68} ${W * 1.05} ${L * .22} ${W * 1.15} 0 0Z` }, f);
+      svgEl("path", { class: "rib", d: `M${L * .04} 0Q${L * .5} ${W * .12} ${L * .9} 0` }, f);
     };
     const olive = (x, y, deg) => {
-      const len = 14 + rnd() * 16, f = holder(gFruit, x, y, deg);
-      el("path", { class: "ostalk", d: `M0 0Q${len * .5} ${rnd() * 6 - 3} ${len} 0` }, f);
-      const rx = 17 + rnd() * 4, ry = 12.5 + rnd() * 2.5;
-      el("ellipse", { cx: len + rx - 2, cy: 0, rx, ry, fill: rnd() < .3 ? "url(#ob)" : "url(#og)" }, f);
-      el("ellipse", { class: "ohl", cx: len + rx * .7, cy: -ry * .4, rx: rx * .28, ry: ry * .18 }, f);
+      const len = (14 + rnd() * 16) * scale, f = holder(gFruit, x, y, deg);
+      svgEl("path", { class: "ostalk", d: `M0 0Q${len * .5} ${rnd() * 6 - 3} ${len} 0` }, f);
+      const rx = (17 + rnd() * 4) * scale, ry = (12.5 + rnd() * 2.5) * scale;
+      svgEl("ellipse", { cx: len + rx - 2, cy: 0, rx, ry, fill: rnd() < .3 ? "url(#ob)" : "url(#og)" }, f);
+      svgEl("ellipse", { class: "ohl", cx: len + rx * .7, cy: -ry * .4, rx: rx * .28, ry: ry * .18 }, f);
     };
-    const cluster = (P, t, n) => {
-      const [x, y] = pt(P, t);
-      for (let i = 0; i < n; i++) olive(x, y, 70 + i * 22 + rnd() * 16);
-    };
+    const cluster = (P, t, n, down = 70) => { const [x, y] = bz(P, t); for (let i = 0; i < n; i++) olive(x, y, down + i * 22 + rnd() * 16); };
     const twig = (P, width, leafLen, pairs) => {
-      el("path", { class: "stem", pathLength: 1, "stroke-width": width, d: `M${P[0]}C${P[1]} ${P[2]} ${P[3]}` }, gStem);
+      svgEl("path", { class: "stem", pathLength: 1, "stroke-width": width, d: `M${P[0]}C${P[1]} ${P[2]} ${P[3]}` }, gStem);
       for (let i = 1; i <= pairs; i++) {
         const t = i / (pairs + .5) + (rnd() - .5) * .03;
-        const [x, y] = pt(P, t), a = ang(P, t), L = leafLen * (1 - t * .4) * (.85 + rnd() * .3);
+        const [x, y] = bz(P, t), a = bzA(P, t), L = leafLen * (1 - t * .4) * (.85 + rnd() * .3);
         [-1, 1].forEach(side => { if (rnd() > .1) leaf(x, y, a + side * (32 + rnd() * 24), L * (.9 + rnd() * .2)); });
       }
-      const [x, y] = pt(P, 1); leaf(x, y, ang(P, 1) + (rnd() - .5) * 20, leafLen * .7);
+      const [x, y] = bz(P, 1); leaf(x, y, bzA(P, 1) + (rnd() - .5) * 20, leafLen * .7);
     };
-    const add = (a, b) => [a[0] + b[0], a[1] + b[1]];
+    build({ twig, cluster });
+  }
+
+  // hero branch
+  const heroSvg = $(".branch");
+  if (heroSvg) growBranch(heroSvg, 45, 1.1, 1, ({ twig, cluster }) => {
     const M = [[1030, 30], [790, 130], [560, 360], [210, 780]];
-    const s1 = pt(M, .26), s2 = pt(M, .5), s3 = pt(M, .7);
+    const s1 = bz(M, .26), s2 = bz(M, .5), s3 = bz(M, .7);
     const T1 = [s1, add(s1, [-30, 110]), add(s1, [-120, 220]), add(s1, [-230, 280])];
     const T2 = [s2, add(s2, [-90, -50]), add(s2, [-210, -70]), add(s2, [-320, -30])];
     const T3 = [s3, add(s3, [40, 100]), add(s3, [30, 200]), add(s3, [-20, 280])];
     twig(M, 7, 128, 9); twig(T1, 3.6, 104, 5); twig(T2, 3.2, 96, 5); twig(T3, 3.4, 100, 5);
     cluster(T1, .45, 3); cluster(T1, .85, 2); cluster(M, .62, 2); cluster(T3, .6, 3); cluster(M, .9, 2); cluster(T2, .7, 2);
-  }
+  });
+
+  // sprigs between sections: they grow when they scroll into view
+  $$(".sprig").forEach((svg, k) => {
+    growBranch(svg, +svg.dataset.seed || 7 + k * 13, .15, .7, ({ twig, cluster }) => {
+      const M = [[30, 118], [190, 84], [400, 150], [590, 96]];
+      const s1 = bz(M, .4), s2 = bz(M, .68);
+      const T1 = [s1, add(s1, [30, 30]), add(s1, [80, 50]), add(s1, [130, 52])];
+      const T2 = [s2, add(s2, [20, -30]), add(s2, [60, -50]), add(s2, [110, -56])];
+      twig(M, 3, 92, 6); twig(T1, 1.8, 66, 3); twig(T2, 1.8, 62, 3);
+      cluster(M, .55, 2); cluster(T1, .8, 3, 60); cluster(M, .86, 2);
+    });
+  });
+  const sprigIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); sprigIO.unobserve(e.target); }
+  }), { threshold: .35 });
+  $$(".sprig").forEach(s => reduce ? s.classList.add("in") : sprigIO.observe(s));
 
   /* ---------- HERO: the branch drifts a few pixels with the pointer ---------- */
   const hero = $(".hero");
