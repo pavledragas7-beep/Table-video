@@ -413,6 +413,7 @@ html:not(.js) .loader { display: none; }
   .branch { width: 124vw; right: -40vw; top: 64px; }
   .sun { width: 70vw; right: 4vw; top: 110px; }
   .hero-copy { padding-block: min(118vw, 60svh) 64px; }
+  .hero:has(.valle:not([hidden])) { align-items: flex-start; min-height: 0; }
   .valle ~ .wrap.hero-copy { padding-top: calc(84px + (100vw - 2 * var(--gut)) * 1113 / 1120 + 48px); }
   .scroll-cue { display: none; }
   .hero h1 { max-width: 14ch; }
