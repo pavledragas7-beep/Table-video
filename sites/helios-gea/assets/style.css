@@ -449,3 +449,44 @@ html:not(.js) .loader { display: none; }
 }
 .sheet { visibility: hidden; transition: visibility 0s .7s; }
 .sheet.open { visibility: visible; transition: none; }
+
+/* ===== Client revision (Oct 2026): beige grounds, black logos, Valle photo, photo slots ===== */
+:root { --beige: #efe8db; }
+.seal, .brand .seal, .hdr.ink .brand .seal, .manifesto .seal, .loader .seal { color: var(--ink); }
+.loader { background: var(--beige); color: var(--ink); }
+/* header is always light, so the black logo reads everywhere */
+.hdr, .hdr.solid { color: var(--ink); }
+.hdr.solid { background: rgba(239, 232, 219, .92); box-shadow: 0 1px 0 var(--line); }
+.hdr .nav { border-color: var(--line); background: rgba(251, 248, 242, .55); }
+.hdr .nav a:hover { background: rgba(20, 22, 17, .06); }
+.hdr .nav a.on { background: var(--ink); color: var(--cream); }
+@media (max-width: 900px) { .nav { background: rgba(239, 232, 219, .98) !important; border-color: var(--line); } }
+/* hero: flat beige, Valle photo behind the branch */
+.hero { background: var(--beige); }
+.hero::after { display: none; }
+.sun { display: none; }
+.valle { position: absolute; z-index: 0; right: 9vw; top: 50%; translate: 0 -46%; width: min(40vw, 620px); margin: 0; box-shadow: 0 40px 90px -30px rgba(20, 22, 17, .35); transition: opacity 1.6s var(--ease) .3s, transform 2s var(--ease) .3s; }
+.valle img { width: 100%; height: auto; display: block; }
+.js:not(.loaded) .valle { opacity: 0; transform: translateY(30px); }
+/* manifesto on beige with the new sentence */
+.manifesto { background: var(--beige); color: var(--ink); padding-top: clamp(40px, 6vw, 90px); }
+.fill em .fw.lit { color: var(--copper); }
+.pill { border-color: rgba(20, 22, 17, .2); color: #4a4a40; background: none; cursor: pointer; }
+.pill-tip { color: #6b6a5e; }
+.story { background: var(--beige); }
+/* chapter photos that become full width once the client's photo is in */
+.chapter.full { grid-template-columns: 1fr; }
+.chapter.full .ch-media .print { width: 100%; transform: none; }
+.chapter.full .ch-text { max-width: 760px; }
+/* private label: single lab photo */
+.lab { margin: clamp(48px, 6vw, 80px) 0 0; }
+.lab img { width: 100%; height: auto; display: block; }
+/* contact: e-mail + light footer with black logo */
+.addr .mail { color: var(--copper-lt); border-bottom: 1px solid rgba(232, 191, 152, .4); }
+.foot { background: var(--beige); border-top: 0; margin-bottom: 0; }
+.foot .wrap { color: #6b6a5e; }
+.foot .brand { color: var(--ink); }
+.pro-card .seal { display: none; }
+@media (max-width: 900px) {
+  .valle { right: var(--gut); left: var(--gut); top: 84px; translate: none; width: auto; }
+}

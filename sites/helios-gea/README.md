@@ -19,7 +19,7 @@ Anteprime in un solo file:
 
 ## Modulo di contatto
 
-Il modulo (`<form id="upit" data-endpoint="">` in `index.html`) valida i campi ma **non invia nulla finché `data-endpoint` è vuoto**:
+Vecchia nota — il modulo (`<form id="upit" data-endpoint="">` in `index.html`) valida i campi ma **non invia nulla finché `data-endpoint` è vuoto**:
 mostra un avviso con il numero di telefono. Per attivarlo inserire l'URL di un servizio che riceve i form
 (es. Formspree: `https://formspree.io/f/xxxx`) o di uno script sul vostro hosting; i dati arrivano come `multipart/form-data`
 (`name`, `email`, `phone`, `company`, `topic`, `message`, `consent`).
@@ -28,3 +28,15 @@ mostra un avviso con il numero di telefono. Per attivarlo inserire l'URL di un s
 
 `index.html` è generato: modificare `scripts/src/page.template.html` (struttura), `scripts/src/descriptions.py`
 (descrizioni prodotti HR/EN) e poi lanciare `python3 scripts/src/gen.py scripts/src .`
+
+## Foto da aggiungere (compaiono da sole, basta metterle in `img/` con questo nome)
+
+| File | Dove |
+|---|---|
+| `img/valle.jpg` | Apertura, dietro il ramo d'ulivo (finché manca: solo ramo) |
+| `img/neva-uliveto.jpg` | O nama, a tutta larghezza (finché manca: ulivo sul mare) |
+| `img/berba-maslina.jpg` | Održivi razvoj, Neva che raccoglie le olive (finché manca: foglie d'ulivo) |
+| `img/sansa.jpg` | Inovacija, sansa di olive (finché manca: grafica komina) |
+| `img/laboratorij.jpg` | Private label, laboratorio (finché manca: niente foto) |
+
+Il modulo invia a neva@helios-gea.com tramite FormSubmit: al primo invio arriva a Neva un'e-mail di attivazione da confermare una volta.

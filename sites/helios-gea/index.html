@@ -38,9 +38,10 @@
 
 <main id="top">
 
-  <!-- 01 · HERO: a living olive branch under the Istrian sun (Helios = sun, Gea = earth) -->
+  <!-- 01 · HERO: a living olive branch in front of Valle / Bale -->
   <section class="scene hero" data-cursor="">
-    <div class="sun" aria-hidden="true"></div>
+    <!-- foto di Valle: compare da sola quando esiste img/valle.jpg -->
+    <figure class="valle slot" hidden><img data-prefer="img/valle.jpg" alt="Bale · Valle, Istra"></figure>
     <svg class="branch" viewBox="0 0 1000 1000" aria-hidden="true">
       <defs>
         <radialGradient id="og" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#b5bd72"/><stop offset=".55" stop-color="#7f8c3f"/><stop offset="1" stop-color="#4c5925"/></radialGradient>
@@ -49,16 +50,11 @@
     </svg>
     <div class="falling" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap hero-copy">
-      <p class="label hero-in">Bale Valle · Istra · 45°N</p>
+      <p class="label hero-in">Bale Valle · Istra · 45°</p>
       <h1 data-split>
         <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
         <span lang="en">Success is just another word for <em>innovation</em></span>
       </h1>
-      <p class="lead hero-in"><span lang="hr">Prirodna kozmetika na bazi organske komine masline iz Istre — i proizvodi s vašim brendom.</span><span lang="en">Natural cosmetics based on organic olive pulp from Istria — and products that carry your brand.</span></p>
-      <div class="ctas hero-in">
-        <a class="btn solid magnetic" href="#proizvodi">45 degrees <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-        <a class="btn dark magnetic" href="#private-label">Private label <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-      </div>
     </div>
     <a class="scroll-cue hero-in" href="#prica" aria-label="Scroll"><i></i></a>
   </section>
@@ -68,8 +64,8 @@
     <div class="wrap">
       <i class="seal rv" aria-hidden="true"></i>
       <h2 class="fill">
-        <span lang="hr">Biomasa od komine masline ima <em>glavnu ulogu</em> u našem razvoju.</span>
-        <span lang="en">Olive pulp biomass is at the <em>heart</em> of our business.</span>
+        <span lang="hr">Znanost o bioaktivnim svojstvima masline ima <em>glavnu ulogu</em> u našem razvoju.</span>
+        <span lang="en">The science of the olive’s bioactive properties plays a <em>key role</em> in our development.</span>
       </h2>
       <div class="pills rv">
         <button class="pill" type="button" data-hr="Iza svake uspješne poslovne priče krije se inovacija." data-en="Success is just another word for innovation."><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button>
@@ -85,7 +81,7 @@
   <section class="scene story" id="prica">
     <div class="wrap">
       <div class="chapters">
-        <article class="chapter"><div class="ch-media rv"><button class="print on" type="button" data-full="img/g/olive-sea-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Maslina · 45° · Helios Gea"><img src="img/g/olive-sea-800.webp" width="800" height="800" alt="Maslina · 45° · Helios Gea" decoding="async"></button></div><div class="ch-text rv">
+        <article class="chapter wide"><div class="ch-media rv"><button class="print " type="button" data-full="img/g/olive-sea-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Helios Gea – maslinik"><img data-prefer="img/neva-uliveto.jpg" src="img/g/olive-sea-800.webp" width="800" height="800" alt="Helios Gea – maslinik" loading="lazy" decoding="async"></button></div><div class="ch-text rv">
           <p class="label">01 · <span lang="hr">O nama</span><span lang="en">About us</span></p>
           <h2><span lang="hr">Ideja iz <em>prirode</em></span><span lang="en">The story about dedication to <em>nature</em></span></h2>
           <p class="lead" lang="hr">Priča o tvrtki Helios Gea rođena je 2009. godine u Istri, predivnom djeliću Mediterana prošaranom tartufima, vinovom lozom i stoljetnim maslinicima.</p>
@@ -97,7 +93,7 @@
             </div>
           </details>
         </div></article>
-        <article class="chapter"><div class="ch-media rv"><button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" width="800" height="800" alt="Invest in your skin" loading="lazy" decoding="async"></button></div><div class="ch-text rv">
+        <article class="chapter"><div class="ch-media rv"><button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Helios Gea – berba maslina"><img data-prefer="img/berba-maslina.jpg" src="img/g/invest-skin-800.webp" width="800" height="800" alt="Helios Gea – berba maslina" loading="lazy" decoding="async"></button></div><div class="ch-text rv">
           <p class="label">02 · Helios Gea</p>
           <h2><span lang="hr">Održivi <em>razvoj</em></span><span lang="en"><em>Sustainability</em></span></h2>
           <p class="lead" lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom i lokalnom zajednicom te tako zajednički gradimo ispravan put do uspjeha.</p>
@@ -111,7 +107,7 @@
             </div>
           </details>
         </div></article>
-        <article class="chapter"><div class="ch-media rv"><button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline imaju glavnu ulogu u našem razvoju"><img src="img/g/komina-800.webp" width="800" height="800" alt="Priroda i komina masline imaju glavnu ulogu u našem razvoju" loading="lazy" decoding="async"></button></div><div class="ch-text rv">
+        <article class="chapter"><div class="ch-media rv"><button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="story" data-cursor="Pogledaj|View" aria-label="Komina masline"><img data-prefer="img/sansa.jpg" src="img/g/komina-800.webp" width="800" height="800" alt="Komina masline" loading="lazy" decoding="async"></button></div><div class="ch-text rv">
           <p class="label">03 · <span lang="hr">Inovacija</span><span lang="en">Innovation</span></p>
           <h2 style="font-size:clamp(30px,3.2vw,52px)"><span lang="hr">Inovativan način prerade komine masline s primjenom u <em>kozmetičke svrhe</em></span><span lang="en">Innovative method of processing olive pulp biomass for <em>cosmetic purposes</em></span></h2>
           <details class="more"><summary><i></i><span lang="hr">Pročitajte više</span><span lang="en">Read more</span></summary>
@@ -130,7 +126,7 @@
     <div class="wrap globe-grid">
       <div class="globe-wrap rv" data-cursor="Okreni|Spin">
         <canvas id="globe" aria-label="Globus: 45. paralela prolazi kroz Bale"></canvas>
-        <span class="globe-tag">Bale · 45°N</span>
+        <span class="globe-tag">Bale · 45°</span>
       </div>
       <div>
         <div class="deg" aria-label="45°"><b>45</b><sup>°</sup></div>
@@ -139,26 +135,9 @@
         <p class="rv" lang="en">The 45th parallel passes through the small town of Bale and its most southern part, which means halfway between the Equator and the North Pole – the most ideal place to live. Hence the inspiration for the name of the product line “45 degrees”.</p>
         <div class="lat rv">
           <div><span>90° N</span><span lang="hr">Sjeverni pol</span><span lang="en">North Pole</span></div>
-          <div class="here"><span>45° N</span><span>Bale · Valle</span></div>
+          <div class="here"><span>45°</span><span>Bale · Valle</span></div>
           <div><span>0°</span><span lang="hr">Ekvator</span><span lang="en">Equator</span></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 · FACE LINE -->
-  <section class="scene face">
-    <div class="wrap">
-      <div class="face-head">
-        <div>
-          <p class="label rv"><span lang="hr">Novo · Njega lica</span><span lang="en">New · Facial care</span></p>
-          <h2 data-split>Absolute <em>facial</em></h2>
-        </div>
-        <a class="btn ghost magnetic rv" href="#proizvodi"><span lang="hr">Svi proizvodi</span><span lang="en">All products</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-      </div>
-      <div class="face-grid">
-        <div class="rv"><button class="print dark tilt" type="button" data-full="img/g/cream-stones-1600.webp" data-group="face" data-cap="Absolute facial rich cream · 50 ml" data-cursor="Pogledaj|View" aria-label="Absolute facial rich cream"><img src="img/g/cream-stones-800.webp" width="800" height="533" alt="Absolute facial rich cream" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Absolute facial rich cream</h3><span>50 ml</span></div></div>
-        <div class="rv"><button class="print tilt" type="button" data-full="img/p/facial-toner-1600.webp" data-group="face" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" width="800" height="533" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button><div class="face-cap"><h3>Hydrating facial spray toner</h3><span>200 ml</span></div></div>
       </div>
     </div>
   </section>
@@ -185,8 +164,8 @@
               <li><button type="button"><span class="n">03</span><h4>Absolute foot balm</h4><span class="size">75 ml</span></button></li>
               <li><button type="button"><span class="n">04</span><h4>Men hand cream</h4><span class="size">50 ml</span></button></li>
               <li><button type="button"><span class="n">05</span><h4>Women hand absolute cream mask</h4><span class="size">50 ml</span></button></li>
-              <li><button type="button"><span class="n">06</span><h4>Absolute facial rich cream<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">50 ml</span></button></li>
-              <li><button type="button"><span class="n">07</span><h4>Hydrating facial spray toner<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
+              <li><button type="button"><span class="n">06</span><h4>Absolute facial rich cream</h4><span class="size">50 ml</span></button></li>
+              <li><button type="button"><span class="n">07</span><h4>Hydrating facial spray toner</h4><span class="size">200 ml</span></button></li>
           </ul>
           <div class="show-stage rv">
             <div class="show-frame">
@@ -213,27 +192,27 @@
       <div class="panel" id="p-pro" role="tabpanel" aria-labelledby="t-pro" hidden>
         <div class="show-grid">
           <ul class="plist">
-              <li><button type="button"><span class="n">01</span><h4>Professional absolute body cream lotion</h4><span class="size">473 ml</span></button></li>
-              <li><button type="button"><span class="n">02</span><h4>Professional absolute body polish</h4><span class="size">473 ml</span></button></li>
-              <li><button type="button"><span class="n">03</span><h4>Professional absolute hand cream mask</h4><span class="size">236 ml</span></button></li>
-              <li><button type="button"><span class="n">04</span><h4>Professional absolute foot balm</h4><span class="size">236 ml</span></button></li>
-              <li><button type="button"><span class="n">05</span><h4>Professional facial rich cream<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
-              <li><button type="button"><span class="n">06</span><h4>Hydrating facial spray toner<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span></h4><span class="size">200 ml</span></button></li>
+              <li><button type="button"><span class="n">01</span><h4>Professional absolute body cream lotion</h4><span class="size">500 ml</span></button></li>
+              <li><button type="button"><span class="n">02</span><h4>Professional absolute body polish</h4><span class="size">500 ml</span></button></li>
+              <li><button type="button"><span class="n">03</span><h4>Professional absolute hand cream mask</h4><span class="size">250 ml</span></button></li>
+              <li><button type="button"><span class="n">04</span><h4>Professional absolute foot balm</h4><span class="size">250 ml</span></button></li>
+              <li><button type="button"><span class="n">05</span><h4>Professional facial rich cream</h4><span class="size">200 ml</span></button></li>
+              <li><button type="button"><span class="n">06</span><h4>Hydrating facial spray toner</h4><span class="size">200 ml</span></button></li>
           </ul>
           <div class="show-stage">
             <div class="show-frame">
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">473<small>ml</small></div><p class="label">Professional absolute body cream lotion</p></div></div>
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">473<small>ml</small></div><p class="label">Professional absolute body polish</p></div></div>
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">236<small>ml</small></div><p class="label">Professional absolute hand cream mask</p></div></div>
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">236<small>ml</small></div><p class="label">Professional absolute foot balm</p></div></div>
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">200<small>ml</small></div><p class="label">Professional facial rich cream</p></div></div>
-                <div class="pro-card"><div><i class="seal" aria-hidden="true"></i><div class="big">200<small>ml</small></div><p class="label">Hydrating facial spray toner</p></div></div>
+                <div class="pro-card"><div><div class="big">500<small>ml</small></div><p class="label">Professional absolute body cream lotion</p></div></div>
+                <div class="pro-card"><div><div class="big">500<small>ml</small></div><p class="label">Professional absolute body polish</p></div></div>
+                <div class="pro-card"><div><div class="big">250<small>ml</small></div><p class="label">Professional absolute hand cream mask</p></div></div>
+                <div class="pro-card"><div><div class="big">250<small>ml</small></div><p class="label">Professional absolute foot balm</p></div></div>
+                <div class="pro-card"><div><div class="big">200<small>ml</small></div><p class="label">Professional facial rich cream</p></div></div>
+                <button class="print " type="button" data-full="img/p/facial-toner-1600.webp" data-group="pro" data-cap="Hydrating facial spray toner · 200 ml" data-cursor="Pogledaj|View" aria-label="Hydrating facial spray toner"><img src="img/p/facial-toner-800.webp" width="800" height="533" alt="Hydrating facial spray toner" loading="lazy" decoding="async"></button>
             </div>
             <div class="show-meta"><span class="count"><b>01</b> / 06</span><div class="arrows"><button class="prev" type="button" aria-label="Prethodno / Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M15 8H2M7 3 2 8l5 5"/></svg></button><button class="next" type="button" aria-label="Sljedeće / Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button></div></div>
-            <div class="pinfo on"><p class="teaser"><span lang="hr">Potpuno prirodna krema-losion od 45 Degrees za duboku i intenzivnu njegu kože tijela.</span><span lang="en">A completely natural cream lotion by 45 Degrees for deep, intensive body care.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Body cream lotion</span></h3><p class="sheet-size">473 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodna krema-losion od 45 Degrees za duboku i intenzivnu njegu kože tijela. Sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika bogatu antioksidansima i mineralima. Pojačana hranjiva formula s uljem avokada, uljem sjemenki grožđa, maslinovim uljem i ekstraktom preslice dubinski njeguje kožu. Intenzivnog mirisa eteričnih ulja muškatne kadulje, mažurana, mente i vanilije, svilenkaste teksture za profesionalnu uporabu.</p><p lang="en">A completely natural cream lotion by 45 Degrees for deep, intensive body care. It contains premium organic olive pulp from Istrian eco olive groves, rich in antioxidants and minerals. An enhanced nourishing formula with avocado oil, grape seed oil, olive oil and horsetail extract deeply cares for the skin. Intensely scented with essential oils of clary sage, marjoram, mint and vanilla, with a silky texture for professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute body cream lotion · 473 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
-            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodni piling za tijelo od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala.</span><span lang="en">A completely natural body scrub by 45 Degrees containing premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Body polish</span></h3><p class="sheet-size">473 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodni piling za tijelo od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala. Ulje sjemenki grožđa, ulje masline i shea maslac oplemenjeni esencijama naranče, petit graina, vanilije i paprene metvice energiziraju i nadahnjuju osjetila. Ekstrakt preslice i mljevene koštice masline stvaraju nježni piling efekt koji pouzdano odstranjuje mrtve stanice epiderme i pružaju koži osjećaj zategnutosti. Koža je dubinski nahranjena, svilenkasta na dodir i svježeg izgleda.</p><p lang="hr">Snažnija formula uz pojačane doze prirodnih sastojaka. Za profesionalnu uporabu.</p><p lang="en">A completely natural body scrub by 45 Degrees containing premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals. Grape seed oil, olive oil and shea butter, enriched with essences of orange, petitgrain, vanilla and peppermint, energise and inspire the senses. Horsetail extract and ground olive stones create a gentle exfoliating effect that reliably removes dead skin cells and leaves the skin feeling firm. The skin is deeply nourished, silky to the touch and fresh-looking.</p><p lang="en">A stronger formula with higher doses of natural ingredients. For professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute body polish · 473 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
-            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodna njega ruku formulirana za žene.</span><span lang="en">Completely natural hand care formulated for women.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Hand cream mask</span></h3><p class="sheet-size">236 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodna njega ruku formulirana za žene. 45° Women Hand Absolute Cream Mask zadovoljava sve potrebe njege ruku u jednom proizvodu. Inovativna formula sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, obogaćenu organskim uljem divlje ruže, uljem sjemenki grožđa, uljem lana, ekstraktom gaveza, preslice, nevena, karite maslacem i esencijama vanilije i mažurana, elixir dugovječnosti stanica. Intenzivna i hranjiva poput maske, a brzo upijajuća tekstura koja ne masti omogućuje da se koristi kao krema za svakodnevnu njegu ruku i kao maska u debljem sloju za posebnu njegu ruku.</p><p lang="en">Completely natural hand care formulated for women. 45° Women Hand Absolute Cream Mask covers every hand-care need in one product. The innovative formula contains premium organic olive pulp from Istrian eco olive groves, enriched with organic rosehip oil, grape seed oil, linseed oil, extracts of comfrey, horsetail and calendula, shea butter and essences of vanilla and marjoram – an elixir of cell longevity. Intensive and nourishing like a mask, while its fast-absorbing, non-greasy texture lets you use it as an everyday hand cream, or in a thicker layer as a mask for special care.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute hand cream mask · 236 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
-            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodni Absolute Foot Balm od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala.</span><span lang="en">The completely natural Absolute Foot Balm by 45 Degrees contains premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Foot balm</span></h3><p class="sheet-size">236 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodni Absolute Foot Balm od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala. Laneno ulje dubinski hrani i obnavlja kožu, a esencije paprene metvice i muškatne kadulje osvježavaju i opuštaju. Ekstrakt preslice, gaveza i ružmarina doprinose osjećaju ugode i lakoće. Stopala su dubinski nahranjena, obnovljena i osvježena.</p><p lang="hr">Za profesionalnu uporabu.</p><p lang="en">The completely natural Absolute Foot Balm by 45 Degrees contains premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals. Linseed oil deeply nourishes and renews the skin, while essences of peppermint and clary sage refresh and relax. Horsetail, comfrey and rosemary extracts add a feeling of comfort and lightness. Feet are deeply nourished, renewed and refreshed.</p><p lang="en">For professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute foot balm · 236 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
+            <div class="pinfo on"><p class="teaser"><span lang="hr">Potpuno prirodna krema-losion od 45 Degrees za duboku i intenzivnu njegu kože tijela.</span><span lang="en">A completely natural cream lotion by 45 Degrees for deep, intensive body care.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Body cream lotion</span></h3><p class="sheet-size">500 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodna krema-losion od 45 Degrees za duboku i intenzivnu njegu kože tijela. Sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika bogatu antioksidansima i mineralima. Pojačana hranjiva formula s uljem avokada, uljem sjemenki grožđa, maslinovim uljem i ekstraktom preslice dubinski njeguje kožu. Intenzivnog mirisa eteričnih ulja muškatne kadulje, mažurana, mente i vanilije, svilenkaste teksture za profesionalnu uporabu.</p><p lang="en">A completely natural cream lotion by 45 Degrees for deep, intensive body care. It contains premium organic olive pulp from Istrian eco olive groves, rich in antioxidants and minerals. An enhanced nourishing formula with avocado oil, grape seed oil, olive oil and horsetail extract deeply cares for the skin. Intensely scented with essential oils of clary sage, marjoram, mint and vanilla, with a silky texture for professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute body cream lotion · 500 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
+            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodni piling za tijelo od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala.</span><span lang="en">A completely natural body scrub by 45 Degrees containing premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Body polish</span></h3><p class="sheet-size">500 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodni piling za tijelo od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala. Ulje sjemenki grožđa, ulje masline i shea maslac oplemenjeni esencijama naranče, petit graina, vanilije i paprene metvice energiziraju i nadahnjuju osjetila. Ekstrakt preslice i mljevene koštice masline stvaraju nježni piling efekt koji pouzdano odstranjuje mrtve stanice epiderme i pružaju koži osjećaj zategnutosti. Koža je dubinski nahranjena, svilenkasta na dodir i svježeg izgleda.</p><p lang="hr">Snažnija formula uz pojačane doze prirodnih sastojaka. Za profesionalnu uporabu.</p><p lang="en">A completely natural body scrub by 45 Degrees containing premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals. Grape seed oil, olive oil and shea butter, enriched with essences of orange, petitgrain, vanilla and peppermint, energise and inspire the senses. Horsetail extract and ground olive stones create a gentle exfoliating effect that reliably removes dead skin cells and leaves the skin feeling firm. The skin is deeply nourished, silky to the touch and fresh-looking.</p><p lang="en">A stronger formula with higher doses of natural ingredients. For professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute body polish · 500 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
+            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodna njega ruku formulirana za žene.</span><span lang="en">Completely natural hand care formulated for women.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Hand cream mask</span></h3><p class="sheet-size">250 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodna njega ruku formulirana za žene. 45° Women Hand Absolute Cream Mask zadovoljava sve potrebe njege ruku u jednom proizvodu. Inovativna formula sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, obogaćenu organskim uljem divlje ruže, uljem sjemenki grožđa, uljem lana, ekstraktom gaveza, preslice, nevena, karite maslacem i esencijama vanilije i mažurana, elixir dugovječnosti stanica. Intenzivna i hranjiva poput maske, a brzo upijajuća tekstura koja ne masti omogućuje da se koristi kao krema za svakodnevnu njegu ruku i kao maska u debljem sloju za posebnu njegu ruku.</p><p lang="en">Completely natural hand care formulated for women. 45° Women Hand Absolute Cream Mask covers every hand-care need in one product. The innovative formula contains premium organic olive pulp from Istrian eco olive groves, enriched with organic rosehip oil, grape seed oil, linseed oil, extracts of comfrey, horsetail and calendula, shea butter and essences of vanilla and marjoram – an elixir of cell longevity. Intensive and nourishing like a mask, while its fast-absorbing, non-greasy texture lets you use it as an everyday hand cream, or in a thicker layer as a mask for special care.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute hand cream mask · 250 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
+            <div class="pinfo"><p class="teaser"><span lang="hr">Potpuno prirodni Absolute Foot Balm od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala.</span><span lang="en">The completely natural Absolute Foot Balm by 45 Degrees contains premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals.</span></p><button class="more-btn" type="button" data-sheet><span lang="hr">Opis i upotreba</span><span lang="en">Description &amp; use</span><i></i></button><template><p class="label">45 degrees · <span lang="hr">Profesionalna upotreba</span><span lang="en">Professional use</span></p><h3 class="sheet-title"><span class="kick">Professional Absolute</span><span class="sub">Foot balm</span></h3><p class="sheet-size">250 ml</p><div class="sheet-text"><p lang="hr">Potpuno prirodni Absolute Foot Balm od 45 Degrees sadrži organsku kominu masline premium kvalitete iz istarskih eko maslinika, bogati izvor antioksidansa i minerala. Laneno ulje dubinski hrani i obnavlja kožu, a esencije paprene metvice i muškatne kadulje osvježavaju i opuštaju. Ekstrakt preslice, gaveza i ružmarina doprinose osjećaju ugode i lakoće. Stopala su dubinski nahranjena, obnovljena i osvježena.</p><p lang="hr">Za profesionalnu uporabu.</p><p lang="en">The completely natural Absolute Foot Balm by 45 Degrees contains premium organic olive pulp from Istrian eco olive groves, a rich source of antioxidants and minerals. Linseed oil deeply nourishes and renews the skin, while essences of peppermint and clary sage refresh and relax. Horsetail, comfrey and rosemary extracts add a feeling of comfort and lightness. Feet are deeply nourished, renewed and refreshed.</p><p lang="en">For professional use.</p></div><a class="btn solid" href="#upit" data-enquire="Professional absolute foot balm · 250 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></template></div>
             <div class="pinfo"><p class="teaser"><span lang="hr">Za više informacija o ovom proizvodu pošaljite nam upit.</span><span lang="en">For more information about this product, send us an enquiry.</span></p><a class="more-btn" href="#upit" data-enquire="Professional facial rich cream · 200 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></div>
             <div class="pinfo"><p class="teaser"><span lang="hr">Za više informacija o ovom proizvodu pošaljite nam upit.</span><span lang="en">For more information about this product, send us an enquiry.</span></p><a class="more-btn" href="#upit" data-enquire="Hydrating facial spray toner · 200 ml"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></div>
           </div>
@@ -264,15 +243,12 @@
     </div>
     <div class="strip rev" style="--dur:80s">
         <button class="print " type="button" data-full="img/g/model-products-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees Absolute"><img src="img/g/model-products-800.webp" width="800" height="800" alt="45 degrees Absolute" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/foot-balm-post-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/foot-balm-post-800.webp" width="800" height="800" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/spa-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/spa-lotion-800.webp" width="800" height="800" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/seal-portrait-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees · Helios Gea"><img src="img/g/seal-portrait-800.webp" width="700" height="700" alt="45 degrees · Helios Gea" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/invest-skin-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Invest in your skin"><img src="img/g/invest-skin-800.webp" width="800" height="800" alt="Invest in your skin" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/legs-foot-balm-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute foot balm"><img src="img/g/legs-foot-balm-800.webp" width="800" height="800" alt="Absolute foot balm" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/hand-cream-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees natural cosmetics"><img src="img/g/hand-cream-800.webp" width="800" height="800" alt="45 degrees natural cosmetics" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/body-lotion-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Absolute body cream lotion"><img src="img/g/body-lotion-800.webp" width="800" height="800" alt="Absolute body cream lotion" loading="lazy" decoding="async"></button>
         <button class="print " type="button" data-full="img/g/wrist-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="45 degrees"><img src="img/g/wrist-800.webp" width="800" height="800" alt="45 degrees" loading="lazy" decoding="async"></button>
-        <button class="print " type="button" data-full="img/g/komina-1600.webp" data-group="strips" data-cursor="Pogledaj|View" aria-label="Priroda i komina masline"><img src="img/g/komina-800.webp" width="800" height="800" alt="Priroda i komina masline" loading="lazy" decoding="async"></button>
     </div>
   </section>
 
@@ -289,6 +265,8 @@
           <p class="lead" lang="en">Helios Gea d.o.o. specializes in the development and production of personalized products tailored to the needs and identity of our clients.</p>
         </div>
       </div>
+      <!-- laboratorij: compare da sola quando esiste img/laboratorij.jpg -->
+      <figure class="lab slot rv" hidden><img data-prefer="img/laboratorij.jpg" alt="Helios Gea – laboratorij"></figure>
       <ul class="offer" data-stagger>
         <li class="rv"><b>01</b><span><span lang="hr">Kozmetičke proizvode za njegu lica i tijela</span><span lang="en">Cosmetic products for face and body care</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
         <li class="rv"><b>02</b><span><span lang="hr">Proizvode za njegu kose</span><span lang="en">Hair care products</span></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></li>
@@ -330,17 +308,18 @@
 
   <!-- 10 · CONTACT + FORM -->
   <section class="scene contact" id="kontakt">
-    <i class="seal seal-big" aria-hidden="true"></i>
-    <div class="wrap contact-grid">
+        <div class="wrap contact-grid">
       <div class="contact-info">
         <p class="label rv"><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></p>
         <a class="phone rv" href="tel:+385993664333">+385 99 3664333</a>
-        <p class="addr rv">Helios Gea d.o.o.<br>Rovinjska 43, 52211 Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
-        <a class="btn ghost magnetic rv" href="https://www.google.com/maps/search/?api=1&amp;query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+        <p class="addr rv"><a class="mail" href="mailto:neva@helios-gea.com">neva@helios-gea.com</a><br>Helios Gea d.o.o.<br>San Nicolò 23 A, 52211 Valle · Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
+        <a class="btn ghost magnetic rv" href="https://www.google.com/maps/search/?api=1&amp;query=San+Nicol%C3%B2+23A%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
 
-      <!-- data-endpoint: URL that receives the form (e.g. Formspree, or your own script). Empty = not connected yet. -->
-      <form class="form rv" id="upit" data-endpoint="" novalidate>
+      <!-- Sent via FormSubmit to neva@helios-gea.com (the first submission triggers a one-time activation e-mail to that address). -->
+      <form class="form rv" id="upit" data-endpoint="https://formsubmit.co/ajax/neva@helios-gea.com" novalidate>
+        <input type="hidden" name="_subject" value="Upit s web stranice helios-gea.com">
+        <input type="hidden" name="_template" value="table">
         <h3><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span></h3>
         <div class="f-row">
           <div class="field"><label for="f-name"><span lang="hr">Ime i prezime</span><span lang="en">Full name</span> *</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
@@ -358,7 +337,7 @@
         </fieldset>
         <div class="field"><label for="f-msg"><span lang="hr">Poruka</span><span lang="en">Message</span> *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
         <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry.</span></span></label>
-        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="f-foot">
           <button class="btn solid" type="submit"><span lang="hr">Pošalji upit</span><span lang="en">Send enquiry</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
           <p class="f-status" role="status" aria-live="polite"></p>

@@ -8,6 +8,20 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const lang = () => root.dataset.lang || "hr";
 
+
+  /* ---------- Client photos: swap in as soon as the file exists (img/valle.jpg, img/neva-uliveto.jpg …) ---------- */
+  $$("img[data-prefer]").forEach(img => {
+    const probe = new Image();
+    probe.onload = () => {
+      img.removeAttribute("srcset");
+      img.src = probe.src;
+      img.closest("[hidden]")?.removeAttribute("hidden");
+      const z = img.closest("[data-full]"); if (z) z.dataset.full = probe.src;
+      img.closest(".chapter.wide")?.classList.add("full");
+    };
+    probe.src = img.dataset.prefer;
+  });
+
   /* ---------- Language ---------- */
   const langHooks = [];
   function setLang(l) {
@@ -463,7 +477,7 @@
       status.className = "f-status";
       const bad = fields.filter(el => !check(el));
       if (bad.length) { status.textContent = t("fix"); status.classList.add("warn"); bad[0].focus(); return; }
-      if (form.website.value) return; // bot trap
+      if (form._honey.value) return; // bot trap
       const endpoint = form.dataset.endpoint;
       if (!endpoint) { status.textContent = t("off"); status.classList.add("warn"); return; }
       form.classList.add("sending");
@@ -471,6 +485,8 @@
       try {
         const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
         if (!res.ok) throw new Error(res.status);
+        const data = await res.json().catch(() => ({}));
+        if (data.success === false || data.success === "false") throw new Error(data.message || "rejected");
         form.reset();
         status.textContent = t("ok"); status.classList.add("ok");
       } catch (err) {
