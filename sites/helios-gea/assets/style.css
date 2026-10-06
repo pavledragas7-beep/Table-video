@@ -551,3 +551,50 @@ html:not(.js) .loader { display: none; }
 }
 .showroom, .pl, .contact { overflow-x: clip; }
 .sprig { width: min(560px, 86vw); }
+
+/* ===== Revision 4: light hero with the photo bled to the edges; six different olive ornaments ===== */
+.hero { background: #f7f2ea; color: var(--ink); }
+.hero .label { color: var(--copper); }
+.hero h1 { color: var(--ink); text-shadow: none; }
+.hero h1 em { color: var(--copper); }
+.valle { top: 0; right: 0; bottom: 0; left: auto; translate: none; height: 100%; width: min(60vw, calc(100svh * 1120 / 1113)); aspect-ratio: auto; outline: none; box-shadow: none; }
+.valle img { object-fit: cover; object-position: 50% 50%; }
+.valle figcaption { display: none; }
+.js:not(.loaded) .valle { opacity: 0; transform: none; }
+.branch { left: 28vw; top: 2vh; width: min(64vw, 112vh); }
+.hdr.ink { color: var(--ink); }
+.hdr.ink .nav { border-color: rgba(20, 22, 17, .14); background: rgba(247, 242, 234, .6); }
+.hdr.ink .nav a:hover { background: rgba(20, 22, 17, .06); }
+.hdr.ink .nav a.on { background: var(--ink); color: var(--cream); }
+.hdr.ink .brand .seal { color: var(--ink); }
+@media (max-width: 900px) {
+  .valle { top: 0; left: 0; right: 0; bottom: auto; width: 100%; height: auto; aspect-ratio: 1120 / 1113; }
+  .valle img { height: 100%; }
+  .valle ~ .wrap.hero-copy, .hero-copy { padding-top: calc(100vw * 1113 / 1120 + 36px); padding-bottom: 56px; }
+  .branch { left: auto; right: -46vw; top: 30px; width: 122vw; }
+}
+/* ornaments: each kind has its own look and motion */
+.k-drop { width: min(400px, 74vw); }
+.k-drop .fruit .grow { transform: translateX(-190px); opacity: 0; animation: dropin 1.5s cubic-bezier(.4, 0, .6, 1) forwards; animation-delay: calc(var(--g, 0s) + .6s); }
+@keyframes dropin { 0% { transform: translateX(-190px); opacity: 0; } 12% { opacity: 1; } 55% { transform: translateX(0); } 68% { transform: translateX(-22px); } 80% { transform: translateX(0); } 90% { transform: translateX(-6px); } 100% { transform: translateX(0); opacity: 1; } }
+.k-line .lf, .k-line .lf.under { fill: none; stroke: #33402a; stroke-width: 1.2; }
+.k-line .rib { stroke: #33402a; stroke-width: .8; }
+.k-line ellipse { fill: none !important; stroke: #33402a; stroke-width: 1.2; }
+.k-line .ohl { display: none; }
+.k-line .stem { stroke: #33402a; animation-duration: 3.2s; }
+.k-line .grow { animation-duration: 1.6s; }
+.k-hang { width: min(190px, 30vw); }
+.k-hang .sway { animation: pendulum 7s ease-in-out infinite; }
+@keyframes pendulum { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
+.deco-l.k-hang { left: 3vw; top: 0; bottom: auto; transform: none; }
+.k-arc .fruit .flutter { animation-name: swing; animation-duration: 3.6s; }
+@keyframes swing { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
+.k-wreath { width: min(620px, 90vw); }
+.k-wreath .sway { animation: breathe 8s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+.k-corner .sway { animation-duration: 13s; }
+.ch-sep.flip .sprig { transform: none; }
+.deco-l.k-hang { left: auto; right: 2vw; width: min(170px, 24vw); }
+@media (min-width: 1101px) { .pl > .wrap { padding-right: max(var(--gut), 210px); } }
+.deco-form { top: -150px; right: 0; width: min(380px, 70vw); transform: none; }
+@media (max-width: 900px) { .deco-form { top: -120px; width: 260px; } }

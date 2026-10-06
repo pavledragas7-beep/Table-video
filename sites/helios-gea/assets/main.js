@@ -181,6 +181,7 @@
       svgEl("ellipse", { cx: len + rx - 2, cy: 0, rx, ry, fill: rnd() < .3 ? "url(#ob)" : "url(#og)" }, f);
       svgEl("ellipse", { class: "ohl", cx: len + rx * .7, cy: -ry * .4, rx: rx * .28, ry: ry * .18 }, f);
     };
+    gFruit.setAttribute("class", "fruit");
     const cluster = (P, t, n, down = 70) => { const [x, y] = bz(P, t); for (let i = 0; i < n; i++) olive(x, y, down + i * 22 + rnd() * 16); };
     const twig = (P, width, leafLen, pairs) => {
       svgEl("path", { class: "stem", pathLength: 1, "stroke-width": width, d: `M${P[0]}C${P[1]} ${P[2]} ${P[3]}` }, gStem);
@@ -191,7 +192,7 @@
       }
       const [x, y] = bz(P, 1); leaf(x, y, bzA(P, 1) + (rnd() - .5) * 20, leafLen * .7);
     };
-    build({ twig, cluster });
+    build({ twig, cluster, leaf, olive });
   }
 
   // hero branch
@@ -206,16 +207,47 @@
     cluster(T1, .45, 3); cluster(T1, .85, 2); cluster(M, .62, 2); cluster(T3, .6, 3); cluster(M, .9, 2); cluster(T2, .7, 2);
   });
 
-  // sprigs between sections: they grow when they scroll into view
+  // ornaments between sections: every one has its own shape and motion
+  const KINDS = {
+    // two sprigs opening from the centre, like a half wreath
+    wreath: { vb: "0 0 640 220", o: [320, 150], build: ({ twig, cluster }) => {
+      const L = [[320, 150], [240, 156], [140, 130], [30, 70]], R = [[320, 150], [400, 156], [500, 130], [610, 70]];
+      twig(L, 2.6, 80, 6); twig(R, 2.6, 80, 6); cluster(L, .18, 2); cluster(R, .18, 3);
+    } },
+    // a short twig; ripe olives drop onto it and settle
+    drop: { vb: "0 0 420 220", o: [40, 170], build: ({ twig, cluster }) => {
+      const M = [[40, 170], [140, 150], [260, 166], [390, 130]];
+      twig(M, 2.4, 78, 4); cluster(M, .42, 3, 80); cluster(M, .75, 2, 85);
+    } },
+    // engraved line-art, like the seal on the packaging
+    line: { vb: "0 0 620 220", o: [30, 118], build: ({ twig, cluster }) => {
+      const M = [[30, 118], [190, 84], [400, 150], [590, 96]], s1 = bz(M, .45);
+      twig(M, 1.6, 86, 7); twig([s1, add(s1, [30, 40]), add(s1, [80, 60]), add(s1, [140, 64])], 1.2, 60, 3);
+      cluster(M, .3, 2); cluster(M, .82, 3);
+    } },
+    // a branch reaching in from the corner
+    corner: { vb: "0 0 600 600", o: [600, 0], build: ({ twig, cluster }) => {
+      const M = [[610, -10], [470, 110], [300, 320], [70, 560]], s1 = bz(M, .45);
+      twig(M, 3.4, 96, 8); twig([s1, add(s1, [-80, -10]), add(s1, [-170, 10]), add(s1, [-250, 60])], 2, 72, 4);
+      cluster(M, .3, 3); cluster(M, .7, 2); cluster([s1, add(s1, [-80, -10]), add(s1, [-170, 10]), add(s1, [-250, 60])], .7, 2);
+    } },
+    // hanging from above, swinging like a pendulum
+    hang: { vb: "0 0 300 620", o: [150, 0], build: ({ twig, cluster }) => {
+      const M = [[150, -10], [180, 180], [110, 380], [160, 600]];
+      twig(M, 2.6, 84, 7); cluster(M, .35, 3, 10); cluster(M, .62, 2, 170); cluster(M, .85, 3, 20);
+    } },
+    // an arch with olives hanging in the middle
+    arc: { vb: "0 0 600 240", o: [20, 200], build: ({ twig, cluster }) => {
+      const M = [[20, 200], [110, 30], [490, 30], [580, 200]];
+      twig(M, 2.4, 70, 9); cluster(M, .42, 2, 90); cluster(M, .55, 3, 90);
+    } },
+  };
   $$(".sprig").forEach((svg, k) => {
-    growBranch(svg, +svg.dataset.seed || 7 + k * 13, .15, .7, ({ twig, cluster }) => {
-      const M = [[30, 118], [190, 84], [400, 150], [590, 96]];
-      const s1 = bz(M, .4), s2 = bz(M, .68);
-      const T1 = [s1, add(s1, [30, 30]), add(s1, [80, 50]), add(s1, [130, 52])];
-      const T2 = [s2, add(s2, [20, -30]), add(s2, [60, -50]), add(s2, [110, -56])];
-      twig(M, 3, 92, 6); twig(T1, 1.8, 66, 3); twig(T2, 1.8, 62, 3);
-      cluster(M, .55, 2); cluster(T1, .8, 3, 60); cluster(M, .86, 2);
-    });
+    const kind = KINDS[svg.dataset.kind] || KINDS.line;
+    svg.setAttribute("viewBox", kind.vb);
+    svg.classList.add("k-" + (svg.dataset.kind || "line"));
+    svg.style.setProperty("--ox", kind.o[0] + "px"); svg.style.setProperty("--oy", kind.o[1] + "px");
+    growBranch(svg, +svg.dataset.seed || 7 + k * 13, .15, .7, kind.build);
   });
   const sprigIO = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add("in"); sprigIO.unobserve(e.target); }
