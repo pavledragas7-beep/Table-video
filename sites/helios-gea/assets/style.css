@@ -688,3 +688,29 @@ html:not(.js) .loader { display: none; }
 @media (max-width: 560px) {
   .plist button, .plist button:hover, .plist button[aria-current="true"] { padding: 16px 14px; grid-template-columns: 28px 1fr auto; gap: 10px; }
 }
+/* ---------- Showroom controls: a dark capsule with progress, then the description button ---------- */
+.show-meta { display: flex; align-items: center; gap: 18px; margin-top: 22px; padding: 8px 8px 8px 24px; border-radius: 999px; background: var(--deep); color: var(--cream); box-shadow: 0 18px 40px -22px rgba(20, 22, 17, .6); }
+.show-meta .count { color: rgba(244, 239, 229, .5); font: 400 12px var(--mono); letter-spacing: .16em; white-space: nowrap; }
+.show-meta .count b { color: var(--cream); }
+.show-meta .prog { flex: 1; position: relative; height: 1px; background: rgba(244, 239, 229, .18); }
+.show-meta .prog i { position: absolute; inset: 0; background: linear-gradient(90deg, var(--copper), var(--copper-lt)); transform-origin: left; transform: scaleX(var(--p, .14)); transition: transform .7s var(--ease); }
+.show-meta .prog i::after { content: ""; position: absolute; right: -4px; top: -3.5px; width: 8px; height: 8px; border-radius: 50%; background: var(--copper-lt); box-shadow: 0 0 0 4px rgba(232, 191, 152, .18); }
+.show-meta .arrows { gap: 6px; }
+.show-meta .arrows button { width: 46px; height: 46px; border: 0; background: rgba(244, 239, 229, .08); color: var(--cream); }
+.show-meta .arrows button:hover { background: var(--copper); color: #fff; border: 0; }
+.show-meta .arrows .next { background: var(--cream); color: var(--ink); }
+.show-meta .arrows .next:hover { background: var(--copper); color: #fff; }
+.pinfo { border-top: 0; margin-top: 14px; padding-top: 0; }
+.pinfo .teaser { margin: 4px 6px 16px; }
+.pinfo .more-btn { width: 100%; justify-content: space-between; padding: 20px 24px; border-radius: 18px; border: 1px solid rgba(201, 141, 94, .45); background: linear-gradient(135deg, rgba(201, 141, 94, .14), rgba(201, 141, 94, .04)); color: var(--ink); font-size: 12px; letter-spacing: .18em; transition: background .4s, color .4s, border-color .4s, transform .4s var(--ease); }
+.pinfo .more-btn:hover { background: var(--copper); border-color: var(--copper); color: #fff; }
+.pinfo .more-btn i { width: 28px; height: 28px; border-radius: 50%; background: var(--copper); color: #fff; flex: none; }
+.pinfo .more-btn i::before, .pinfo .more-btn i::after { left: 8px; right: 8px; }
+.pinfo .more-btn:hover i { background: #fff; color: var(--copper); }
+.pinfo a.more-btn svg { width: 16px; height: 16px; }
+@media (max-width: 900px) {
+  .show-stage { background: none !important; }
+  .show-meta { margin-top: 16px; padding-left: 20px; }
+  .pinfo { margin-top: 12px; }
+}
+.showroom .deco-r { top: -40px; bottom: auto; right: -40px; width: min(380px, 30vw); }

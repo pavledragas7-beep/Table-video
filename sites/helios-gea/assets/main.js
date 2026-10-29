@@ -371,6 +371,7 @@
       views.forEach((v, k) => v.classList.toggle("on", k === cur));
       infos.forEach((v, k) => v.classList.toggle("on", k === cur));
       if (count) count.textContent = String(cur + 1).padStart(2, "0");
+      $(".show-meta", panel)?.style.setProperty("--p", ((cur + 1) / items.length).toFixed(4));
     };
     items.forEach((b, k) => {
       b.addEventListener("click", () => {
