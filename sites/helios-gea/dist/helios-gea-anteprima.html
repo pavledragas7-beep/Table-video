@@ -758,6 +758,10 @@ html:not(.js) .loader { display: none; }
   .pl-main .offer { grid-area: list; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 90px); margin-top: clamp(72px, 8vw, 120px); border-top: 0; }
   .pl-main .offer li { border-top: 1px solid var(--line); }
 }
+/* strips are driven by JS: never paused, draggable */
+.strip { animation: none !important; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; will-change: transform; }
+.strip:active { cursor: grabbing; }
+.strip img { -webkit-user-drag: none; pointer-events: none; }
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
@@ -1070,8 +1074,8 @@ html:not(.js) .loader { display: none; }
       <div class="contact-info">
         <p class="label rv"><span lang="hr">Kontaktirajte nas</span><span lang="en">Contact us</span></p>
         <a class="phone rv" href="tel:+385993664333">+385 99 3664333</a>
-        <p class="addr rv"><a class="mail" href="mailto:neva@helios-gea.com">neva@helios-gea.com</a><br>Helios Gea d.o.o.<br>San Nicolò 23 A, 52211 Valle · Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
-        <a class="btn ghost magnetic rv" href="https://www.google.com/maps/search/?api=1&amp;query=San+Nicol%C3%B2+23A%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+        <p class="addr rv"><a class="mail" href="mailto:neva@helios-gea.com">neva@helios-gea.com</a><br>Helios Gea d.o.o.<br>Rovinjska 43, 52211 Valle · Bale<br><span lang="hr">Hrvatska</span><span lang="en">Croatia</span></p>
+        <a class="btn ghost magnetic rv" href="https://www.google.com/maps/search/?api=1&amp;query=Rovinjska+43%2C+52211+Bale%2C+Croatia" target="_blank" rel="noopener"><span lang="hr">Kako do nas</span><span lang="en">Get directions</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
 
       <!-- Sent via FormSubmit to neva@helios-gea.com (the first submission triggers a one-time activation e-mail to that address). -->
@@ -1572,6 +1576,41 @@ html:not(.js) .loader { display: none; }
   /* ---------- Film strips: duplicate content for a seamless loop ---------- */
   $$(".strip").forEach(s => {
     [...s.children].forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); d.tabIndex = -1; d.addEventListener("click", () => openLb(d)); s.append(d); });
+  });
+
+  /* ---------- Film strips: always moving; a finger or mouse can drag them without stopping the loop ---------- */
+  $$(".strip").forEach(strip => {
+    const dir = strip.classList.contains("rev") ? 1 : -1;
+    const speed = reduce ? 0 : 38; // px per second
+    let x = 0, half = 0, last = performance.now(), drag = null, moved = 0, fling = 0, visible = true;
+    const measure = () => { half = strip.scrollWidth / 2; };
+    measure(); addEventListener("resize", measure); addEventListener("load", measure);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(strip);
+    const wrap = () => { if (half) { x %= half; if (x > 0) x -= half; } };
+    if (dir > 0) x = -half / 2;
+    const tick = now => {
+      const dt = Math.min(64, now - last) / 1000; last = now;
+      if (visible && !drag) { x += dir * speed * dt + fling * dt; fling *= Math.pow(.04, dt); }
+      wrap();
+      strip.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    strip.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, t: performance.now(), axis: null }; moved = 0; fling = 0; });
+    strip.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.axis) { if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; drag.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y"; if (drag.axis === "x") strip.setPointerCapture(e.pointerId); }
+      if (drag.axis !== "x") { drag = null; return; }
+      const now = performance.now();
+      x += dx; moved += Math.abs(dx);
+      fling = dx / Math.max(1, now - drag.t) * 1000 * .6;
+      drag.x = e.clientX; drag.y = e.clientY; drag.t = now;
+    });
+    const end = () => { drag = null; };
+    strip.addEventListener("pointerup", end); strip.addEventListener("pointercancel", end);
+    // a drag is not a tap: don't open the photo after dragging
+    strip.addEventListener("click", e => { if (moved > 8) { e.stopPropagation(); e.preventDefault(); } moved = 0; }, true);
   });
 
   /* ---------- Scroll-linked: manifesto words, motto line ---------- */

@@ -749,3 +749,7 @@ html:not(.js) .loader { display: none; }
   .pl-main .offer { grid-area: list; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 90px); margin-top: clamp(72px, 8vw, 120px); border-top: 0; }
   .pl-main .offer li { border-top: 1px solid var(--line); }
 }
+/* strips are driven by JS: never paused, draggable */
+.strip { animation: none !important; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; will-change: transform; }
+.strip:active { cursor: grabbing; }
+.strip img { -webkit-user-drag: none; pointer-events: none; }

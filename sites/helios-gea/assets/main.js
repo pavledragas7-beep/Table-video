@@ -443,6 +443,41 @@
     [...s.children].forEach(c => { const d = c.cloneNode(true); d.setAttribute("aria-hidden", "true"); d.tabIndex = -1; d.addEventListener("click", () => openLb(d)); s.append(d); });
   });
 
+  /* ---------- Film strips: always moving; a finger or mouse can drag them without stopping the loop ---------- */
+  $$(".strip").forEach(strip => {
+    const dir = strip.classList.contains("rev") ? 1 : -1;
+    const speed = reduce ? 0 : 38; // px per second
+    let x = 0, half = 0, last = performance.now(), drag = null, moved = 0, fling = 0, visible = true;
+    const measure = () => { half = strip.scrollWidth / 2; };
+    measure(); addEventListener("resize", measure); addEventListener("load", measure);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(strip);
+    const wrap = () => { if (half) { x %= half; if (x > 0) x -= half; } };
+    if (dir > 0) x = -half / 2;
+    const tick = now => {
+      const dt = Math.min(64, now - last) / 1000; last = now;
+      if (visible && !drag) { x += dir * speed * dt + fling * dt; fling *= Math.pow(.04, dt); }
+      wrap();
+      strip.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    strip.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, t: performance.now(), axis: null }; moved = 0; fling = 0; });
+    strip.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.axis) { if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; drag.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y"; if (drag.axis === "x") strip.setPointerCapture(e.pointerId); }
+      if (drag.axis !== "x") { drag = null; return; }
+      const now = performance.now();
+      x += dx; moved += Math.abs(dx);
+      fling = dx / Math.max(1, now - drag.t) * 1000 * .6;
+      drag.x = e.clientX; drag.y = e.clientY; drag.t = now;
+    });
+    const end = () => { drag = null; };
+    strip.addEventListener("pointerup", end); strip.addEventListener("pointercancel", end);
+    // a drag is not a tap: don't open the photo after dragging
+    strip.addEventListener("click", e => { if (moved > 8) { e.stopPropagation(); e.preventDefault(); } moved = 0; }, true);
+  });
+
   /* ---------- Scroll-linked: manifesto words, motto line ---------- */
   const motto = $(".motto-line");
   const prog = (el, a = 1, b = 0) => { const r = el.getBoundingClientRect(); const s = innerHeight * a, e = innerHeight * b - r.height; return clamp((s - r.top) / (s - e)); };
