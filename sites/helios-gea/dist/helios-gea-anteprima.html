@@ -677,6 +677,15 @@ html:not(.js) .loader { display: none; }
   .form-wrap { padding-top: 0; }
   .deco-form { position: static; display: block; width: min(300px, 80vw); margin: 56px auto 8px; transform: none; }
 }
+@media (max-width: 900px) {
+  /* phone hero text: centred, full width, fills the rest of the first screen under the photo */
+  .hero .hero-copy { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    min-height: 100svh; padding-bottom: 48px; }
+  .hero .hero-copy .label { justify-content: center; }
+  .hero .hero-copy .label::before { display: none; }
+  .hero h1 { max-width: 12ch; margin: 22px auto 24px; font-size: clamp(40px, 11.5vw, 60px); line-height: 1.04; }
+  .hero-sub { max-width: 22ch; margin-inline: auto; font-size: clamp(19px, 5.4vw, 24px); }
+}
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
