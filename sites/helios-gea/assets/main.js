@@ -460,16 +460,6 @@
 
   /* ---------- Desktop niceties: cursor, magnetic buttons, tilt ---------- */
   if (fine && !reduce) {
-    const cur = $(".cursor"), label = $("span", cur);
-    let mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
-    addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; cur.classList.add("live"); }, { passive: true });
-    const follow = () => { cx += (mx - cx) * .2; cy += (my - cy) * .2; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(follow); };
-    requestAnimationFrame(follow);
-    document.addEventListener("pointerover", e => {
-      const t = e.target.closest("[data-cursor]");
-      cur.classList.toggle("big", !!t);
-      if (t) label.textContent = t.dataset.cursor.split("|")[lang() === "en" ? 1 : 0] || t.dataset.cursor;
-    });
     $$(".magnetic").forEach(b => {
       b.addEventListener("pointermove", e => {
         const r = b.getBoundingClientRect();
@@ -486,7 +476,7 @@
       });
       t.addEventListener("pointerleave", () => { t.style.transform = ""; });
     });
-  } else $(".cursor")?.remove();
+  }
 
 
   /* ---------- Enquiry form ---------- */
