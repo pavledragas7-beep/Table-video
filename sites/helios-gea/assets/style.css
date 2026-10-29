@@ -601,3 +601,10 @@ html:not(.js) .loader { display: none; }
 /* client photos: vertical lab portrait beside the private-label intro */
 .lab { max-width: 560px; margin-inline: auto; }
 @media (min-width: 1101px) { .lab { float: right; width: 38%; margin: 0 0 40px 56px; } .offer { clear: none; } }
+/* full-bleed olive grove band */
+.band { position: relative; background: var(--deep); }
+.band .print { display: block; width: 100%; box-shadow: none; cursor: zoom-in; }
+.band .print img { width: 100%; height: auto; max-height: 92svh; object-fit: cover; object-position: 50% 60%; }
+.band-cap { position: absolute; left: var(--gut); bottom: 22px; color: rgba(255,255,255,.85); }
+.show-frame .print img { object-fit: contain; }
+#p-pro .show-frame .print { background: #111; }

@@ -400,7 +400,7 @@
     const media = $(".sheet-media", sheet);
     media.innerHTML = "";
     const img = view && $("img", view);
-    if (img) { const i = new Image(); i.src = view.dataset.full || img.src; i.alt = img.alt; media.append(i); }
+    if (info.dataset.life || img) { const i = new Image(); i.src = info.dataset.life || view.dataset.full || img.src; i.alt = img ? img.alt : ""; media.append(i); }
     else if (view) media.append(view.cloneNode(true));
     $(".sheet-body", sheet).innerHTML = $("template", info).innerHTML;
     $(".sheet-title", sheet)?.setAttribute("id", "sheet-title");
