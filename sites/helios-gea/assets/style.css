@@ -657,3 +657,7 @@ html:not(.js) .loader { display: none; }
   .manifesto .seal { margin-bottom: 28px; }
   .pills { justify-content: center; }
 }
+.hero-sub { max-width: 26ch; margin: 0; font-size: clamp(20px, 1.9vw, 28px); font-weight: 300; line-height: 1.4; color: #4a4a40; }
+.hero-sub em { color: var(--copper); }
+.manifesto { padding-block: clamp(64px, 8vw, 110px); }
+@media (max-width: 600px) { .hero-sub { font-size: 19px; } .manifesto { padding-block: 64px; } }

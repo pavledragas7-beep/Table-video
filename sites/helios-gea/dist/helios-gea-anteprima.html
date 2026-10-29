@@ -666,6 +666,10 @@ html:not(.js) .loader { display: none; }
   .manifesto .seal { margin-bottom: 28px; }
   .pills { justify-content: center; }
 }
+.hero-sub { max-width: 26ch; margin: 0; font-size: clamp(20px, 1.9vw, 28px); font-weight: 300; line-height: 1.4; color: #4a4a40; }
+.hero-sub em { color: var(--copper); }
+.manifesto { padding-block: clamp(64px, 8vw, 110px); }
+@media (max-width: 600px) { .hero-sub { font-size: 19px; } .manifesto { padding-block: 64px; } }
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
@@ -713,6 +717,7 @@ html:not(.js) .loader { display: none; }
         <span lang="hr">Iza svake uspješne poslovne priče krije se <em>inovacija</em></span>
         <span lang="en">Success is just another word for <em>innovation</em></span>
       </h1>
+      <p class="hero-sub hero-in"><span lang="hr">Znanost o bioaktivnim svojstvima masline ima <em>glavnu ulogu</em> u našem razvoju.</span> <span lang="en">The science of the olive’s bioactive properties plays a <em>key role</em> in our development.</span></p>
     </div>
     <a class="scroll-cue hero-in" href="#prica" aria-label="Scroll"><i></i></a>
   </section>
@@ -721,10 +726,6 @@ html:not(.js) .loader { display: none; }
   <section class="scene manifesto">
     <div class="wrap">
       <i class="seal rv" aria-hidden="true"></i>
-      <h2 class="fill">
-        <span lang="hr">Znanost o bioaktivnim svojstvima masline ima <em>glavnu ulogu</em> u našem razvoju.</span>
-        <span lang="en">The science of the olive’s bioactive properties plays a <em>key role</em> in our development.</span>
-      </h2>
       <div class="pills rv">
         <button class="pill" type="button" data-hr="Iza svake uspješne poslovne priče krije se inovacija." data-en="Success is just another word for innovation."><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button>
         <button class="pill" type="button" data-hr="Biomasa od komine masline ima glavnu ulogu u našem razvoju." data-en="Olive pulp biomass is at the heart of our business."><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></button>
