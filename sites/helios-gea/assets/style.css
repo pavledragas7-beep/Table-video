@@ -922,33 +922,4 @@ html:not(.js) .loader { display: none; }
 .dial-center .seal { width: 64px; height: 64px; }
 @media (max-width: 900px) { .dial-center .seal { width: 44px; height: 44px; } }
 .dial-node[style*="--k:0"] span { top: -26px; } @media (min-width: 901px){ .dial-node span{ top:-28px; } }
-
-/* ===== Values: quiet editorial index + real photography (replaces the dial) ===== */
-.dialsec { display: none !important; }
-.vx { background: #efe8db; padding-block: clamp(72px, 8vw, 120px); }
-.vx-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 110px); align-items: center; }
-.vx-list { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid rgba(20, 22, 17, .14); }
-.vx-list li { border-bottom: 1px solid rgba(20, 22, 17, .14); }
-.vx-item { position: relative; display: flex; align-items: baseline; gap: 22px; width: 100%; padding: 20px 0; background: none; border: 0; text-align: left; cursor: pointer; color: rgba(20, 22, 17, .3); transition: color .5s; }
-.vx-item:hover, .vx-item.on { color: var(--ink); }
-.vx-n { font: 400 12px/1 var(--mono); letter-spacing: .14em; color: var(--copper); }
-.vx-w { font: 300 clamp(30px, 3.6vw, 56px)/1.05 var(--sans); letter-spacing: -.02em; }
-.vx-line { position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--ink); transform-origin: left; transform: scaleX(0); }
-.vx-item.on .vx-line { transform: scaleX(var(--p, 0)); }
-.vx-media { position: relative; margin: 0; }
-.vx-media::before { content: ""; display: block; aspect-ratio: 4 / 5; }
-.vx-pic { position: absolute; top: 0; left: 0; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
-.vx-pic.on { opacity: 1; }
-.vx-media figcaption { display: grid; margin-top: 20px; }
-.vx-text { grid-area: 1 / 1; margin: 0; max-width: 34ch; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: #4a4a40; opacity: 0; transition: opacity .6s ease; }
-.vx-text.on { opacity: 1; }
-@media (max-width: 900px) {
-  .vx-grid { grid-template-columns: 1fr; gap: 28px; }
-  .vx-media { order: -1; }
-  .vx-media::before, .vx-pic { aspect-ratio: 4 / 3; }
-  .vx-list { margin-top: 18px; }
-  .vx-item { padding: 15px 0; gap: 16px; }
-  .vx-w { font-size: 26px; }
-}
-/* calmer overall: stop spinning seals */
-.strips-seal, .loader .seal, .dial-center .seal { animation: none !important; }
+.dial-olive { display: none !important; }

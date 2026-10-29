@@ -268,28 +268,31 @@
   /* ---------- Every whole photo opens full screen ---------- */
   $$("[data-full]").forEach(b => b.addEventListener("click", () => openLb(b)));
 
-  /* ---------- Values: advances every few seconds, tap a value to show it ---------- */
+  /* ---------- Values dial: turns on its own every few seconds, tap a value to jump to it ---------- */
   const man = null;
-  const vx = $(".vx");
-  if (vx) {
-    const items = $$(".vx-item", vx), pics = $$(".vx-pic", vx), texts = $$(".vx-text", vx);
-    const STEP = 6000; let cur = 0, t0 = performance.now(), seen = false;
+  const dial = $(".dial");
+  if (dial) {
+    const nodes = $$(".dial-node", dial), slides = $$(".dial-slide"), bar = $(".dial-bar i");
+    const STEP = 5200; let cur = 0, t0 = performance.now(), seen = false, turns = 0;
     const go = i => {
-      cur = (i + items.length) % items.length;
-      [items, pics, texts].forEach(g => g.forEach((el, k) => el.classList.toggle("on", k === cur)));
+      const prev = cur; cur = (i + 4) % 4;
+      let d = cur - prev; if (d < 0) d += 4; turns += d;
+      dial.style.setProperty("--a", turns);
+      nodes.forEach((n, k) => n.classList.toggle("on", k === cur));
+      slides.forEach((s, k) => s.classList.toggle("on", k === cur));
       t0 = performance.now();
     };
-    items.forEach((b, k) => b.addEventListener("click", () => go(k)));
-    new IntersectionObserver(es => { seen = es[0].isIntersecting; if (seen) t0 = performance.now(); }, { threshold: .3 }).observe(vx);
+    nodes.forEach((n, k) => n.addEventListener("click", () => go(k)));
+    new IntersectionObserver(es => { seen = es[0].isIntersecting; if (seen) t0 = performance.now(); }, { threshold: .35 }).observe(dial);
     const loop = now => {
       if (seen && !reduce) {
         const p = Math.min(1, (now - t0) / STEP);
-        items[cur].style.setProperty("--p", p.toFixed(3));
+        bar.style.transform = `scaleX(${p})`; dial.style.setProperty("--p", p.toFixed(3));
         if (p >= 1) go(cur + 1);
       }
       requestAnimationFrame(loop);
     };
-    requestAnimationFrame(loop);
+    go(0); requestAnimationFrame(loop);
   }
 
   /* ---------- 45° globe (orthographic, canvas) ---------- */
