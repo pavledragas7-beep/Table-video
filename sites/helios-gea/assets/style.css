@@ -677,3 +677,14 @@ html:not(.js) .loader { display: none; }
   .hero h1 { max-width: 12ch; margin: 22px auto 24px; font-size: clamp(40px, 11.5vw, 60px); line-height: 1.04; }
   .hero-sub { max-width: 22ch; margin-inline: auto; font-size: clamp(19px, 5.4vw, 24px); }
 }
+/* product list: comfortable inner spacing; the selected product is a soft rounded panel */
+.plist li { border-bottom: 1px solid var(--line); padding-block: 4px; }
+.plist button, .plist button:hover, .plist button[aria-current="true"] { padding: 20px 22px; border-radius: 14px; }
+.plist button { transition: background .35s, color .3s; }
+.plist button:hover { background: rgba(20, 22, 17, .04); }
+.plist button[aria-current="true"] { background: rgba(201, 141, 94, .1); }
+.plist button:focus-visible { outline: 1.5px solid var(--copper); outline-offset: 2px; }
+.plist button:focus:not(:focus-visible) { outline: none; }
+@media (max-width: 560px) {
+  .plist button, .plist button:hover, .plist button[aria-current="true"] { padding: 16px 14px; grid-template-columns: 28px 1fr auto; gap: 10px; }
+}
