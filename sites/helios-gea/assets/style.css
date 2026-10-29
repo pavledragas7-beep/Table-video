@@ -819,3 +819,17 @@ html:not(.js) .loader { display: none; }
 }
 @media (min-width: 901px) { .branch { right: -4vw; top: -7vh; width: min(38vw, 70vh); } }
 @media (max-width: 900px) { .valle figcaption { display: none !important; } }
+/* pills section back as before */
+.manifesto { display: block !important; }
+/* hero title fills the column */
+@media (min-width: 901px) {
+  .hero h1 { font-size: clamp(60px, 6.4vw, 124px); max-width: none; width: calc(100vw - min(54vw, 100svh) - 2 * var(--gut) - 40px); line-height: .98; margin: 34px 0 32px; }
+  .hero-kicker, .hero-foot { width: calc(100vw - min(54vw, 100svh) - 2 * var(--gut) - 40px); }
+  .hero-sub { max-width: 30ch; font-size: clamp(20px, 1.7vw, 28px); }
+}
+@media (min-width: 901px) {
+  .hero { --colw: calc(100vw - min(54vw, 100svh) - max(var(--gut), (100vw - var(--max)) / 2 + var(--gut)) - 48px); }
+  .hero h1, .hero-kicker, .hero-foot { width: var(--colw); }
+  .hero h1 { font-size: min(124px, calc(var(--colw) / 5.6)); }
+}
+.manifesto .seal { margin-bottom: 44px; }

@@ -833,6 +833,20 @@ html:not(.js) .loader { display: none; }
 }
 @media (min-width: 901px) { .branch { right: -4vw; top: -7vh; width: min(38vw, 70vh); } }
 @media (max-width: 900px) { .valle figcaption { display: none !important; } }
+/* pills section back as before */
+.manifesto { display: block !important; }
+/* hero title fills the column */
+@media (min-width: 901px) {
+  .hero h1 { font-size: clamp(60px, 6.4vw, 124px); max-width: none; width: calc(100vw - min(54vw, 100svh) - 2 * var(--gut) - 40px); line-height: .98; margin: 34px 0 32px; }
+  .hero-kicker, .hero-foot { width: calc(100vw - min(54vw, 100svh) - 2 * var(--gut) - 40px); }
+  .hero-sub { max-width: 30ch; font-size: clamp(20px, 1.7vw, 28px); }
+}
+@media (min-width: 901px) {
+  .hero { --colw: calc(100vw - min(54vw, 100svh) - max(var(--gut), (100vw - var(--max)) / 2 + var(--gut)) - 48px); }
+  .hero h1, .hero-kicker, .hero-foot { width: var(--colw); }
+  .hero h1 { font-size: min(124px, calc(var(--colw) / 5.6)); }
+}
+.manifesto .seal { margin-bottom: 44px; }
 </style>
 </head>
 <body>
@@ -880,26 +894,24 @@ html:not(.js) .loader { display: none; }
       </h1>
       <p class="hero-sub hero-in"><span lang="hr">Znanost o bioaktivnim svojstvima masline ima <em>glavnu ulogu</em> u našem razvoju.</span> <span lang="en">The science of the olive’s bioactive properties plays a <em>key role</em> in our development.</span></p>
       <div class="hero-foot hero-in">
-        <a class="hero-scroll" href="#vrijednosti"><i></i><span>Scroll</span></a>
+        <a class="hero-scroll" href="#prica"><i></i><span>Scroll</span></a>
         <span class="hero-est">Est. 2009</span>
       </div>
     </div>
   </section>
 
-  <!-- 02 · VALUES: the four principles, always visible -->
-  <section class="scene values" id="vrijednosti">
+  <!-- 02 · MANIFESTO: one sentence, lit word by word; pillars as pills -->
+  <section class="scene manifesto">
     <div class="wrap">
-      <div class="values-head">
-        <i class="seal rv" aria-hidden="true"></i>
-        <p class="label plain rv">Helios Gea · 45 degrees</p>
-        <svg class="sprig olivegfx divider" data-seed="11" data-kind="wreath" aria-hidden="true"></svg>
+      <i class="seal rv" aria-hidden="true"></i>
+      <div class="pills rv">
+        <button class="pill" type="button" data-hr="Iza svake uspješne poslovne priče krije se inovacija." data-en="Success is just another word for innovation."><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button>
+        <button class="pill" type="button" data-hr="Biomasa od komine masline ima glavnu ulogu u našem razvoju." data-en="Olive pulp biomass is at the heart of our business."><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></button>
+        <button class="pill" type="button" data-hr="Mi vjerujemo u dugoročan i harmoničan odnos s prirodom." data-en="We believe in a long-lasting mutual relationship with nature."><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></button>
+        <button class="pill" type="button" data-hr="Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline." data-en="Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass."><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></button>
       </div>
-      <ol class="values-grid" data-stagger>
-        <li class="rv"><span class="v-n">01</span><h3><span lang="hr">Inovacija</span><span lang="en">Innovation</span></h3><p><span lang="hr">Iza svake uspješne poslovne priče krije se inovacija.</span><span lang="en">Success is just another word for innovation.</span></p></li>
-        <li class="rv"><span class="v-n">02</span><h3><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></h3><p><span lang="hr">Biomasa od komine masline ima glavnu ulogu u našem razvoju.</span><span lang="en">Olive pulp biomass is at the heart of our business.</span></p></li>
-        <li class="rv"><span class="v-n">03</span><h3><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></h3><p><span lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom.</span><span lang="en">We believe in a long-lasting mutual relationship with nature.</span></p></li>
-        <li class="rv"><span class="v-n">04</span><h3><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></h3><p><span lang="hr">Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline.</span><span lang="en">Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass.</span></p></li>
-      </ol>
+      <p class="pill-tip" aria-live="polite" data-hr="Odaberite pojam ↑" data-en="Pick a word ↑"></p>
+      <svg class="sprig olivegfx divider" data-seed="11" data-kind="wreath" aria-hidden="true"></svg>
     </div>
   </section>
 
