@@ -937,6 +937,13 @@ html:not(.js) .loader { display: none; }
 @media (max-width: 900px) { .dial-center .seal { width: 44px; height: 44px; } }
 .dial-node[style*="--k:0"] span { top: -26px; } @media (min-width: 901px){ .dial-node span{ top:-28px; } }
 .dial-olive { display: none !important; }
+/* dial numbers: perfectly centred on the ring, all four identical */
+.dial-node b { top: 50% !important; left: 50% !important; translate: -50% -50% !important; width: 44px !important; height: 44px !important; }
+.dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(calc(var(--ds) * -.45)) rotate(calc(var(--k) * -90deg)) !important; }
+.dial { --ds: min(440px, 100%); }
+@media (min-width: 901px) { .dial { --ds: 440px; } }
+@media (max-width: 900px) { .dial { --ds: min(78vw, 360px); } .dial-node b { width: 40px !important; height: 40px !important; } }
+.dial-node span { display: none !important; }
 </style>
 </head>
 <body>
