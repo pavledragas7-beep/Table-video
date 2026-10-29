@@ -661,3 +661,10 @@ html:not(.js) .loader { display: none; }
 .hero-sub em { color: var(--copper); }
 .manifesto { padding-block: clamp(64px, 8vw, 110px); }
 @media (max-width: 600px) { .hero-sub { font-size: 19px; } .manifesto { padding-block: 64px; } }
+@media (max-width: 900px) {
+  /* hero: the branch stays on the photo, the text sits on clean beige */
+  .hero .hero-copy { position: relative; z-index: 3; background: linear-gradient(transparent calc(100vw * 1113 / 1120), #f7f2ea 0); }
+  /* contact: the olive arch sits in its own space above the form, never over the button */
+  .form-wrap { padding-top: 0; }
+  .deco-form { position: static; display: block; width: min(300px, 80vw); margin: 56px auto 8px; transform: none; }
+}
