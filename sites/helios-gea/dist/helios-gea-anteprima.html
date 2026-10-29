@@ -743,6 +743,21 @@ html:not(.js) .loader { display: none; }
   .strips-hint { font-size: 10px; letter-spacing: .1em; text-align: left; }
 }
 .strips-head .strips-kicker { max-width: none; white-space: nowrap; } @media (max-width: 600px) { .strips-head .strips-kicker { white-space: normal; max-width: 300px; } }
+/* Private label on desktop: an editorial spread (portrait + title side by side), services in two columns below */
+@media (min-width: 901px) {
+  .pl-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-areas: "lab head" "list list"; gap: 0 clamp(48px, 6vw, 110px); justify-items: stretch; text-align: left; align-items: center; }
+  .pl-main { display: contents; }
+  .lab { grid-area: lab; width: 100% !important; }
+  .lab-frame { aspect-ratio: 4 / 5; border-radius: 4px; }
+  .lab-frame img { object-position: 50% 35%; }
+  .lab figcaption { justify-content: flex-start; }
+  .pl-head { grid-area: head; text-align: left; max-width: 560px; }
+  .pl-head .label { justify-content: flex-start; }
+  .pl-head .lead { margin-inline: 0; }
+  .pl-head h2 { font-size: clamp(52px, 5.6vw, 96px); }
+  .pl-main .offer { grid-area: list; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 90px); margin-top: clamp(72px, 8vw, 120px); border-top: 0; }
+  .pl-main .offer li { border-top: 1px solid var(--line); }
+}
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
