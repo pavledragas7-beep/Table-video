@@ -852,3 +852,73 @@ html:not(.js) .loader { display: none; }
 .band .print img { max-height: 62svh; }
 .chapters { padding-block: clamp(48px, 6vw, 90px) !important; gap: clamp(24px, 3vw, 44px); }
 .chapter { padding-block: clamp(40px, 5vw, 80px); }
+
+/* ===================== Revision 6 ===================== */
+/* HERO: clean photo (no gradient, no filter), branch always on top */
+.valle::after, .valle-coord, .valle figcaption { display: none !important; }
+.valle img { filter: none !important; }
+.branch { z-index: 6 !important; }
+@media (max-width: 900px) {
+  .hero .hero-copy { background: none !important; }
+  .hero h1 { max-width: none !important; width: 100%; font-size: clamp(44px, 13.4vw, 72px) !important; line-height: 1; letter-spacing: -.03em; margin: 22px 0 22px !important; }
+  .hero-sub { max-width: none; font-size: clamp(19px, 5.6vw, 24px); }
+  .hero-kicker, .hero-foot { max-width: none !important; }
+  .hero .hero-copy { padding-inline: 20px; }
+}
+/* VALUES DIAL */
+.manifesto { display: none !important; }
+.dialsec { background: #efe8db; padding-block: clamp(64px, 7vw, 110px); overflow: hidden; }
+.dial-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); align-items: center; }
+.dial { position: relative; width: min(520px, 100%); aspect-ratio: 1; margin-inline: auto; }
+.dial-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dial-ring circle { fill: none; }
+.dial-ring .r1 { stroke: rgba(20, 22, 17, .16); stroke-width: 1; }
+.dial-ring .r2 { stroke: rgba(20, 22, 17, .08); stroke-width: 1; stroke-dasharray: 2 6; }
+.dial-ring .prog { stroke: var(--copper); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0) * .25); transform: rotate(calc(-90deg + var(--a, 0) * 90deg)); transform-origin: 200px 200px; transition: transform 1.1s var(--ease); }
+.dial-ring .ticks line { stroke: rgba(20, 22, 17, .25); stroke-width: 1; }
+.dial-rot { position: absolute; inset: 0; transform: rotate(calc(var(--a, 0) * 90deg)); transition: transform 1.1s var(--ease); }
+.dial-olive { position: absolute; left: 50%; top: 5%; width: 30px; height: 21px; margin-left: -15px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #c3cb83, #7f8c3f 55%, #4c5925); box-shadow: 0 6px 14px rgba(0, 0, 0, .25); }
+.dial-olive::before { content: ""; position: absolute; left: 50%; top: -12px; width: 2px; height: 12px; background: #5d5040; transform: rotate(18deg); }
+.dial-center { position: absolute; inset: 27%; border-radius: 50%; background: #f7f2ea; display: grid; place-items: center; align-content: center; gap: 6px; box-shadow: 0 30px 60px -30px rgba(20, 22, 17, .35), inset 0 0 0 1px rgba(20, 22, 17, .06); }
+.dial-center .seal { width: 46%; height: 46%; color: var(--ink); animation: spin 60s linear infinite; }
+.dial-deg { font: 200 clamp(18px, 2vw, 26px)/1 var(--sans); color: var(--copper); }
+.dial-node { position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: 0; background: none; cursor: pointer; }
+.dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(-260px) rotate(calc(var(--k) * -90deg)); }
+.dial-node b, .dial-node span { position: absolute; left: 50%; top: 50%; translate: -50% -50%; white-space: nowrap; }
+.dial-node b { top: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #efe8db; border: 1px solid rgba(20, 22, 17, .2); font: 400 12px/1 var(--mono); letter-spacing: .08em; color: var(--ink); transition: background .4s, color .4s, border-color .4s, transform .4s var(--ease); }
+.dial-node span { top: -22px; font: 400 10.5px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); transition: color .4s; }
+.dial-node[style*="--k:1"] span { top: 50%; left: 58px; translate: 0 -50%; }
+.dial-node[style*="--k:3"] span { top: 50%; left: auto; right: 58px; translate: 0 -50%; }
+.dial-node[style*="--k:2"] span { top: 66px; }
+.dial-node:hover b { transform: scale(1.08); border-color: var(--copper); }
+.dial-node.on b { background: var(--copper); border-color: var(--copper); color: #fff; transform: scale(1.12); }
+.dial-node.on span { color: var(--copper); }
+.dial-copy { position: relative; }
+.dial-slides { position: relative; display: grid; margin-top: 26px; }
+.dial-slide { grid-area: 1 / 1; opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .9s var(--ease); pointer-events: none; }
+.dial-slide.on { opacity: 1; transform: none; pointer-events: auto; }
+.dial-num { margin: 0; font: 200 clamp(70px, 8vw, 128px)/.9 var(--sans); letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px var(--copper); }
+.dial-num small { font-size: .22em; letter-spacing: .1em; -webkit-text-stroke: 0; color: var(--muted); margin-left: 10px; font-family: var(--mono); }
+.dial-slide h3 { margin: 18px 0 16px; font: 300 clamp(34px, 3.6vw, 58px)/1.05 var(--sans); letter-spacing: -.02em; color: var(--ink); }
+.dial-text { margin: 0; max-width: 30ch; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.55; color: #55544a; }
+.dial-bar { margin-top: 36px; height: 1px; width: min(320px, 100%); background: rgba(20, 22, 17, .14); }
+.dial-bar i { display: block; height: 100%; background: var(--copper); transform-origin: left; transform: scaleX(0); }
+@media (max-width: 900px) {
+  .dial-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+  .dial { width: min(78vw, 360px); }
+  .dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(calc(min(78vw, 360px) * -.5)) rotate(calc(var(--k) * -90deg)); }
+  .dial-node b { width: 36px; height: 36px; font-size: 11px; }
+  .dial-node span { display: none; }
+  .dial-copy .label { justify-content: center; }
+  .dial-copy .label::before { display: none; }
+  .dial-slides { margin-top: 14px; }
+  .dial-text { margin-inline: auto; }
+  .dial-bar { margin-inline: auto; }
+}
+@media (max-width: 900px) { .dial-node b { width: 36px; height: 36px; } }
+.dial { margin-block: 30px; }
+@media (min-width: 901px) { .dial { width: min(440px, 100%); } .dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(-220px) rotate(calc(var(--k) * -90deg)); } }
+.dial-olive { top: 12.5%; margin-top: -10px; z-index: 1; }
+.dial-center .seal { width: 64px; height: 64px; }
+@media (max-width: 900px) { .dial-center .seal { width: 44px; height: 44px; } }
+.dial-node[style*="--k:0"] span { top: -26px; } @media (min-width: 901px){ .dial-node span{ top:-28px; } }

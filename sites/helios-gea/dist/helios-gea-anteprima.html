@@ -861,6 +861,76 @@ html:not(.js) .loader { display: none; }
 .band .print img { max-height: 62svh; }
 .chapters { padding-block: clamp(48px, 6vw, 90px) !important; gap: clamp(24px, 3vw, 44px); }
 .chapter { padding-block: clamp(40px, 5vw, 80px); }
+
+/* ===================== Revision 6 ===================== */
+/* HERO: clean photo (no gradient, no filter), branch always on top */
+.valle::after, .valle-coord, .valle figcaption { display: none !important; }
+.valle img { filter: none !important; }
+.branch { z-index: 6 !important; }
+@media (max-width: 900px) {
+  .hero .hero-copy { background: none !important; }
+  .hero h1 { max-width: none !important; width: 100%; font-size: clamp(44px, 13.4vw, 72px) !important; line-height: 1; letter-spacing: -.03em; margin: 22px 0 22px !important; }
+  .hero-sub { max-width: none; font-size: clamp(19px, 5.6vw, 24px); }
+  .hero-kicker, .hero-foot { max-width: none !important; }
+  .hero .hero-copy { padding-inline: 20px; }
+}
+/* VALUES DIAL */
+.manifesto { display: none !important; }
+.dialsec { background: #efe8db; padding-block: clamp(64px, 7vw, 110px); overflow: hidden; }
+.dial-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); align-items: center; }
+.dial { position: relative; width: min(520px, 100%); aspect-ratio: 1; margin-inline: auto; }
+.dial-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dial-ring circle { fill: none; }
+.dial-ring .r1 { stroke: rgba(20, 22, 17, .16); stroke-width: 1; }
+.dial-ring .r2 { stroke: rgba(20, 22, 17, .08); stroke-width: 1; stroke-dasharray: 2 6; }
+.dial-ring .prog { stroke: var(--copper); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0) * .25); transform: rotate(calc(-90deg + var(--a, 0) * 90deg)); transform-origin: 200px 200px; transition: transform 1.1s var(--ease); }
+.dial-ring .ticks line { stroke: rgba(20, 22, 17, .25); stroke-width: 1; }
+.dial-rot { position: absolute; inset: 0; transform: rotate(calc(var(--a, 0) * 90deg)); transition: transform 1.1s var(--ease); }
+.dial-olive { position: absolute; left: 50%; top: 5%; width: 30px; height: 21px; margin-left: -15px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #c3cb83, #7f8c3f 55%, #4c5925); box-shadow: 0 6px 14px rgba(0, 0, 0, .25); }
+.dial-olive::before { content: ""; position: absolute; left: 50%; top: -12px; width: 2px; height: 12px; background: #5d5040; transform: rotate(18deg); }
+.dial-center { position: absolute; inset: 27%; border-radius: 50%; background: #f7f2ea; display: grid; place-items: center; align-content: center; gap: 6px; box-shadow: 0 30px 60px -30px rgba(20, 22, 17, .35), inset 0 0 0 1px rgba(20, 22, 17, .06); }
+.dial-center .seal { width: 46%; height: 46%; color: var(--ink); animation: spin 60s linear infinite; }
+.dial-deg { font: 200 clamp(18px, 2vw, 26px)/1 var(--sans); color: var(--copper); }
+.dial-node { position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: 0; background: none; cursor: pointer; }
+.dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(-260px) rotate(calc(var(--k) * -90deg)); }
+.dial-node b, .dial-node span { position: absolute; left: 50%; top: 50%; translate: -50% -50%; white-space: nowrap; }
+.dial-node b { top: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #efe8db; border: 1px solid rgba(20, 22, 17, .2); font: 400 12px/1 var(--mono); letter-spacing: .08em; color: var(--ink); transition: background .4s, color .4s, border-color .4s, transform .4s var(--ease); }
+.dial-node span { top: -22px; font: 400 10.5px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); transition: color .4s; }
+.dial-node[style*="--k:1"] span { top: 50%; left: 58px; translate: 0 -50%; }
+.dial-node[style*="--k:3"] span { top: 50%; left: auto; right: 58px; translate: 0 -50%; }
+.dial-node[style*="--k:2"] span { top: 66px; }
+.dial-node:hover b { transform: scale(1.08); border-color: var(--copper); }
+.dial-node.on b { background: var(--copper); border-color: var(--copper); color: #fff; transform: scale(1.12); }
+.dial-node.on span { color: var(--copper); }
+.dial-copy { position: relative; }
+.dial-slides { position: relative; display: grid; margin-top: 26px; }
+.dial-slide { grid-area: 1 / 1; opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .9s var(--ease); pointer-events: none; }
+.dial-slide.on { opacity: 1; transform: none; pointer-events: auto; }
+.dial-num { margin: 0; font: 200 clamp(70px, 8vw, 128px)/.9 var(--sans); letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px var(--copper); }
+.dial-num small { font-size: .22em; letter-spacing: .1em; -webkit-text-stroke: 0; color: var(--muted); margin-left: 10px; font-family: var(--mono); }
+.dial-slide h3 { margin: 18px 0 16px; font: 300 clamp(34px, 3.6vw, 58px)/1.05 var(--sans); letter-spacing: -.02em; color: var(--ink); }
+.dial-text { margin: 0; max-width: 30ch; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.55; color: #55544a; }
+.dial-bar { margin-top: 36px; height: 1px; width: min(320px, 100%); background: rgba(20, 22, 17, .14); }
+.dial-bar i { display: block; height: 100%; background: var(--copper); transform-origin: left; transform: scaleX(0); }
+@media (max-width: 900px) {
+  .dial-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+  .dial { width: min(78vw, 360px); }
+  .dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(calc(min(78vw, 360px) * -.5)) rotate(calc(var(--k) * -90deg)); }
+  .dial-node b { width: 36px; height: 36px; font-size: 11px; }
+  .dial-node span { display: none; }
+  .dial-copy .label { justify-content: center; }
+  .dial-copy .label::before { display: none; }
+  .dial-slides { margin-top: 14px; }
+  .dial-text { margin-inline: auto; }
+  .dial-bar { margin-inline: auto; }
+}
+@media (max-width: 900px) { .dial-node b { width: 36px; height: 36px; } }
+.dial { margin-block: 30px; }
+@media (min-width: 901px) { .dial { width: min(440px, 100%); } .dial-node { transform: rotate(calc(var(--k) * 90deg)) translateY(-220px) rotate(calc(var(--k) * -90deg)); } }
+.dial-olive { top: 12.5%; margin-top: -10px; z-index: 1; }
+.dial-center .seal { width: 64px; height: 64px; }
+@media (max-width: 900px) { .dial-center .seal { width: 44px; height: 44px; } }
+.dial-node[style*="--k:0"] span { top: -26px; } @media (min-width: 901px){ .dial-node span{ top:-28px; } }
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
@@ -918,18 +988,24 @@ html:not(.js) .loader { display: none; }
     </div>
   </section>
 
-  <!-- 02 · MANIFESTO: one sentence, lit word by word; pillars as pills -->
-  <section class="scene manifesto">
-    <div class="wrap">
-      <i class="seal rv" aria-hidden="true"></i>
-      <div class="pills rv">
-        <button class="pill" type="button" data-hr="Iza svake uspješne poslovne priče krije se inovacija." data-en="Success is just another word for innovation."><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button>
-        <button class="pill" type="button" data-hr="Biomasa od komine masline ima glavnu ulogu u našem razvoju." data-en="Olive pulp biomass is at the heart of our business."><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></button>
-        <button class="pill" type="button" data-hr="Mi vjerujemo u dugoročan i harmoničan odnos s prirodom." data-en="We believe in a long-lasting mutual relationship with nature."><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></button>
-        <button class="pill" type="button" data-hr="Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline." data-en="Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass."><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></button>
+  <!-- 02 · VALUES DIAL: four principles on a turning dial (auto-advances, tap to choose) -->
+  <section class="scene dialsec">
+    <div class="wrap dial-grid">
+      <div class="dial rv" style="--a:0">
+        <svg class="dial-ring" viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="180" class="r1"/><circle cx="200" cy="200" r="150" class="r2"/>
+          <circle cx="200" cy="200" r="180" class="prog" pathLength="1"/>
+          <g class="ticks"><line x1="200" y1="14" x2="200" y2="24" transform="rotate(0 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(5 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(10 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(15 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(20 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(25 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(30 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(35 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(40 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(45 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(50 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(55 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(60 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(65 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(70 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(75 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(80 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(85 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(90 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(95 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(100 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(105 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(110 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(115 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(120 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(125 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(130 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(135 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(140 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(145 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(150 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(155 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(160 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(165 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(170 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(175 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(180 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(185 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(190 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(195 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(200 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(205 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(210 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(215 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(220 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(225 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(230 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(235 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(240 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(245 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(250 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(255 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(260 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(265 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(270 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(275 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(280 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(285 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(290 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(295 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(300 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(305 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(310 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(315 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(320 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(325 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(330 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(335 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(340 200 200)"/><line x1="200" y1="14" x2="200" y2="24" transform="rotate(345 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(350 200 200)"/><line x1="200" y1="14" x2="200" y2="19" transform="rotate(355 200 200)"/></g>
+        </svg>
+        <div class="dial-rot"><i class="dial-olive" aria-hidden="true"></i></div>
+        <div class="dial-center"><i class="seal" aria-hidden="true"></i><span class="dial-deg">45°</span></div>
+        <button class="dial-node" type="button" style="--k:0" data-i="0"><b>01</b><span lang="hr">Inovacija</span><span lang="en">Innovation</span></button><button class="dial-node" type="button" style="--k:1" data-i="1"><b>02</b><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></button><button class="dial-node" type="button" style="--k:2" data-i="2"><b>03</b><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></button><button class="dial-node" type="button" style="--k:3" data-i="3"><b>04</b><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></button>
       </div>
-      <p class="pill-tip" aria-live="polite" data-hr="Odaberite pojam ↑" data-en="Pick a word ↑"></p>
-      <svg class="sprig olivegfx divider" data-seed="11" data-kind="wreath" aria-hidden="true"></svg>
+      <div class="dial-copy" aria-live="polite">
+        <p class="label rv">Helios Gea · 45 degrees</p>
+        <div class="dial-slides"><div class="dial-slide on"><p class="dial-num">01<small>/04</small></p><h3><span lang="hr">Inovacija</span><span lang="en">Innovation</span></h3><p class="dial-text"><span lang="hr">Iza svake uspješne poslovne priče krije se inovacija.</span><span lang="en">Success is just another word for innovation.</span></p></div><div class="dial-slide"><p class="dial-num">02<small>/04</small></p><h3><span lang="hr">Inspiracija</span><span lang="en">Inspiration</span></h3><p class="dial-text"><span lang="hr">Biomasa od komine masline ima glavnu ulogu u našem razvoju.</span><span lang="en">Olive pulp biomass is at the heart of our business.</span></p></div><div class="dial-slide"><p class="dial-num">03<small>/04</small></p><h3><span lang="hr">Doprinos ekologiji</span><span lang="en">Contribution to ecology</span></h3><p class="dial-text"><span lang="hr">Mi vjerujemo u dugoročan i harmoničan odnos s prirodom.</span><span lang="en">We believe in a long-lasting mutual relationship with nature.</span></p></div><div class="dial-slide"><p class="dial-num">04<small>/04</small></p><h3><span lang="hr">Proizvodi</span><span lang="en">Line of cosmetics</span></h3><p class="dial-text"><span lang="hr">Naši proizvodi stvoreni su po jedinstvenoj inovativnoj formuli baziranoj upravo na organskoj komini masline.</span><span lang="en">Our entire line of cosmetics shares a unique innovative formula based on organic olive pulp biomass.</span></p></div></div>
+        <div class="dial-bar" aria-hidden="true"><i></i></div>
+      </div>
     </div>
   </section>
 
@@ -1507,18 +1583,32 @@ html:not(.js) .loader { display: none; }
   /* ---------- Every whole photo opens full screen ---------- */
   $$("[data-full]").forEach(b => b.addEventListener("click", () => openLb(b)));
 
-  /* ---------- Manifesto: words light up on scroll; pillar pills ---------- */
-  const man = $(".manifesto");
-  const tip = $(".pill-tip");
-  const pills = $$(".pill");
-  const setTip = p => { if (tip) tip.textContent = p ? p.dataset[lang()] : tip.dataset[lang()]; };
-  pills.forEach(p => {
-    p.addEventListener("pointerenter", () => setTip(p));
-    p.addEventListener("focus", () => setTip(p));
-    p.addEventListener("click", () => setTip(p));
-  });
-  $(".pills")?.addEventListener("pointerleave", () => setTip(null));
-  langHooks.push(() => setTip(null));
+  /* ---------- Values dial: turns on its own every few seconds, tap a value to jump to it ---------- */
+  const man = null;
+  const dial = $(".dial");
+  if (dial) {
+    const nodes = $$(".dial-node", dial), slides = $$(".dial-slide"), bar = $(".dial-bar i");
+    const STEP = 5200; let cur = 0, t0 = performance.now(), seen = false, turns = 0;
+    const go = i => {
+      const prev = cur; cur = (i + 4) % 4;
+      let d = cur - prev; if (d < 0) d += 4; turns += d;
+      dial.style.setProperty("--a", turns);
+      nodes.forEach((n, k) => n.classList.toggle("on", k === cur));
+      slides.forEach((s, k) => s.classList.toggle("on", k === cur));
+      t0 = performance.now();
+    };
+    nodes.forEach((n, k) => n.addEventListener("click", () => go(k)));
+    new IntersectionObserver(es => { seen = es[0].isIntersecting; if (seen) t0 = performance.now(); }, { threshold: .35 }).observe(dial);
+    const loop = now => {
+      if (seen && !reduce) {
+        const p = Math.min(1, (now - t0) / STEP);
+        bar.style.transform = `scaleX(${p})`; dial.style.setProperty("--p", p.toFixed(3));
+        if (p >= 1) go(cur + 1);
+      }
+      requestAnimationFrame(loop);
+    };
+    go(0); requestAnimationFrame(loop);
+  }
 
   /* ---------- 45° globe (orthographic, canvas) ---------- */
   const cv = $("#globe");

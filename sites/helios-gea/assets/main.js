@@ -268,18 +268,32 @@
   /* ---------- Every whole photo opens full screen ---------- */
   $$("[data-full]").forEach(b => b.addEventListener("click", () => openLb(b)));
 
-  /* ---------- Manifesto: words light up on scroll; pillar pills ---------- */
-  const man = $(".manifesto");
-  const tip = $(".pill-tip");
-  const pills = $$(".pill");
-  const setTip = p => { if (tip) tip.textContent = p ? p.dataset[lang()] : tip.dataset[lang()]; };
-  pills.forEach(p => {
-    p.addEventListener("pointerenter", () => setTip(p));
-    p.addEventListener("focus", () => setTip(p));
-    p.addEventListener("click", () => setTip(p));
-  });
-  $(".pills")?.addEventListener("pointerleave", () => setTip(null));
-  langHooks.push(() => setTip(null));
+  /* ---------- Values dial: turns on its own every few seconds, tap a value to jump to it ---------- */
+  const man = null;
+  const dial = $(".dial");
+  if (dial) {
+    const nodes = $$(".dial-node", dial), slides = $$(".dial-slide"), bar = $(".dial-bar i");
+    const STEP = 5200; let cur = 0, t0 = performance.now(), seen = false, turns = 0;
+    const go = i => {
+      const prev = cur; cur = (i + 4) % 4;
+      let d = cur - prev; if (d < 0) d += 4; turns += d;
+      dial.style.setProperty("--a", turns);
+      nodes.forEach((n, k) => n.classList.toggle("on", k === cur));
+      slides.forEach((s, k) => s.classList.toggle("on", k === cur));
+      t0 = performance.now();
+    };
+    nodes.forEach((n, k) => n.addEventListener("click", () => go(k)));
+    new IntersectionObserver(es => { seen = es[0].isIntersecting; if (seen) t0 = performance.now(); }, { threshold: .35 }).observe(dial);
+    const loop = now => {
+      if (seen && !reduce) {
+        const p = Math.min(1, (now - t0) / STEP);
+        bar.style.transform = `scaleX(${p})`; dial.style.setProperty("--p", p.toFixed(3));
+        if (p >= 1) go(cur + 1);
+      }
+      requestAnimationFrame(loop);
+    };
+    go(0); requestAnimationFrame(loop);
+  }
 
   /* ---------- 45° globe (orthographic, canvas) ---------- */
   const cv = $("#globe");
