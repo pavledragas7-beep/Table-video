@@ -1002,3 +1002,6 @@ html:not(.js) .loader { display: none; }
 .lab-frame, .lab-frame[style] { aspect-ratio: 3 / 2 !important; }
 .lab-frame img { object-position: 50% 50% !important; }
 @media (min-width: 901px) { .pl-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr) !important; } }
+/* product sheet: tall photos stay whole but never push the text off screen */
+.sheet-media { background: #ece5d8; display: flex; justify-content: center; }
+.sheet-media img { width: auto !important; max-width: 100%; max-height: 52svh; height: auto; object-fit: contain; }
