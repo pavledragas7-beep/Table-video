@@ -50,13 +50,21 @@ def split(n):
 def first(t): return t.split(". ")[0] + "."
 ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg>'
 LIFE = {"body-cream-lotion":"c/33","body-polish":"c/23","foot-balm":"c/34","men-hand-cream":"c/27","women-hand-mask":"c/36",
-        "facial-rich-cream":"c/22","pro-body-cream-lotion":"c/17","pro-body-polish":"c/18","pro-hand-cream-mask":"c/16",
+        "facial-rich-cream":"c/37","pro-body-cream-lotion":"c/17","pro-body-polish":"c/18","pro-hand-cream-mask":"c/16",
         "pro-foot-balm":"c/35","pro-facial-rich-cream":"c/13","pro-facial-toner":"c/15"}
 def info(key, name, size, line_hr, line_en, k):
     d = D.get(key); kick, sub = split(name)
     on = " on" if k == 0 else ""
     if key in LIFE: on += f'" data-life="img/{LIFE[key]}-1600.webp'
 
+    if not d and key in LIFE:
+        # no description yet: still a sheet with the photo, name, size and enquiry button
+        full = (f'<p class="label">45 degrees · <span lang="hr">{line_hr}</span><span lang="en">{line_en}</span></p>'
+                f'<h3 class="sheet-title"><span class="kick">{kick}</span><span class="sub">{sub}</span></h3>'
+                f'<p class="sheet-size">{size}</p><div class="sheet-text"><p lang="hr">Za više informacija o ovom proizvodu pošaljite nam upit.</p><p lang="en">For more information about this product, send us an enquiry.</p></div>'
+                f'<a class="btn solid" href="#upit" data-enquire="{html.escape(name)} · {size}"><span lang="hr">Pošaljite upit</span><span lang="en">Send an enquiry</span>{ARROW}</a>')
+        return (f'<div class="pinfo{on}"><button class="more-btn" type="button" data-sheet><span lang="hr">Više o proizvodu</span><span lang="en">About the product</span><i></i></button>'
+                f'<template>{full}</template></div>')
     if not d:
         return (f'<div class="pinfo{on}"><p class="teaser"><span lang="hr">Za više informacija o ovom proizvodu pošaljite nam upit.</span>'
                 f'<span lang="en">For more information about this product, send us an enquiry.</span></p>'
