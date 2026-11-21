@@ -1045,6 +1045,20 @@ html:not(.js) .loader { display: none; }
   .chapters .chapter:nth-of-type(2) .ch-text { justify-self: start; max-width: 620px; }
 }
 @media (min-width: 1101px) { .chapters .chapter:nth-of-type(2) .ch-text { max-width: none; padding-right: clamp(0px, 3vw, 48px); } }
+
+/* story: bigger olive sprigs between chapters, overlapping the photos instead of adding space */
+.chapters .ch-sep { position: relative; z-index: 3; pointer-events: none; padding-block: 0 !important; height: 136px !important; }
+.chapters .ch-sep .sprig { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 400px !important; max-height: none !important; margin: 0 !important; filter: drop-shadow(0 6px 10px rgba(20,22,17,.18)); }
+.chapters .ch-sep.flip .sprig { transform: scaleX(-1); }
+@media (max-width: 900px) {
+  .chapters .ch-sep { height: 110px !important; }
+  .chapters .ch-sep .sprig { width: 290px !important; }
+}
+/* contact (phone/tablet): olive arch right under "Kako do nas" */
+@media (max-width: 900px) {
+  .contact-grid { row-gap: 0 !important; gap: 0 !important; }
+  .deco-form { margin: 6px auto -6px !important; }
+}
 </style>
 </head>
 <body>
