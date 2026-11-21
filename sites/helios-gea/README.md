@@ -39,4 +39,4 @@ mostra un avviso con il numero di telefono. Per attivarlo inserire l'URL di un s
 | `img/sansa.jpg` | Inovacija, sansa di olive (finché manca: grafica komina) |
 | `img/laboratorij.jpg` | Private label, laboratorio (finché manca: niente foto) |
 
-Il modulo invia a neva@helios-gea.com tramite FormSubmit: al primo invio arriva a Neva un'e-mail di attivazione da confermare una volta.
+Il modulo invia a neva@helios-gea.com tramite `invia.php` (nella stessa cartella di `index.html`), che usa la funzione `mail()` dell'hosting: nessun servizio esterno e nessuna attivazione. Serve un hosting con PHP (quasi tutti). La mail arriva da web@helios-gea.com e 'Rispondi' risponde direttamente a chi ha scritto.

@@ -20,7 +20,7 @@ extra = """<style>
 </style>"""
 body = re.sub(r'<div class="loader".*?</div>\s*</div>\s*</div>', "", body, count=1, flags=re.S)
 body = re.sub(r"<iframe[^>]*></iframe>", '<i class="seal" aria-hidden="true"></i>', body)
-body = body.replace('data-endpoint="https://formsubmit.co/ajax/neva@helios-gea.com"', 'data-preview="1"')
+body = body.replace('data-endpoint="invia.php"', 'data-preview="1"')
 body = '<div class="draft">Anteprima · bozza per Helios Gea</div>\n' + body
 
 out = head.strip() + "\n" + extra + "\n" + body.strip() + "\n"
