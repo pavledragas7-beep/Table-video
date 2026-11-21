@@ -981,6 +981,16 @@ html:not(.js) .loader { display: none; }
   .ch-media .print { width: fit-content !important; max-width: 100%; margin-inline: auto; }
 }
 @media (max-width: 900px) { .ch-media .print img { max-height: 60svh; width: auto; max-width: 100%; margin-inline: auto; } .ch-media .print { width: fit-content !important; max-width: 100%; } }
+/* story: chapters close together, the olive sprig sits right under "Pročitajte više" */
+.chapters { gap: 0 !important; }
+.chapter { padding-block: 12px !important; align-items: end; }
+.ch-sep { display: flex; justify-content: center; height: 56px; overflow: visible; }
+.ch-sep .sprig { width: 220px !important; height: auto; margin: -36px 0 -44px !important; }
+@media (max-width: 900px) {
+  .chapter { padding-block: 8px !important; }
+  .ch-sep { height: 44px; }
+  .ch-sep .sprig { width: 180px !important; margin: -30px 0 -36px !important; }
+}
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
