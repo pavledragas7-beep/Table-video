@@ -20,7 +20,7 @@ home = [("p/body-cream-lotion","Absolute body cream lotion","250 ml",0),("p/body
         ("p/men-hand-cream","Men hand cream","50 ml",0),("p/women-hand-mask","Women hand absolute cream mask","50 ml",0),
         ("p/facial-rich-cream","Absolute facial rich cream","50 ml",1),("p/facial-toner","Hydrating facial spray toner","200 ml",1)]
 NEW = '<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span>'
-pro = [("Professional absolute body cream lotion","500",0,"c/39"),("Professional absolute body polish","500",0,"c/18"),("Professional absolute hand cream mask","250",0,"c/16"),
+pro = [("Professional absolute body cream lotion","500",0,"c/39"),("Professional absolute body polish","500",0,"c/40"),("Professional absolute hand cream mask","250",0,"c/16"),
        ("Professional absolute foot balm","250",0,"c/14"),("Professional facial rich cream","200",0,"c/20"),("Hydrating facial spray toner","200",0,"p/facial-toner")]
 strip1 = [("c/23","Absolute body polish"),("c/02","Helios Gea"),("c/21","45 degrees"),("c/30","Absolute body polish"),("c/11","45 degrees"),
           ("c/20","45 degrees professional"),("c/05","Komina masline"),("c/24","45 degrees"),("c/27","Women & Men hand cream")]
