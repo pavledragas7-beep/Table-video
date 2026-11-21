@@ -32,3 +32,16 @@ D = {
   "pro-hand-cream-mask": dict(hr=[WOMEN_HR], en=[WOMEN_EN]),
   "pro-foot-balm": dict(hr=[FOOT_HR, "Za profesionalnu uporabu."], en=[FOOT_EN, "For professional use."]),
 }
+
+# Hydrating facial spray toner (same text for home and professional). EN from the client; HR is our translation (to be checked by Neva).
+TONER = dict(
+  en=["This enchanting spray toner is fresh and hydrating, ideal to complete the daily facial cleansing of all skin types. As effective as a toner, as delicate as a mist which brings refreshment during the warm summer days.",
+      "Helps the skin to regain a toned and radiant appearance. Formulated to promote the restoration of hydrolipidic balance.",
+      "Light formula contains hydrating factor sodium PCA, Damascus Rose floral water and tangerine essential oil with recognized regenerative properties."],
+  hr=["Ovaj očaravajući tonik u spreju svjež je i hidratantan, idealan za završetak svakodnevnog čišćenja lica za sve tipove kože. Učinkovit poput tonika, nježan poput izmaglice koja donosi osvježenje u toplim ljetnim danima.",
+      "Pomaže koži da povrati zategnut i blistav izgled. Formuliran je kako bi potaknuo obnovu hidrolipidne ravnoteže.",
+      "Lagana formula sadrži hidratantni faktor natrijev PCA, cvjetnu vodu damaščanske ruže i eterično ulje mandarine poznatih regenerativnih svojstava."],
+  use_en="To complete the facial cleansing, spray on a cotton pad and tap on face, neck and décolleté previously cleaned from make-up. Use it also in the morning before washing with water in order to prevent impurities from returning into the skin. For a refreshing and hydrating effect, spray directly on the face several times a day.",
+  use_hr="Za završetak čišćenja lica raspršite na vatirani jastučić i nježno tapkajte po licu, vratu i dekolteu prethodno očišćenima od šminke. Koristite ga i ujutro prije umivanja vodom kako biste spriječili povratak nečistoća u kožu. Za osvježavajući i hidratantni učinak raspršite izravno na lice nekoliko puta dnevno.")
+D["facial-toner"] = TONER
+D["pro-facial-toner"] = TONER
