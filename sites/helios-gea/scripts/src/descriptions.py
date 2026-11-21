@@ -45,3 +45,20 @@ TONER = dict(
   use_hr="Za završetak čišćenja lica raspršite na vatirani jastučić i nježno tapkajte po licu, vratu i dekolteu prethodno očišćenima od šminke. Koristite ga i ujutro prije umivanja vodom kako biste spriječili povratak nečistoća u kožu. Za osvježavajući i hidratantni učinak raspršite izravno na lice nekoliko puta dnevno.")
 D["facial-toner"] = TONER
 D["pro-facial-toner"] = TONER
+
+# Absolute facial rich cream (same text for home and professional). EN from the client (typos fixed); HR is our translation (to be checked by Neva).
+CREAM = dict(
+  en=["An enchanting natural cream from 45 Degrees with a rich and silky texture for an extreme regenerating and anti-ageing action. Its advanced formulation with premium organic olive pulp from Istrian eco gardens is rich in antioxidants and minerals, for smooth, soft and deeply nourished skin.",
+      "Enriched with a natural active ingredient derived from oak extract, which acts as a strong natural shield against skin ageing, specific for sensitive and reactive skin.",
+      "Hydrating factor sodium PCA, buriti oil, avocado oil, jojoba oil, wild rose fruit oil, hamamelis hydrolate, cocoa butter, shea butter and vitamin E are brought together to fight the oxidation process, for a radiant and even-looking complexion. Non-greasy formula.",
+      "Delicate scent of tangerine, lavender and vetiver essential oils for your daily skincare ritual.",
+      "It is recommended for every skin type, even the most sensitive."],
+  hr=["Očaravajuća prirodna krema od 45 Degrees bogate i svilenkaste teksture za snažno regenerirajuće djelovanje i djelovanje protiv starenja kože. Napredna formula s organskom kominom masline premium kvalitete iz istarskih eko maslinika bogata je antioksidansima i mineralima, za glatku, mekanu i dubinski nahranjenu kožu.",
+      "Obogaćena prirodnim aktivnim sastojkom dobivenim iz ekstrakta hrasta, koji djeluje kao snažan prirodni štit protiv starenja kože, posebno za osjetljivu i reaktivnu kožu.",
+      "Hidratantni faktor natrijev PCA, ulje buritija, ulje avokada, ulje jojobe, ulje ploda divlje ruže, hidrolat hamamelisa, kakao maslac, karite maslac i vitamin E zajedno se bore protiv procesa oksidacije, za blistav i ujednačen ten. Formula koja ne masti.",
+      "Nježan miris eteričnih ulja mandarine, lavande i vetivera za vaš svakodnevni ritual njege.",
+      "Preporučuje se za sve tipove kože, čak i za najosjetljiviju."],
+  use_en="Apply morning and evening on the cleansed face, neck and décolleté, and massage until completely absorbed.",
+  use_hr="Nanijeti ujutro i navečer na očišćeno lice, vrat i dekolte te masirati do potpunog upijanja.")
+D["facial-rich-cream"] = CREAM
+D["pro-facial-rich-cream"] = CREAM
