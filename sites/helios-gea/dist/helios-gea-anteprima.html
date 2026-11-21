@@ -939,6 +939,48 @@ html:not(.js) .loader { display: none; }
 @media (min-width: 901px) { .dial { --ds: 440px; } }
 @media (max-width: 900px) { .dial { --ds: min(78vw, 360px); } .dial-node b { width: 40px !important; height: 40px !important; } }
 .dial-node span { display: none !important; }
+
+/* ===== Client feedback: tighter rhythm between sections, justified text on desktop ===== */
+:root { --sec: clamp(56px, 6vw, 96px); }
+.showroom, .pl, .strips { padding-block: var(--sec) !important; }
+.dialsec { padding-block: clamp(44px, 4.5vw, 72px) !important; }
+.motto { padding-block: clamp(48px, 5vw, 80px) !important; }
+.contact { padding-top: var(--sec) !important; }
+.foot { margin-top: clamp(48px, 5vw, 80px) !important; }
+.chapters { padding-block: clamp(40px, 4vw, 64px) !important; gap: clamp(20px, 2vw, 32px) !important; }
+.chapter { padding-block: clamp(28px, 3vw, 48px) !important; }
+.ch-sep .sprig { width: min(300px, 60vw); margin-block: -8px; }
+.globe-grid { min-height: 0 !important; padding-block: var(--sec) !important; }
+.show-head, .strips-head { margin-bottom: clamp(32px, 3.5vw, 52px) !important; }
+.pl-main .offer { margin-top: clamp(40px, 4vw, 64px) !important; }
+.pl-more { margin-top: clamp(32px, 3.5vw, 52px) !important; }
+.band .print img { max-height: 52svh; }
+.hero h1 { margin-block: 26px 24px !important; }
+@media (min-width: 901px) {
+  .hero { height: min(100svh, 860px); }
+  .hero .hero-copy { padding-block: 96px 28px !important; }
+  .hero-foot { padding-top: 20px !important; }
+  /* justified running text (desktop only; phones keep ragged text) */
+  .chapter p, .chapter .lead, .more .body p, .globe-grid p:not(.label), .sheet-text p, .use p,
+  .pl-head .lead, .pl-more .big, .dial-text, .hero-sub, .pinfo .teaser, .contact .addr {
+    text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;
+  }
+  .pl-more .big { text-align-last: center; }
+}
+@media (max-width: 900px) {
+  .hero .hero-copy { padding-bottom: 28px !important; }
+  .showroom, .pl, .strips { padding-block: 52px !important; }
+  .contact { padding-top: 52px !important; }
+  .globe-grid { padding-block: 52px !important; gap: 24px !important; }
+}
+/* story: every chapter side-by-side (no full-width first photo), photos capped in height */
+@media (min-width: 901px) {
+  .chapter.full { grid-template-columns: 1fr 1fr !important; }
+  .chapter.full .ch-media .print { width: 100%; }
+  .ch-media .print img { max-height: 64svh; width: auto; max-width: 100%; margin-inline: auto; }
+  .ch-media .print { width: fit-content !important; max-width: 100%; margin-inline: auto; }
+}
+@media (max-width: 900px) { .ch-media .print img { max-height: 60svh; width: auto; max-width: 100%; margin-inline: auto; } .ch-media .print { width: fit-content !important; max-width: 100%; } }
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
