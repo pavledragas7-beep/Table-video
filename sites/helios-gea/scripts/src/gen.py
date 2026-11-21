@@ -22,10 +22,10 @@ home = [("p/body-cream-lotion","Absolute body cream lotion","250 ml",0),("p/body
 NEW = '<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span>'
 pro = [("Professional absolute body cream lotion","500",0,"c/39"),("Professional absolute body polish","500",0,"c/40"),("Professional absolute hand cream mask","250",0,"c/43"),
        ("Professional absolute foot balm","250",0,"c/45"),("Professional facial rich cream","200",0,"c/46"),("Hydrating facial spray toner","200",0,"p/facial-toner")]
-strip1 = [("c/23","Absolute body polish"),("c/02","Helios Gea"),("c/21","45 degrees"),("c/30","Absolute body polish"),("c/11","45 degrees"),
-          ("c/20","45 degrees professional"),("c/05","Komina masline"),("c/24","45 degrees"),("c/27","Women & Men hand cream")]
-strip2 = [("c/08","Helios Gea – maslinik"),("c/26","Absolute body cream lotion"),("c/28","Absolute body polish"),("c/09","Istra"),("c/19","45 degrees"),
-          ("c/22","45 degrees"),("c/29","Helios Gea"),("c/25","Absolute body cream lotion"),("c/13","Absolute facial rich cream")]
+strip1 = [("c/31","Helios Gea – Neva u maslinku"),("c/39","Professional absolute body cream lotion"),("c/34","Absolute foot balm"),("c/44","Professional absolute hand cream mask"),("c/37","Absolute facial rich cream"),
+          ("c/41","Professional absolute body polish"),("c/45","Professional absolute foot balm"),("c/47","45 degrees professional"),("c/33","Absolute body cream lotion")]
+strip2 = [("c/32","Komina masline"),("c/42","Professional absolute body cream lotion"),("c/36","Women hand absolute cream mask"),("c/40","Professional absolute body polish"),("c/38","Hydrating facial spray toner"),
+          ("c/43","45 degrees professional"),("c/35","Professional absolute foot balm"),("c/46","Professional facial rich cream")]
 parts = dict(
   HERO=(lambda w,h: f'<button class="hero-print" type="button" data-full="img/g/toner-stones-1600.webp" data-group="hero" data-cap="Hydrating facial spray toner · 200 ml" aria-label="Hydrating facial spray toner"><img src="img/g/toner-stones-1600.webp" srcset="img/g/toner-stones-800.webp 800w, img/g/toner-stones-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 64vw" width="1600" height="1066" alt="45 degrees Absolute facial spray toner" fetchpriority="high" decoding="async"></button>')(0,0),
   HOME_LIST="\n              ".join(f'<li><button type="button"><span class="n">{i+1:02d}</span><h4>{n}</h4><span class="size">{s}</span></button></li>' for i,(b,n,s,new) in enumerate(home)),
