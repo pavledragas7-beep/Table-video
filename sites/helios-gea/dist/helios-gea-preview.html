@@ -1974,10 +1974,12 @@ html:not(.js) .loader { display: none; }
     const T = {
       hr: { req: "Obavezno polje.", mail: "Unesite ispravnu e-mail adresu.", consent: "Potrebna je vaša suglasnost.", fix: "Provjerite označena polja.",
             sending: "Šaljem…", ok: "Hvala! Vaš upit je poslan, javit ćemo vam se uskoro.", fail: "Slanje nije uspjelo. Nazovite nas na +385 99 3664333.",
-            off: "Obrazac još nije povezan s e-mail adresom. Za upit nas nazovite na +385 99 3664333." },
+            off: "Obrazac još nije povezan s e-mail adresom. Za upit nas nazovite na +385 99 3664333.",
+            preview: "Ovo je samo pregled stranice: upit nije poslan. Slanje na neva@helios-gea.com radit će kad stranica bude objavljena na helios-gea.com." },
       en: { req: "Required field.", mail: "Enter a valid e-mail address.", consent: "Your consent is required.", fix: "Please check the highlighted fields.",
             sending: "Sending…", ok: "Thank you! Your enquiry has been sent, we will get back to you soon.", fail: "Sending failed. Please call us on +385 99 3664333.",
-            off: "The form is not connected to an e-mail address yet. Please call us on +385 99 3664333." }
+            off: "The form is not connected to an e-mail address yet. Please call us on +385 99 3664333.",
+            preview: "This is only a preview of the site: the enquiry was not sent. Sending to neva@helios-gea.com will work once the site is live on helios-gea.com." }
     };
     const t = k => T[lang()][k];
     const mark = (el, msg) => {
@@ -2005,6 +2007,7 @@ html:not(.js) .loader { display: none; }
       const bad = fields.filter(el => !check(el));
       if (bad.length) { status.textContent = t("fix"); status.classList.add("warn"); bad[0].focus(); return; }
       if (form._honey.value) return; // bot trap
+      if (form.dataset.preview) { status.textContent = t("preview"); status.classList.add("warn"); return; }
       const endpoint = form.dataset.endpoint;
       if (!endpoint) { status.textContent = t("off"); status.classList.add("warn"); return; }
       form.classList.add("sending");
