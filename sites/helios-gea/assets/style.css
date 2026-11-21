@@ -998,3 +998,7 @@ html:not(.js) .loader { display: none; }
   .ch-sep { padding-block: 20px; }
   .ch-sep .sprig { width: 160px !important; }
 }
+/* Private label photo is now landscape: show it whole */
+.lab-frame, .lab-frame[style] { aspect-ratio: 3 / 2 !important; }
+.lab-frame img { object-position: 50% 50% !important; }
+@media (min-width: 901px) { .pl-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr) !important; } }
