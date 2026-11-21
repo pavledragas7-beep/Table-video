@@ -1009,3 +1009,25 @@ html:not(.js) .loader { display: none; }
 /* copertine verticali: la foto resta intera dentro il riquadro, senza tagli */
 .show-frame .print img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: contain; object-position: 50% 50%; }
 .show-frame, .show-frame .print, #p-pro .show-frame .print { background: #ece5d8; }
+
+/* story, tablet + pc: editorial zig-zag — each photo fills its column, whole (no crop), text centred beside it */
+@media (min-width: 701px) {
+  .chapters .chapter { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important; gap: clamp(32px, 5vw, 88px) !important; align-items: center !important; }
+  .chapters .chapter:nth-of-type(2) { grid-template-columns: minmax(0, 1fr) minmax(0, .62fr) !important; }
+  .chapters .chapter:nth-of-type(2) .ch-media { order: 2; }
+  .chapters .chapter .ch-media .print { width: 100% !important; max-width: none !important; margin: 0 !important; display: block; }
+  .chapters .chapter .ch-media .print img { width: 100% !important; height: auto !important; max-height: none !important; max-width: none !important; margin: 0 !important; display: block; }
+  .chapters .chapter .ch-text { max-width: 560px; }
+  .chapters .chapter:nth-of-type(2) .ch-text { justify-self: center; max-width: 600px; }
+  .chapters .chapter .ch-text .lead { max-width: none; }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .chapters .chapter h2 { font-size: clamp(30px, 4.4vw, 46px) !important; margin-bottom: 18px; }
+  .chapters .chapter .label { margin-bottom: 14px; }
+  .chapters .chapter .lead { font-size: 17px; }
+}
+@media (min-width: 1101px) {
+  .chapters .chapter:nth-of-type(2) { grid-template-columns: minmax(0, 1fr) minmax(0, .5fr) !important; }
+  .chapters .chapter:nth-of-type(2) .ch-text { justify-self: start; max-width: 620px; }
+}
+@media (min-width: 1101px) { .chapters .chapter:nth-of-type(2) .ch-text { max-width: none; padding-right: clamp(0px, 3vw, 48px); } }
