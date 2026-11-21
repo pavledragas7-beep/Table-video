@@ -991,6 +991,22 @@ html:not(.js) .loader { display: none; }
   .ch-sep { height: 44px; }
   .ch-sep .sprig { width: 180px !important; margin: -30px 0 -36px !important; }
 }
+/* story: clean, regular rhythm — same photo height, no tilt, text centred beside it, sprig centred in its own gap */
+.chapter { align-items: center !important; padding-block: 0 !important; }
+.ch-media .print, .chapter:nth-child(odd) .ch-media .print, .chapter:nth-child(even) .ch-media .print { transform: none !important; }
+.ch-sep { height: auto !important; padding-block: 28px; display: flex; justify-content: center; align-items: center; }
+.ch-sep .sprig { width: 200px !important; max-height: 90px; margin: 0 !important; }
+@media (min-width: 901px) {
+  .chapter { grid-template-columns: 1fr 1fr !important; gap: clamp(48px, 6vw, 100px) !important; }
+  .ch-media .print img { height: 440px !important; max-height: none !important; width: auto !important; }
+  .ch-text { max-width: 520px; }
+  .chapter:nth-child(odd) .ch-media .print { margin-left: auto; margin-right: 0; }
+  .chapter:nth-child(even) .ch-media .print, .chapter:nth-child(3) .ch-media .print { margin-left: 0; margin-right: auto; }
+}
+@media (max-width: 900px) {
+  .ch-sep { padding-block: 20px; }
+  .ch-sep .sprig { width: 160px !important; }
+}
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
