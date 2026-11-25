@@ -1066,6 +1066,17 @@ html:not(.js) .loader { display: none; }
   text-align: justify !important; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;
 }
 @media (max-width: 900px) { .hero-sub, .pl-head .lead, .pl-main p:not(.label) { text-align-last: center; } }
+/* phone/tablet: sprig closer to "Pročitajte više", above the next photo (no overlap) */
+@media (max-width: 900px) {
+  .chapters .ch-sep { height: 96px !important; margin-top: -34px; }
+}
+@media (max-width: 900px) {
+  .chapters .ch-sep .sprig { top: auto; bottom: 14px; translate: -50% 0; }
+}
+@media (max-width: 900px) {
+  .chapters .ch-sep { height: 110px !important; }
+  .chapters .ch-sep .sprig { bottom: -6px; }
+}
 </style>
 </head>
 <body>
