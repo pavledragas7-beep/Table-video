@@ -1054,6 +1054,13 @@ html:not(.js) .loader { display: none; }
   .contact-grid { row-gap: 0 !important; gap: 0 !important; }
   .deco-form { margin: 6px auto -6px !important; }
 }
+
+/* justified running text on every device (titles, labels and buttons stay as they are) */
+.chapter p, .chapter .lead, .more .body p, .globe-grid p:not(.label), .sheet-text p, .use p,
+.pl-head .lead, .pl-more .big, .pl-more p, .dial-text, .hero-sub, .pinfo .teaser, .contact .addr, .motto p:not(.label), .offer p, .offer li, .pl-main p:not(.label) {
+  text-align: justify !important; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;
+}
+@media (max-width: 900px) { .hero-sub, .pl-head .lead, .pl-main p:not(.label) { text-align-last: center; } }
 </style>
 <style>
   .js .pre { opacity: 1 !important; transform: none !important; }
