@@ -1110,3 +1110,9 @@ mark.todo { background: #f6e3cf; color: #8a4f20; padding: 1px 6px; border-radius
 @media (max-width: 700px) { .foot .foot-legal { flex-direction: column; align-items: center; gap: 12px; } }
 .foot .foot-legal { border-top: 0; padding-top: 4px; margin-top: 14px; }
 @media (max-width: 700px) { .foot .foot-legal { align-items: flex-start; gap: 10px; margin-top: 22px; } }
+
+/* contact (pc + tablet landscape): the olive arch stays inside the section (the gallery above would cut it) and drapes over the form's corner */
+@media (min-width: 901px) {
+  .deco-form { top: -58px !important; right: 12px !important; z-index: 3; pointer-events: none; }
+  .form-wrap .form { position: relative; z-index: 1; }
+}
