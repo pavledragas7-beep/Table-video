@@ -8,9 +8,7 @@
 <meta name="theme-color" content="#0d100b">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="img/seal.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Mono:wght@400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -304,7 +302,7 @@
           <label><input type="radio" name="topic" value="Ostalo / Other"><span lang="hr">Ostalo</span><span lang="en">Other</span></label>
         </fieldset>
         <div class="field"><label for="f-msg"><span lang="hr">Poruka</span><span lang="en">Message</span> *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
-        <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry.</span></span></label>
+        <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit, u skladu s <a href="#privatnost" data-legal="privatnost">Politikom privatnosti</a>.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry, in line with the <a href="#privatnost" data-legal="privatnost">Privacy policy</a>.</span></span></label>
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="f-foot">
           <button class="btn solid" type="submit"><span lang="hr">Pošalji upit</span><span lang="en">Send enquiry</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
@@ -318,10 +316,17 @@
         <span>45 degrees · Bale Valle · Istria</span>
         <span>© <span id="year">2026</span> Helios Gea d.o.o.</span>
       </div>
+      <nav class="wrap foot-legal" aria-label="Pravne informacije">
+        <a href="#privatnost" data-legal="privatnost"><span lang="hr">Politika privatnosti</span><span lang="en">Privacy policy</span></a>
+        <a href="#kolacici" data-legal="kolacici"><span lang="hr">Kolačići</span><span lang="en">Cookies</span></a>
+        <a href="#uvjeti" data-legal="uvjeti"><span lang="hr">Uvjeti korištenja</span><span lang="en">Terms of use</span></a>
+        <a href="#impressum" data-legal="impressum">Impressum</a>
+      </nav>
     </footer>
   </section>
 </main>
 
+{{LEGAL}}
 <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
   <div class="sheet-bg" data-close></div>
   <article class="sheet-panel">

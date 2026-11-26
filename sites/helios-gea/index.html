@@ -8,9 +8,7 @@
 <meta name="theme-color" content="#0d100b">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="img/seal.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Mono:wght@400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -352,7 +350,7 @@
           <label><input type="radio" name="topic" value="Ostalo / Other"><span lang="hr">Ostalo</span><span lang="en">Other</span></label>
         </fieldset>
         <div class="field"><label for="f-msg"><span lang="hr">Poruka</span><span lang="en">Message</span> *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
-        <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry.</span></span></label>
+        <label class="consent"><input id="f-consent" name="consent" type="checkbox" required><span><span lang="hr">Slažem se da Helios Gea koristi moje podatke kako bi odgovorila na ovaj upit, u skladu s <a href="#privatnost" data-legal="privatnost">Politikom privatnosti</a>.</span><span lang="en">I agree that Helios Gea may use my details to reply to this enquiry, in line with the <a href="#privatnost" data-legal="privatnost">Privacy policy</a>.</span></span></label>
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="f-foot">
           <button class="btn solid" type="submit"><span lang="hr">Pošalji upit</span><span lang="en">Send enquiry</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
@@ -366,9 +364,180 @@
         <span>45 degrees · Bale Valle · Istria</span>
         <span>© <span id="year">2026</span> Helios Gea d.o.o.</span>
       </div>
+      <nav class="wrap foot-legal" aria-label="Pravne informacije">
+        <a href="#privatnost" data-legal="privatnost"><span lang="hr">Politika privatnosti</span><span lang="en">Privacy policy</span></a>
+        <a href="#kolacici" data-legal="kolacici"><span lang="hr">Kolačići</span><span lang="en">Cookies</span></a>
+        <a href="#uvjeti" data-legal="uvjeti"><span lang="hr">Uvjeti korištenja</span><span lang="en">Terms of use</span></a>
+        <a href="#impressum" data-legal="impressum">Impressum</a>
+      </nav>
     </footer>
   </section>
 </main>
+
+<!-- LEGAL: privacy, cookies, terms, company info. Opened from the footer (#privatnost, #kolacici, #uvjeti, #impressum).
+     Highlighted <mark class="todo"> fields are company data still to be filled in. -->
+<div class="legal" role="dialog" aria-modal="true" aria-labelledby="legal-title" aria-hidden="true">
+  <div class="legal-bg" data-legal-close></div>
+  <div class="legal-panel">
+    <div class="legal-top">
+      <nav class="legal-tabs" aria-label="Pravne informacije">
+        <a href="#privatnost" data-legal="privatnost"><span lang="hr">Privatnost</span><span lang="en">Privacy</span></a>
+        <a href="#kolacici" data-legal="kolacici"><span lang="hr">Kolačići</span><span lang="en">Cookies</span></a>
+        <a href="#uvjeti" data-legal="uvjeti"><span lang="hr">Uvjeti korištenja</span><span lang="en">Terms of use</span></a>
+        <a href="#impressum" data-legal="impressum"><span lang="hr">Impressum</span><span lang="en">Company info</span></a>
+      </nav>
+      <button class="legal-close" type="button" data-legal-close aria-label="Zatvori / Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M2 2l12 12M14 2L2 14"/></svg></button>
+    </div>
+    <div class="legal-body">
+
+      <!-- ===================== PRIVACY ===================== -->
+      <article class="legal-doc" id="doc-privatnost" data-doc="privatnost">
+        <p class="label">Helios Gea d.o.o.</p>
+        <h2 class="legal-title"><span lang="hr">Politika privatnosti</span><span lang="en">Privacy policy</span></h2>
+        <p class="legal-date"><span lang="hr">Vrijedi od: 1. prosinca 2026.</span><span lang="en">Effective from: 1 December 2026</span></p>
+
+        <div lang="hr">
+          <p>Ova politika objašnjava koje osobne podatke prikupljamo kada posjetite stranicu helios-gea.com ili nam pošaljete upit, zašto ih obrađujemo i koja su vaša prava. Podatke obrađujemo u skladu s Općom uredbom o zaštiti podataka (EU) 2016/679 („GDPR”) i Zakonom o provedbi Opće uredbe o zaštiti podataka.</p>
+          <h3>1. Voditelj obrade</h3>
+          <p>Helios Gea d.o.o., Rovinjska 43, 52211 Bale, Hrvatska<br>OIB: <mark class="todo">[OIB]</mark><br>E-mail: <a href="mailto:neva@helios-gea.com">neva@helios-gea.com</a> · Telefon: <a href="tel:+385993664333">+385 99 3664333</a></p>
+          <p>Za sva pitanja o zaštiti osobnih podataka obratite nam se na gore navedenu e-mail adresu.</p>
+          <h3>2. Koje podatke obrađujemo i zašto</h3>
+          <p><strong>Posjet stranici.</strong> Pri svakom posjetu poslužitelj na kojem se nalazi stranica automatski bilježi tehničke podatke: IP adresu, datum i vrijeme pristupa, preglednik i operativni sustav te stranicu s koje dolazite. Ti su podaci nužni za prikaz stranice i njezinu sigurnost (pravna osnova: legitimni interes, čl. 6. st. 1. t. (f) GDPR-a). Ne koristimo ih za izradu profila niti ih povezujemo s drugim podacima, a čuvaju se samo onoliko koliko je to tehnički potrebno.</p>
+          <p><strong>Obrazac za upit.</strong> Kada pošaljete upit, obrađujemo podatke koje sami unesete: ime i prezime, e-mail adresu, a po želji i telefon, naziv tvrtke, temu upita i poruku. Podatke koristimo isključivo kako bismo odgovorili na vaš upit i, ako to zatražite, pripremili ponudu (pravna osnova: radnje prije sklapanja ugovora i vaša privola, čl. 6. st. 1. t. (b) i (a) GDPR-a). Upit nam stiže e-poštom na adresu neva@helios-gea.com. Ako se upit šalje putem vašeg programa za e-poštu, poruku šaljete vi preko svog pružatelja e-pošte.</p>
+          <p><strong>Izravna komunikacija.</strong> Ako nas kontaktirate telefonom ili e-poštom, podatke iz te komunikacije koristimo samo za odgovor i daljnju suradnju.</p>
+          <h3>3. Koliko dugo čuvamo podatke</h3>
+          <p>Podatke iz upita čuvamo dok je to potrebno za odgovor i eventualnu suradnju, a najdulje 24 mjeseca od posljednjeg kontakta, osim ako zakon (npr. računovodstveni propisi u slučaju sklopljenog ugovora) ne propisuje dulji rok. Nakon toga ih brišemo.</p>
+          <h3>4. Tko ima pristup podacima</h3>
+          <p>Vaše podatke ne prodajemo i ne dijelimo s trećima u marketinške svrhe. Pristup mogu imati samo pružatelji usluga koji nam pomažu u radu stranice i e-pošte (pružatelj usluge smještaja stranice i e-pošte), i to isključivo prema našim uputama i uz obvezu povjerljivosti, te nadležna tijela kada to zakon nalaže. Podatke ne prenosimo izvan Europskog gospodarskog prostora.</p>
+          <h3>5. Kolačići i vanjski servisi</h3>
+          <p>Stranica ne koristi kolačiće za praćenje, analitiku ni oglašavanje i ne učitava sadržaje trećih strana (fontovi se poslužuju s naše stranice). Detalji su u <a href="#kolacici" data-legal="kolacici">Politici kolačića</a>.</p>
+          <h3>6. Vaša prava</h3>
+          <p>U svakom trenutku imate pravo zatražiti pristup svojim podacima, njihov ispravak ili brisanje, ograničenje obrade, prenosivost podataka te uložiti prigovor na obradu koja se temelji na legitimnom interesu. Privolu možete povući u bilo kojem trenutku, bez utjecaja na zakonitost obrade prije povlačenja. Zahtjev pošaljite na neva@helios-gea.com, a odgovorit ćemo najkasnije u roku od mjesec dana.</p>
+          <p>Ako smatrate da obrada vaših podataka nije u skladu s propisima, možete podnijeti prigovor Agenciji za zaštitu osobnih podataka (AZOP), <a href="https://azop.hr" target="_blank" rel="noopener">azop.hr</a>.</p>
+          <h3>7. Sigurnost</h3>
+          <p>Primjenjujemo primjerene tehničke i organizacijske mjere kako bismo zaštitili vaše podatke od gubitka, zlouporabe i neovlaštenog pristupa. Stranica se prenosi šifriranom vezom (HTTPS).</p>
+          <h3>8. Izmjene</h3>
+          <p>Ovu politiku možemo povremeno izmijeniti. Važeća verzija uvijek je objavljena na ovoj stranici, s datumom početka primjene.</p>
+        </div>
+
+        <div lang="en">
+          <p>This policy explains which personal data we collect when you visit helios-gea.com or send us an enquiry, why we process it and what your rights are. We process data in accordance with the General Data Protection Regulation (EU) 2016/679 (“GDPR”) and the Croatian Act on the Implementation of the GDPR.</p>
+          <h3>1. Data controller</h3>
+          <p>Helios Gea d.o.o., Rovinjska 43, 52211 Bale, Croatia<br>Company ID (OIB): <mark class="todo">[OIB]</mark><br>E-mail: <a href="mailto:neva@helios-gea.com">neva@helios-gea.com</a> · Phone: <a href="tel:+385993664333">+385 99 3664333</a></p>
+          <p>For any question about personal data, please write to the e-mail address above.</p>
+          <h3>2. What data we process and why</h3>
+          <p><strong>Visiting the site.</strong> On every visit, the server hosting the site automatically records technical data: IP address, date and time of access, browser and operating system, and the referring page. This data is needed to deliver the site and keep it secure (legal basis: legitimate interest, Art. 6(1)(f) GDPR). We do not use it for profiling or combine it with other data, and it is kept only as long as technically necessary.</p>
+          <p><strong>Enquiry form.</strong> When you send an enquiry, we process the data you enter: full name, e-mail address and, optionally, phone, company name, topic and message. We use it only to reply to your enquiry and, if you ask, to prepare an offer (legal basis: steps prior to entering into a contract and your consent, Art. 6(1)(b) and (a) GDPR). The enquiry reaches us by e-mail at neva@helios-gea.com. If the enquiry is sent through your own e-mail app, you send it via your own e-mail provider.</p>
+          <p><strong>Direct contact.</strong> If you contact us by phone or e-mail, we use the data from that communication only to reply and for any further cooperation.</p>
+          <h3>3. How long we keep data</h3>
+          <p>We keep enquiry data for as long as needed to reply and for any cooperation, and for no longer than 24 months after the last contact, unless the law (e.g. accounting rules where a contract is concluded) requires a longer period. After that it is deleted.</p>
+          <h3>4. Who has access to the data</h3>
+          <p>We do not sell your data or share it with third parties for marketing. Access may be given only to service providers that help us run the site and e-mail (web hosting and e-mail provider), strictly on our instructions and under confidentiality, and to public authorities where required by law. We do not transfer data outside the European Economic Area.</p>
+          <h3>5. Cookies and third-party services</h3>
+          <p>The site does not use cookies for tracking, analytics or advertising and does not load third-party content (fonts are served from our own site). See the <a href="#kolacici" data-legal="kolacici">Cookie policy</a> for details.</p>
+          <h3>6. Your rights</h3>
+          <p>At any time you may request access to your data, its rectification or erasure, restriction of processing and data portability, and you may object to processing based on legitimate interest. You may withdraw your consent at any time, without affecting the lawfulness of processing before the withdrawal. Send your request to neva@helios-gea.com and we will reply within one month at the latest.</p>
+          <p>If you believe your data is not processed lawfully, you may lodge a complaint with the Croatian Personal Data Protection Agency (AZOP), <a href="https://azop.hr" target="_blank" rel="noopener">azop.hr</a>.</p>
+          <h3>7. Security</h3>
+          <p>We apply appropriate technical and organisational measures to protect your data against loss, misuse and unauthorised access. The site is delivered over an encrypted connection (HTTPS).</p>
+          <h3>8. Changes</h3>
+          <p>We may update this policy from time to time. The current version is always published on this page, with its effective date.</p>
+        </div>
+      </article>
+
+      <!-- ===================== COOKIES ===================== -->
+      <article class="legal-doc" id="doc-kolacici" data-doc="kolacici">
+        <p class="label">Helios Gea d.o.o.</p>
+        <h2 class="legal-title"><span lang="hr">Politika kolačića</span><span lang="en">Cookie policy</span></h2>
+        <p class="legal-date"><span lang="hr">Vrijedi od: 1. prosinca 2026.</span><span lang="en">Effective from: 1 December 2026</span></p>
+        <div lang="hr">
+          <p>Kolačići su male tekstualne datoteke koje web stranica sprema u vaš preglednik. Stranica helios-gea.com <strong>ne koristi kolačiće</strong>: ni za analitiku, ni za oglašavanje, ni za praćenje, a ne učitava ni sadržaje trećih strana (npr. Google Fonts, karte, društvene mreže). Zato vas ne tražimo privolu za kolačiće.</p>
+          <h3>Lokalna pohrana jezika</h3>
+          <p>Kada odaberete jezik stranice (HR / EN), vaš izbor spremamo u lokalnu pohranu preglednika kako bi stranica pri sljedećem posjetu bila na istom jeziku.</p>
+          <div class="legal-table">
+            <p><span>Naziv</span><span>hg-lang</span></p>
+            <p><span>Svrha</span><span>pamćenje odabranog jezika (nužno za funkciju koju ste zatražili)</span></p>
+            <p><span>Vrsta</span><span>lokalna pohrana (localStorage), samo u vašem pregledniku</span></p>
+            <p><span>Trajanje</span><span>dok je ne obrišete u postavkama preglednika</span></p>
+            <p><span>Šalje se nekome?</span><span>ne</span></p>
+          </div>
+          <p>Ovaj zapis ne sadrži osobne podatke i ne šalje se na naš ni na bilo koji drugi poslužitelj. Možete ga obrisati u postavkama preglednika (brisanje podataka o web-mjestu).</p>
+          <h3>Izmjene</h3>
+          <p>Ako u budućnosti uvedemo kolačiće ili alate trećih strana (npr. analitiku), prethodno ćemo ažurirati ovu politiku i, gdje je to potrebno, zatražiti vašu privolu.</p>
+        </div>
+        <div lang="en">
+          <p>Cookies are small text files that a website stores in your browser. helios-gea.com <strong>does not use cookies</strong>: not for analytics, advertising or tracking, and it does not load third-party content (e.g. Google Fonts, maps, social networks). That is why we do not ask for cookie consent.</p>
+          <h3>Local storage of the language</h3>
+          <p>When you choose the site language (HR / EN), we save your choice in the browser’s local storage so the site opens in the same language on your next visit.</p>
+          <div class="legal-table">
+            <p><span>Name</span><span>hg-lang</span></p>
+            <p><span>Purpose</span><span>remembering the chosen language (strictly necessary for a feature you requested)</span></p>
+            <p><span>Type</span><span>local storage (localStorage), in your browser only</span></p>
+            <p><span>Duration</span><span>until you delete it in your browser settings</span></p>
+            <p><span>Shared with anyone?</span><span>no</span></p>
+          </div>
+          <p>This entry contains no personal data and is not sent to our server or any other. You can delete it in your browser settings (clear site data).</p>
+          <h3>Changes</h3>
+          <p>If we introduce cookies or third-party tools in the future (e.g. analytics), we will update this policy beforehand and, where required, ask for your consent.</p>
+        </div>
+      </article>
+
+      <!-- ===================== TERMS ===================== -->
+      <article class="legal-doc" id="doc-uvjeti" data-doc="uvjeti">
+        <p class="label">Helios Gea d.o.o.</p>
+        <h2 class="legal-title"><span lang="hr">Uvjeti korištenja</span><span lang="en">Terms of use</span></h2>
+        <p class="legal-date"><span lang="hr">Vrijedi od: 1. prosinca 2026.</span><span lang="en">Effective from: 1 December 2026</span></p>
+        <div lang="hr">
+          <p>Stranicu helios-gea.com vodi Helios Gea d.o.o., Rovinjska 43, 52211 Bale. Korištenjem stranice prihvaćate ove uvjete.</p>
+          <h3>1. Sadržaj stranice</h3>
+          <p>Sadržaj stranice ima informativnu svrhu. Trudimo se da informacije o tvrtki, proizvodima 45 degrees i uslugama private label budu točne i ažurne, ali ne jamčimo da su u svakom trenutku potpune. Opisi proizvoda nisu medicinski savjet; u slučaju osjetljive kože, alergija ili zdravstvenih tegoba posavjetujte se sa stručnom osobom prije uporabe.</p>
+          <h3>2. Upiti i ponude</h3>
+          <p>Slanje upita putem stranice ne predstavlja narudžbu ni sklopljeni ugovor. Ponude, cijene i rokovi dogovaraju se pojedinačno i obvezujući su tek nakon pisane potvrde Helios Gea d.o.o.</p>
+          <h3>3. Autorska prava i žigovi</h3>
+          <p>Svi tekstovi, fotografije, grafički elementi, logotipi i oznaka 45 degrees vlasništvo su Helios Gea d.o.o. ili se koriste uz dopuštenje nositelja prava. Bez prethodnog pisanog dopuštenja nije ih dopušteno umnožavati, mijenjati ni koristiti u komercijalne svrhe. Dijeljenje poveznice na stranicu je slobodno.</p>
+          <h3>4. Odgovornost</h3>
+          <p>Ne odgovaramo za štetu nastalu zbog privremene nedostupnosti stranice ili tehničkih pogrešaka, osim u slučaju namjere ili krupne nepažnje. Ne odgovaramo za sadržaj vanjskih stranica na koje stranica upućuje.</p>
+          <h3>5. Mjerodavno pravo</h3>
+          <p>Na ove uvjete primjenjuje se pravo Republike Hrvatske. Za sporove je nadležan stvarno nadležni sud prema sjedištu Helios Gea d.o.o., ne dirajući u prava potrošača prema propisima o zaštiti potrošača.</p>
+        </div>
+        <div lang="en">
+          <p>helios-gea.com is operated by Helios Gea d.o.o., Rovinjska 43, 52211 Bale, Croatia. By using the site you accept these terms.</p>
+          <h3>1. Site content</h3>
+          <p>The content of the site is for information. We strive to keep information about the company, the 45 degrees products and our private label services accurate and up to date, but we cannot guarantee it is complete at all times. Product descriptions are not medical advice; if you have sensitive skin, allergies or health conditions, please consult a professional before use.</p>
+          <h3>2. Enquiries and offers</h3>
+          <p>Sending an enquiry through the site is not an order or a contract. Offers, prices and delivery times are agreed individually and become binding only after written confirmation by Helios Gea d.o.o.</p>
+          <h3>3. Copyright and trademarks</h3>
+          <p>All texts, photographs, graphics, logos and the 45 degrees mark are the property of Helios Gea d.o.o. or are used with the right holder’s permission. They may not be copied, altered or used commercially without prior written permission. Sharing a link to the site is welcome.</p>
+          <h3>4. Liability</h3>
+          <p>We are not liable for damage caused by temporary unavailability of the site or technical errors, except in cases of intent or gross negligence. We are not responsible for the content of external sites linked from this site.</p>
+          <h3>5. Governing law</h3>
+          <p>These terms are governed by the law of the Republic of Croatia. Disputes fall under the competent court at the registered seat of Helios Gea d.o.o., without prejudice to consumers’ rights under consumer protection law.</p>
+        </div>
+      </article>
+
+      <!-- ===================== IMPRESSUM ===================== -->
+      <article class="legal-doc" id="doc-impressum" data-doc="impressum">
+        <p class="label">Helios Gea d.o.o.</p>
+        <h2 class="legal-title"><span lang="hr">Impressum</span><span lang="en">Company information</span></h2>
+        <div class="legal-table">
+          <p><span lang="hr">Tvrtka</span><span lang="en">Company</span><span>Helios Gea d.o.o.</span></p>
+          <p><span lang="hr">Sjedište</span><span lang="en">Registered office</span><span>Rovinjska 43, 52211 Bale, <span lang="hr">Hrvatska</span><span lang="en">Croatia</span></span></p>
+          <p><span>OIB</span><span><mark class="todo">[OIB]</mark></span></p>
+          <p><span lang="hr">Upisana u sudski registar</span><span lang="en">Registered at</span><span><mark class="todo">[Trgovački sud u …]</mark>, MBS <mark class="todo">[MBS]</mark></span></p>
+          <p><span lang="hr">Temeljni kapital</span><span lang="en">Share capital</span><span><mark class="todo">[iznos] EUR, uplaćen u cijelosti</mark></span></p>
+          <p><span lang="hr">Direktor/ica</span><span lang="en">Director</span><span><mark class="todo">[ime i prezime]</mark></span></p>
+          <p><span lang="hr">Banka i IBAN</span><span lang="en">Bank and IBAN</span><span><mark class="todo">[banka] · [IBAN]</mark></span></p>
+          <p><span>E-mail</span><span><a href="mailto:neva@helios-gea.com">neva@helios-gea.com</a></span></p>
+          <p><span lang="hr">Telefon</span><span lang="en">Phone</span><span><a href="tel:+385993664333">+385 99 3664333</a></span></p>
+          <p><span lang="hr">Robna marka</span><span lang="en">Brand</span><span>45 degrees</span></p>
+        </div>
+        <p class="legal-note" lang="hr">Fotografije: Helios Gea d.o.o. Sva prava pridržana.</p>
+        <p class="legal-note" lang="en">Photography: Helios Gea d.o.o. All rights reserved.</p>
+      </article>
+
+    </div>
+  </div>
+</div>
 
 <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
   <div class="sheet-bg" data-close></div>

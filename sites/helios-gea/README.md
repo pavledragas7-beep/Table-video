@@ -40,3 +40,10 @@ mostra un avviso con il numero di telefono. Per attivarlo inserire l'URL di un s
 | `img/laboratorij.jpg` | Private label, laboratorio (finché manca: niente foto) |
 
 Il modulo invia a neva@helios-gea.com tramite `invia.php` (nella stessa cartella di `index.html`), che usa la funzione `mail()` dell'hosting: nessun servizio esterno e nessuna attivazione. Serve un hosting con PHP (quasi tutti). La mail arriva da web@helios-gea.com e 'Rispondi' risponde direttamente a chi ha scritto.
+
+## Parte legale
+
+Politika privatnosti, Kolačići, Uvjeti korištenja e Impressum sono in `scripts/src/legal.html` (HR + EN) e si aprono dal piè di pagina
+o con i link diretti `#privatnost`, `#kolacici`, `#uvjeti`, `#impressum`. I campi evidenziati (`<mark class="todo">`) sono dati
+della società ancora da inserire: OIB, tribunale del registro e MBS, capitale sociale, direttore/direttrice, banca e IBAN.
+Il sito non usa cookie né servizi esterni: i font sono in `assets/fonts/` (niente Google Fonts), quindi non serve un banner cookie.

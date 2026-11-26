@@ -85,6 +85,7 @@ HOME_KEYS = ["body-cream-lotion","body-polish","foot-balm","men-hand-cream","wom
 PRO_KEYS = ["pro-body-cream-lotion","pro-body-polish","pro-hand-cream-mask","pro-foot-balm","pro-facial-rich-cream","pro-facial-toner"]
 parts["HOME_INFO"] = "\n            ".join(info(HOME_KEYS[i], n, s_, "Kućna upotreba", "Home care", i) for i,(b,n,s_,new) in enumerate(home))
 parts["PRO_INFO"] = "\n            ".join(info(PRO_KEYS[i], n, f"{s_} ml", "Profesionalna upotreba", "Professional use", i) for i,(n,s_,new,img) in enumerate(pro))
+parts["LEGAL"] = (S/"legal.html").read_text()
 tpl = (S/"page.template.html").read_text()
 for k,v in parts.items(): tpl = tpl.replace("{{"+k+"}}", v)
 assert "{{" not in tpl

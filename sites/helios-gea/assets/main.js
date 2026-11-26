@@ -598,6 +598,48 @@
     langHooks.push(() => { fields.forEach(el => { if (el.getAttribute("aria-invalid") === "true") check(el); }); status.textContent = ""; status.className = "f-status"; });
   }
 
+  /* ---------- Legal pages (privacy, cookies, terms, impressum): #privatnost etc. ---------- */
+  const legal = $(".legal");
+  if (legal) {
+    const docs = ["privatnost", "kolacici", "uvjeti", "impressum"];
+    let legalFrom = null;
+    const showDoc = id => {
+      $$(".legal-doc", legal).forEach(d => { d.hidden = d.dataset.doc !== id; });
+      $$(".legal-tabs a", legal).forEach(a => a.setAttribute("aria-current", a.dataset.legal === id ? "page" : "false"));
+      $$(".legal-title", legal).forEach(h => h.removeAttribute("id"));
+      $(`#doc-${id} .legal-title`, legal)?.setAttribute("id", "legal-title");
+      $(".legal-panel", legal).scrollTop = 0;
+    };
+    const openLegal = id => {
+      if (!docs.includes(id)) return;
+      showDoc(id);
+      if (!legal.classList.contains("open")) {
+        legalFrom = document.activeElement;
+        legal.classList.add("open"); legal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        $(".legal-close", legal).focus({ preventScroll: true });
+      }
+    };
+    const closeLegal = () => {
+      if (!legal.classList.contains("open")) return;
+      legal.classList.remove("open"); legal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      try { if (docs.includes(location.hash.slice(1))) history.replaceState(null, "", location.pathname + location.search); } catch (err) {}
+      legalFrom?.focus?.({ preventScroll: true });
+    };
+    document.addEventListener("click", e => {
+      const a = e.target.closest("[data-legal]");
+      if (!a) return;
+      e.preventDefault();
+      try { history.replaceState(null, "", "#" + a.dataset.legal); } catch (err) {}
+      openLegal(a.dataset.legal);
+    });
+    $$("[data-legal-close]", legal).forEach(b => b.addEventListener("click", closeLegal));
+    addEventListener("keydown", e => { if (e.key === "Escape") closeLegal(); });
+    addEventListener("hashchange", () => { const h = location.hash.slice(1); if (docs.includes(h)) openLegal(h); else closeLegal(); });
+    if (docs.includes(location.hash.slice(1))) openLegal(location.hash.slice(1));
+  }
+
   let saved = null;
   try { saved = localStorage.getItem("hg-lang"); } catch (e) {}
   setLang(new URLSearchParams(location.search).get("lang") || saved || "hr");

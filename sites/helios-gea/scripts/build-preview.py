@@ -7,8 +7,12 @@ root = pathlib.Path(__file__).resolve().parent.parent
 html = (root / "index.html").read_text(encoding="utf-8")
 css = (root / "assets" / "style.css").read_text(encoding="utf-8").replace("../img/", "img/")
 js = (root / "assets" / "main.js").read_text(encoding="utf-8")
+fonts = re.sub(r"url\((fonts/[\w.-]+\.woff2)\)",
+               lambda m: "url(data:font/woff2;base64," + base64.b64encode((root / "assets" / m.group(1)).read_bytes()).decode() + ")",
+               (root / "assets" / "fonts.css").read_text(encoding="utf-8"))
 
 html = re.sub(r'<link rel="preload"[^>]*>\s*', "", html)
+html = html.replace('<link rel="stylesheet" href="assets/fonts.css">', f"<style>\n{fonts}</style>")
 html = html.replace('<link rel="stylesheet" href="assets/style.css">', f"<style>\n{css}</style>")
 html = html.replace('<script src="assets/main.js" defer></script>', f"<script>\n{js}</script>")
 html = re.sub(r'\s(?:srcset|sizes)="[^"]*"', "", html)
