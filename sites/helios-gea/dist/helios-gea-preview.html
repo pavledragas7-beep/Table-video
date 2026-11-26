@@ -1991,10 +1991,12 @@ html:not(.js) .loader { display: none; }
       hr: { req: "Obavezno polje.", mail: "Unesite ispravnu e-mail adresu.", consent: "Potrebna je vaša suglasnost.", fix: "Provjerite označena polja.",
             sending: "Šaljem…", ok: "Hvala! Vaš upit je poslan, javit ćemo vam se uskoro.", fail: "Slanje nije uspjelo. Nazovite nas na +385 99 3664333.",
             off: "Obrazac još nije povezan s e-mail adresom. Za upit nas nazovite na +385 99 3664333.",
+            mailto: "Otvaramo vaš e-mail program s već napisanim upitom za neva@helios-gea.com, samo pritisnite Pošalji.",
             preview: "Ovo je samo pregled stranice: upit nije poslan. Slanje na neva@helios-gea.com radit će kad stranica bude objavljena na helios-gea.com." },
       en: { req: "Required field.", mail: "Enter a valid e-mail address.", consent: "Your consent is required.", fix: "Please check the highlighted fields.",
             sending: "Sending…", ok: "Thank you! Your enquiry has been sent, we will get back to you soon.", fail: "Sending failed. Please call us on +385 99 3664333.",
             off: "The form is not connected to an e-mail address yet. Please call us on +385 99 3664333.",
+            mailto: "We are opening your e-mail app with the enquiry to neva@helios-gea.com already written, just press Send.",
             preview: "This is only a preview of the site: the enquiry was not sent. Sending to neva@helios-gea.com will work once the site is live on helios-gea.com." }
     };
     const t = k => T[lang()][k];
@@ -2031,12 +2033,20 @@ html:not(.js) .loader { display: none; }
       try {
         const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
         if (!res.ok) throw new Error(res.status);
-        const data = await res.json().catch(() => ({}));
-        if (data.success === false || data.success === "false") throw new Error(data.message || "rejected");
+        const data = await res.json(); // no JSON = the server did not run invia.php
+        if (data.success !== true) throw new Error(data.message || "rejected");
         form.reset();
         status.textContent = t("ok"); status.classList.add("ok");
       } catch (err) {
-        status.textContent = t("fail"); status.classList.add("warn");
+        /* fallback that always works: open the visitor's e-mail app with the enquiry already written to Neva */
+        const f = new FormData(form), g = k => (f.get(k) || "").toString().trim();
+        const subject = "Upit s web stranice helios-gea.com" + (g("topic") ? " · " + g("topic") : "");
+        const body = [
+          "Ime i prezime: " + g("name"), "E-mail: " + g("email"),
+          g("phone") && "Telefon: " + g("phone"), g("company") && "Tvrtka: " + g("company"), g("topic") && "Zanima me: " + g("topic")
+        ].filter(Boolean).join("\n") + "\n\n" + g("message");
+        location.href = "mailto:neva@helios-gea.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        status.textContent = t("mailto"); status.classList.add("ok");
       } finally { form.classList.remove("sending"); }
     });
     langHooks.push(() => { fields.forEach(el => { if (el.getAttribute("aria-invalid") === "true") check(el); }); status.textContent = ""; status.className = "f-status"; });
