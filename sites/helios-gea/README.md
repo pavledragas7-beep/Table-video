@@ -39,7 +39,7 @@ mostra un avviso con il numero di telefono. Per attivarlo inserire l'URL di un s
 | `img/sansa.jpg` | Inovacija, sansa di olive (finché manca: grafica komina) |
 | `img/laboratorij.jpg` | Private label, laboratorio (finché manca: niente foto) |
 
-Il modulo invia a neva@helios-gea.com tramite `invia.php` (nella stessa cartella di `index.html`), che usa la funzione `mail()` dell'hosting: nessun servizio esterno e nessuna attivazione. Serve un hosting con PHP (quasi tutti). La mail arriva da web@helios-gea.com e 'Rispondi' risponde direttamente a chi ha scritto.
+Il modulo invia a neva@helios-gea.com tramite `invia.php` (in `public_html`, accanto a `index.html`). Sull'hosting (cPanel, PHP 5.6) la funzione `mail()` è disattivata: lo script consegna la mail direttamente al server di posta locale (Exim, SMTP su localhost:25), dove si trova la casella di Neva. Diagnostica: `/invia.php?check=1`. 'Rispondi' risponde direttamente a chi ha scritto. Se il server non risponde, il sito apre l'e-mail già scritta nel programma di posta del visitatore.
 
 ## Parte legale
 
