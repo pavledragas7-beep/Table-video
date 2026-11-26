@@ -16,7 +16,7 @@ ring = [("p/gift-men","Men hand cream"),("g/model-products","45 degrees Absolute
         ("g/olive-sea","45 degrees · Bale Valle"),("p/body-polish","Absolute body polish"),("g/spa-lotion","Absolute body cream lotion"),
         ("p/facial-rich-cream","Absolute facial rich cream"),("p/women-hand-mask","Women hand absolute cream mask"),
         ("g/invest-skin","Invest in your skin"),("p/facial-toner","Hydrating facial spray toner"),("g/hand-cream","45 degrees natural cosmetics")]
-home = [("p/body-cream-lotion","Absolute body cream lotion","250 ml",0),("p/body-polish","Absolute body polish","236 ml",0),("p/foot-balm","Absolute foot balm","75 ml",0),
+home = [("p/body-cream-lotion","Absolute body cream lotion","250 ml",0),("p/body-polish","Absolute body polish","250 ml",0),("p/foot-balm","Absolute foot balm","50 ml",0),
         ("p/men-hand-cream","Men hand cream","50 ml",0),("p/women-hand-mask","Women hand absolute cream mask","50 ml",0),
         ("p/facial-rich-cream","Absolute facial rich cream","50 ml",1),("p/facial-toner","Hydrating facial spray toner","200 ml",1)]
 NEW = '<span class="new"><span lang="hr">Novo</span><span lang="en">New</span></span>'
