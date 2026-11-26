@@ -44,6 +44,5 @@ Il modulo invia a neva@helios-gea.com tramite `invia.php` (nella stessa cartella
 ## Parte legale
 
 Politika privatnosti, Kolačići, Uvjeti korištenja e Impressum sono in `scripts/src/legal.html` (HR + EN) e si aprono dal piè di pagina
-o con i link diretti `#privatnost`, `#kolacici`, `#uvjeti`, `#impressum`. I campi evidenziati (`<mark class="todo">`) sono dati
-della società ancora da inserire: OIB, tribunale del registro e MBS, capitale sociale, direttore/direttrice, banca e IBAN.
+o con i link diretti `#privatnost`, `#kolacici`, `#uvjeti`, `#impressum`. I dati societari vengono dal registro delle imprese (sudreg.pravosudje.hr, OIB 57044168447). IBAN non inserito.
 Il sito non usa cookie né servizi esterni: i font sono in `assets/fonts/` (niente Google Fonts), quindi non serve un banner cookie.
